@@ -4,16 +4,22 @@ import { PomodoroProgress } from "./PomodoroProgress";
 
 export const Pomodoro = () => {
   const [inPomodoro] = useGlobal("inPomodoro");
-  if (inPomodoro) {
-    return <PomodoroProgress />;
-  } else {
-    const onClick = () => {
-      setGlobal({
-        inPomodoro: true,
-        pomodoroStartTime: Date.now(),
-        pomodoroSecond: 0,
-      });
-    };
-    return <button onClick={onClick}>start pomodoro</button>;
-  }
+  const onClick = () => {
+    setGlobal({
+      inPomodoro: true,
+      pomodoroStartTime: Date.now(),
+      pomodoroSecond: 0,
+    });
+  };
+
+  return (
+    <div>
+      <h2>Pomodoro</h2>
+      {inPomodoro ? (
+        <PomodoroProgress />
+      ) : (
+        <button onClick={onClick}>start pomodoro</button>
+      )}
+    </div>
+  );
 };

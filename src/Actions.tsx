@@ -2,10 +2,18 @@ import React from "react";
 import { useDispatch } from "reactn";
 
 export const Actions = () => {
-  const onClick = useDispatch((x) => x + 1, "pomodoro");
   return (
     <div>
-      <button onClick={onClick}>Click(for Debug)</button>
+      <h2>Actions</h2>
+      <DebugActions />
     </div>
   );
+};
+
+const DebugActions = () => {
+  const onClick = useDispatch((x) => x + 1, "pomodoro");
+  if (process.env.NODE_ENV !== "production") {
+    return <button onClick={onClick}>Click(for Debug)</button>;
+  }
+  return null;
 };
