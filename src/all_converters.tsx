@@ -18,7 +18,7 @@ export const all_converters: TConverter[] = [
 ];
 
 type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
-type TConverter = {
+export type TConverter = {
   id: TConverterID;
   forHuman?: string;
   from: TResourceID;

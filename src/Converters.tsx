@@ -1,6 +1,7 @@
 import React from "react";
 import { getGlobal, setGlobal, useGlobal } from "reactn";
-import { all_converters } from "./all_converters";
+import { State } from "reactn/default";
+import { all_converters, TConverter } from "./all_converters";
 import { isConverterID } from "./all_ids";
 import { update } from "./update";
 
@@ -37,9 +38,7 @@ export const Converters = () => {
       }
 
       let useButton = null;
-      const canUse =
-        (g.activeConverters[c.id] ?? 0) > 0 &&
-        g.resources[c.from] >= c.fromAmount;
+      const canUse = isActive(g, c) && isEnoughResource(g, c);
       if (canUse) {
         const use = () => {
           setGlobal({
@@ -72,3 +71,10 @@ export const Converters = () => {
     </div>
   );
 };
+function isActive(g: State, c: TConverter) {
+  return (g.activeConverters[c.id] ?? 0) > 0;
+}
+
+function isEnoughResource(g: State, c: TConverter) {
+  return g.resources[c.from] >= c.fromAmount;
+}
