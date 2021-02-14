@@ -9,8 +9,6 @@ export const Achievements = () => {
       const checkbox = a.id in achieved ? "\u2611" : "\u2610";
       return (
         <li key={a.id}>
-          {a.id in achieved}
-          {achieved[a.id as string]}
           {checkbox} {a.forHuman ?? a.id}
         </li>
       );
