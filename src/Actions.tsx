@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "reactn";
+import { getGlobal, setGlobal } from "reactn";
 
 export const Actions = () => {
   return (
@@ -11,7 +11,11 @@ export const Actions = () => {
 };
 
 const DebugActions = () => {
-  const onClick = useDispatch((x) => x + 1, "pomodoro");
+  const onClick = () => {
+    const g = getGlobal();
+    const r = g.resources;
+    setGlobal({ resources: { ...r, pomodoro: r.pomodoro + 1 } });
+  };
   if (process.env.NODE_ENV !== "production") {
     return <button onClick={onClick}>Click(for Debug)</button>;
   }
