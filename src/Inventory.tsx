@@ -1,6 +1,7 @@
 import React from "react";
 import { getGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
+import { ALWAYS } from "./ALWAYS";
 import { checkAchievements } from "./checkAchievements";
 
 type Resource = {
@@ -12,7 +13,7 @@ type Resource = {
 const all_resources: Resource[] = [
   {
     id: "pomodoro",
-    toShow: (g: any) => true,
+    toShow: ALWAYS,
   },
 ];
 

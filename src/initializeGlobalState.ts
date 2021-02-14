@@ -4,7 +4,7 @@ const INITIAL_GLOBAL_STATE = {
   inPomodoro: false,
   pomodoroStartTime: 0,
   pomodoroSecond: 0,
-  resources: { pomodoro: 0 } as { [key: string]: number },
+  resources: {} as { [key: string]: number },
   achieved: {} as { [key: string]: boolean },
   converters: {} as { [key: string]: number },
 };

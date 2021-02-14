@@ -1,4 +1,5 @@
 import { State } from "reactn/default";
+import { ALWAYS } from "./ALWAYS";
 
 export const all_converters: TConverter[] = [
   {
@@ -8,12 +9,13 @@ export const all_converters: TConverter[] = [
     to: "cookie",
     fromAmount: 1,
     toAmount: 2,
-    toShow: (g: any) => true,
-    getPrice: (g: any, amount: number) => {
+    toShow: ALWAYS,
+    getPrice: (g, amount) => {
       return [[1 + amount, "pomodoro"]];
     },
   },
 ];
+
 type TGetPrice = (g: State, amount: number) => [number, string][];
 type TConverter = {
   id: string;
