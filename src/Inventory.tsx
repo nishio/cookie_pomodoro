@@ -15,7 +15,7 @@ export const Inventory = () => {
     if (r.toShow(g)) {
       return (
         <li key={r.id}>
-          {r.forHuman ?? r.id}: {resources[r.id]}
+          {r.forHuman ?? r.id}: {resources[r.id] ?? 0}
         </li>
       );
     }
