@@ -1,21 +1,7 @@
 import React from "react";
 import { getGlobal, useGlobal } from "reactn";
-import { State } from "reactn/default";
-import { ALWAYS } from "./ALWAYS";
+import { all_resources } from "./all_resources";
 import { checkAchievements } from "./checkAchievements";
-
-type Resource = {
-  id: string;
-  forHuman?: string;
-  toShow: (g: State) => boolean;
-};
-
-const all_resources: Resource[] = [
-  {
-    id: "pomodoro",
-    toShow: ALWAYS,
-  },
-];
 
 export const Inventory = () => {
   const [resources] = useGlobal("resources");
