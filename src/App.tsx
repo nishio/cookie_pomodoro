@@ -1,6 +1,7 @@
 import React from "react";
-import { getGlobal, setGlobal, useDispatch, useGlobal } from "reactn";
+import { Actions } from "./Actions";
 import "./App.css";
+import { Inventory } from "./Inventory";
 
 function App() {
   return (
@@ -14,21 +15,4 @@ function App() {
   );
 }
 
-const Actions = () => {
-  const onClick = useDispatch((x) => x + 1, "pomodoro");
-  return (
-    <div>
-      <button onClick={onClick}>Click(for Debug)</button>
-    </div>
-  );
-};
-
-const Inventory = () => {
-  const [g] = useGlobal();
-  return (
-    <div>
-      <span>pomodoro: {g.pomodoro}</span>
-    </div>
-  );
-};
 export default App;
