@@ -6,6 +6,7 @@ const INITIAL_GLOBAL_STATE = {
   pomodoro: 0,
   pomodoroSecond: 0,
   achieved: {} as { [key: string]: boolean },
+  converters: {} as { [key: string]: number },
 };
 
 export const initializeGlobalState = () => {
