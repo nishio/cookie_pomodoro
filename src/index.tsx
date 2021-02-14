@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { initializeGlobalState } from "./initializeGlobalState";
+import addReactNDevTools from "reactn-devtools";
 
+if (process.env.NODE_ENV !== "production") {
+  // development
+  addReactNDevTools({ trace: true, traceLimit: 25 });
+} else {
+  // production
+  // initSentry();
+}
+
+initializeGlobalState();
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
