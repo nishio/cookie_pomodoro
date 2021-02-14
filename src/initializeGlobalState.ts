@@ -1,7 +1,10 @@
 import { setGlobal } from "reactn";
 
 const INITIAL_GLOBAL_STATE = {
+  inPomodoro: false,
+  pomodoroStartTime: 0,
   pomodoro: 0,
+  pomodoroSecond: 0,
 };
 
 export const initializeGlobalState = () => {
