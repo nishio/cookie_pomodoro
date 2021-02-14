@@ -5,6 +5,7 @@ const INITIAL_GLOBAL_STATE = {
   pomodoroStartTime: 0,
   pomodoro: 0,
   pomodoroSecond: 0,
+  achieved: {} as { [key: string]: boolean },
 };
 
 export const initializeGlobalState = () => {

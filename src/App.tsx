@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "reactn";
+import { Achievements } from "./Achievements";
 import { Actions } from "./Actions";
 import "./App.css";
 import { Inventory } from "./Inventory";
@@ -14,7 +15,7 @@ function App() {
       {/* <Converters /> */}
       <Actions />
       <Inventory />
-      {/* <Achievements /> */}
+      <Achievements />
     </div>
   );
 }
