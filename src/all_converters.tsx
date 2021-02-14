@@ -1,4 +1,5 @@
 import { State } from "reactn/default";
+import { TResourceID } from "./all_ids";
 import { ALWAYS } from "./ALWAYS";
 
 export const all_converters: TConverter[] = [
@@ -16,7 +17,7 @@ export const all_converters: TConverter[] = [
   },
 ];
 
-type TGetPrice = (g: State, amount: number) => [number, string][];
+type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
 type TConverter = {
   id: string;
   forHuman?: string;

@@ -3,8 +3,16 @@ import { all_converters } from "./all_converters";
 import { all_resources } from "./all_resources";
 
 export type TAchivementID = "pomodoro1" | "pomodoro2" | "pomodoro4";
-export type TConvertedID = "grandma";
+export type TConverterID = "grandma";
 export type TResourceID = "pomodoro";
+
+export const isResouseID = (x: string): x is TResourceID => {
+  return true;
+};
+
+export const isConverterID = (x: string): x is TConverterID => {
+  return true;
+};
 
 export const update_ids = () => {
   let s = "export type TAchivementID = ";

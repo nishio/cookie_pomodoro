@@ -1,5 +1,6 @@
 import React from "react";
 import { getGlobal, useGlobal } from "reactn";
+import { isResouseID } from "./all_ids";
 import { all_resources } from "./all_resources";
 import { checkAchievements } from "./checkAchievements";
 
@@ -8,6 +9,9 @@ export const Inventory = () => {
   requestAnimationFrame(checkAchievements);
   const g = getGlobal();
   const list = all_resources.map((r) => {
+    if (!isResouseID(r.id)) {
+      throw new TypeError(`${r.id} not in TResourceID`);
+    }
     if (r.toShow(g)) {
       return (
         <li key={r.id}>

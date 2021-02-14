@@ -1,5 +1,5 @@
 import React from "react";
-import { getGlobal, setGlobal } from "reactn";
+import { getOnePomodoro } from "./getOnePomodoro";
 
 export const Actions = () => {
   return (
@@ -11,13 +11,8 @@ export const Actions = () => {
 };
 
 const DebugActions = () => {
-  const onClick = () => {
-    const g = getGlobal();
-    const r = g.resources;
-    setGlobal({ resources: { ...r, pomodoro: r.pomodoro + 1 } });
-  };
   if (process.env.NODE_ENV !== "production") {
-    return <button onClick={onClick}>Click(for Debug)</button>;
+    return <button onClick={getOnePomodoro}>Click(for Debug)</button>;
   }
   return null;
 };

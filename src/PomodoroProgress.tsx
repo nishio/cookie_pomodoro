@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { setGlobal, useDispatch, useGlobal } from "reactn";
+import { setGlobal, useGlobal } from "reactn";
+import { getOnePomodoro } from "./getOnePomodoro";
 import { toMinSec } from "./toMinSec";
 
 export const PomodoroProgress = () => {
@@ -9,7 +10,6 @@ export const PomodoroProgress = () => {
   const cancel = () => {
     setGlobal({ inPomodoro: false });
   };
-  const getOne = useDispatch((x) => x + 1, "pomodoro");
 
   let state: string | ReactNode;
   if (sec < 20 * 60) {
@@ -19,7 +19,7 @@ export const PomodoroProgress = () => {
       </>
     );
   } else if (sec < 30 * 60) {
-    state = <button onClick={getOne}>harvest</button>;
+    state = <button onClick={getOnePomodoro}>harvest</button>;
   } else {
     state = (
       <>

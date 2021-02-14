@@ -1,5 +1,5 @@
 import { setGlobal } from "reactn";
-import { TAchivementID, TConvertedID, TResourceID } from "./all_ids";
+import { TAchivementID, TConverterID, TResourceID } from "./all_ids";
 
 const INITIAL_GLOBAL_STATE = {
   inPomodoro: false,
@@ -7,7 +7,7 @@ const INITIAL_GLOBAL_STATE = {
   pomodoroSecond: 0,
   resources: {} as { [key in TResourceID]: number },
   achieved: {} as { [key in TAchivementID]: boolean },
-  converters: {} as { [key in TConvertedID]: number },
+  converters: {} as { [key in TConverterID]: number },
 };
 
 export const initializeGlobalState = () => {
