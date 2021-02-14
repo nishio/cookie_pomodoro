@@ -15,7 +15,7 @@ export const PomodoroProgress = () => {
   if (sec < 20 * 60) {
     state = (
       <>
-        growing <button onClick={cancel}>cancel</button>
+        Growing <button onClick={cancel}>cancel</button>
       </>
     );
   } else if (sec < 30 * 60) {
@@ -23,7 +23,7 @@ export const PomodoroProgress = () => {
   } else {
     state = (
       <>
-        overgrown <button onClick={cancel}>reset</button>
+        Overgrown <button onClick={cancel}>reset</button>
       </>
     );
   }

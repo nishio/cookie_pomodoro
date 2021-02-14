@@ -18,7 +18,7 @@ export const Pomodoro = () => {
       {inPomodoro ? (
         <PomodoroProgress />
       ) : (
-        <button onClick={onClick}>start pomodoro</button>
+        <button onClick={onClick}>Start Pomodoro</button>
       )}
     </div>
   );

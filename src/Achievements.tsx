@@ -8,11 +8,11 @@ export const Achievements = () => {
     if (a.toShow(g)) {
       const checkbox = a.id in achieved ? "\u2611" : "\u2610";
       return (
-        <span key={a.id}>
+        <li key={a.id}>
           {a.id in achieved}
           {achieved[a.id as string]}
           {checkbox} {a.forHuman ?? a.id}
-        </span>
+        </li>
       );
     }
     return null;
@@ -20,7 +20,7 @@ export const Achievements = () => {
   return (
     <div>
       <h2>Achievements</h2>
-      {list}
+      <ul>{list}</ul>
     </div>
   );
 };
