@@ -8,6 +8,7 @@ const INITIAL_GLOBAL_STATE = {
   resources: {} as { [key in TResourceID]: number },
   achieved: {} as { [key in TAchivementID]: boolean },
   converters: {} as { [key in TConverterID]: number },
+  activeConverters: {} as { [key in TConverterID]: number },
 };
 
 export const initializeGlobalState = () => {

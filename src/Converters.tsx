@@ -32,11 +32,33 @@ export const Converters = () => {
           });
         };
         buyButton = <button onClick={buy}>Buy({priceStr})</button>;
+      } else {
+        buyButton = <button disabled>Buy({priceStr})</button>;
+      }
+
+      let useButton = null;
+      const canUse =
+        (g.activeConverters[c.id] ?? 0) > 0 &&
+        g.resources[c.from] >= c.fromAmount;
+      if (canUse) {
+        const use = () => {
+          setGlobal({
+            activeConverters: update(g.activeConverters, c.id, -1),
+            resources: update(
+              update(g.resources, c.from, -c.fromAmount),
+              c.to,
+              c.toAmount
+            ),
+          });
+        };
+        useButton = <button onClick={use}>Use 1</button>;
+      } else {
+        useButton = <button disabled>Use 1</button>;
       }
       return (
         <li key={c.id}>
-          {c.forHuman ?? c.id} {amount}
-          {buyButton}
+          {c.forHuman ?? c.id}: {amount} {buyButton}:{" "}
+          {g.activeConverters[c.id] ?? 0} {useButton}
         </li>
       );
     }

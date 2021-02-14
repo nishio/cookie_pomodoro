@@ -6,6 +6,10 @@ export const all_resources: Resource[] = [
     id: "pomodoro",
     toShow: ALWAYS,
   },
+  {
+    id: "cookie",
+    toShow: ALWAYS,
+  },
 ];
 type Resource = {
   id: string;

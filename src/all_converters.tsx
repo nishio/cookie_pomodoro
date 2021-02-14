@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { TResourceID } from "./all_ids";
+import { TConverterID, TResourceID } from "./all_ids";
 import { ALWAYS } from "./ALWAYS";
 
 export const all_converters: TConverter[] = [
@@ -19,10 +19,10 @@ export const all_converters: TConverter[] = [
 
 type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
 type TConverter = {
-  id: string;
+  id: TConverterID;
   forHuman?: string;
-  from: string;
-  to: string;
+  from: TResourceID;
+  to: TResourceID;
   fromAmount: number;
   toAmount: number;
   toShow: (g: State) => boolean;
