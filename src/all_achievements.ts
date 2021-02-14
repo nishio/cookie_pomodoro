@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { ALWAYS } from "./ALWAYS";
+import { ALWAYS, HIDDEN } from "./ALWAYS";
 
 type TAchievement = {
   id: string;
@@ -17,12 +17,18 @@ export const all_achievements: TAchievement[] = [
   },
   {
     id: "pomodoro2",
-    toShow: (g) => g.resources.pomodoro >= 1,
+    toShow: (g) => "pomodoro1" in g.achieved,
     toGet: (g) => g.resources.pomodoro >= 2,
   },
   {
     id: "pomodoro4",
-    toShow: (g) => g.resources.pomodoro >= 2,
+    toShow: (g) => "pomodoro2" in g.achieved,
     toGet: (g) => g.resources.pomodoro >= 4,
+  },
+  {
+    id: "cookie1",
+    forHuman: "First Cookie",
+    toShow: HIDDEN,
+    toGet: (g) => g.resources.cookie >= 1,
   },
 ];

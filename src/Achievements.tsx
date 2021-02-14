@@ -5,8 +5,9 @@ export const Achievements = () => {
   const [achieved] = useGlobal("achieved");
   const g = getGlobal();
   const list = all_achievements.map((a) => {
-    if (a.toShow(g)) {
-      const checkbox = a.id in achieved ? "\u2611" : "\u2610";
+    const done = a.id in achieved;
+    if (done || a.toShow(g)) {
+      const checkbox = done ? "\u2611" : "\u2610";
       return (
         <li key={a.id}>
           {checkbox} {a.forHuman ?? a.id}
