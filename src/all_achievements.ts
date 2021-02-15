@@ -17,11 +17,13 @@ export const all_achievements: TAchievement[] = [
   },
   {
     id: "pomodoro2",
+    forHuman: "Two Pomodoro",
     toShow: (g) => "pomodoro1" in g.achieved,
     toGet: (g) => g.resources.pomodoro >= 2,
   },
   {
     id: "pomodoro4",
+    forHuman: "Four Pomodoro",
     toShow: (g) => "pomodoro2" in g.achieved,
     toGet: (g) => g.resources.pomodoro >= 4,
   },
