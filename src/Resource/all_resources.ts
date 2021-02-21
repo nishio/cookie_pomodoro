@@ -1,5 +1,7 @@
 import { State } from "reactn/default";
 import { ALWAYS } from "../ALWAYS";
+import { hasConverter } from "../Converter/hasConverter";
+import { hasResource } from "./hasResource";
 
 export type TResourceID =
   | "pomodoro"
@@ -7,7 +9,8 @@ export type TResourceID =
   | "coal"
   | "iron_ore"
   | "iron_ingot"
-  | "iron_pickaxe";
+  | "iron_pickaxe"
+  | "mana";
 
 export const all_resources: TResource[] = [
   {
@@ -23,24 +26,30 @@ export const all_resources: TResource[] = [
   {
     id: "coal",
     forHuman: "Coal",
-    toShow: (g) => g.converters.coal_mine >= 1,
+    toShow: hasConverter("coal_mine"),
   },
   {
     id: "iron_ore",
     forHuman: "Iron Ore",
-    toShow: (g) => g.converters.iron_mine >= 1,
+    toShow: hasConverter("iron_mine"),
   },
   {
     id: "iron_ingot",
     forHuman: "Iron Ingot",
-    toShow: (g) => g.converters.furnace_for_iron >= 1,
+    toShow: hasConverter("furnace_for_iron"),
   },
   {
     id: "iron_pickaxe",
     forHuman: "Iron Pickaxe",
-    toShow: (g) => g.converters.workbench_for_iron_pickaxe >= 1,
+    toShow: hasConverter("workbench_for_iron_pickaxe"),
+  },
+  {
+    id: "mana",
+    forHuman: "Mana",
+    toShow: hasResource("mana"),
   },
 ];
+
 export type TResource = {
   id: TResourceID;
   forHuman?: string;

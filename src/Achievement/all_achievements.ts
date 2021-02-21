@@ -1,13 +1,28 @@
 import { State } from "reactn/default";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
+import { numAchieved } from "./numAchieved";
 
 type TAchievement = {
-  id: string;
+  id: TAchivementID;
   forHuman?: string;
   description?: string;
   toShow: (g: State) => boolean;
   toGet: (g: State) => boolean;
 };
+
+export type TAchivementID =
+  | "pomodoro1"
+  | "pomodoro2"
+  | "pomodoro4"
+  | "has_pomodoro4"
+  | "cookie1"
+  | "coal"
+  | "iron"
+  | "iron_ingot"
+  | "iron_pickaxe"
+  | "iron_pickaxe2"
+  | "iron_pickaxe4"
+  | "mana";
 
 export const all_achievements: TAchievement[] = [
   {
@@ -77,12 +92,18 @@ export const all_achievements: TAchievement[] = [
     toShow: (g) => "iron_pickaxe" in g.achieved,
     toGet: (g) => g.resources.iron_pickaxe >= 2,
   },
-
   {
     id: "iron_pickaxe4",
     forHuman: "Enough Iron Pickaxe",
     description: "increase production of mining (+1)",
     toShow: (g) => "iron_pickaxe2" in g.achieved,
     toGet: (g) => g.resources.iron_pickaxe >= 4,
+  },
+  {
+    id: "mana",
+    forHuman: "Found Mana Spring",
+    description: "generate Mana depends on the number of achievements",
+    toShow: HIDDEN,
+    toGet: (g) => numAchieved(g) >= 7,
   },
 ];
