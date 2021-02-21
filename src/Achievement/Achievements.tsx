@@ -10,7 +10,8 @@ export const Achievements = () => {
       const checkbox = done ? "\u2611" : "\u2610";
       return (
         <li key={a.id}>
-          {checkbox} {a.forHuman ?? a.id}
+          {checkbox} {a.forHuman ?? a.id}{" "}
+          {a.description ? <p>{a.description}</p> : null}
         </li>
       );
     }

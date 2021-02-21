@@ -4,6 +4,7 @@ import { ALWAYS, HIDDEN } from "../ALWAYS";
 type TAchievement = {
   id: string;
   forHuman?: string;
+  description?: string;
   toShow: (g: State) => boolean;
   toGet: (g: State) => boolean;
 };
@@ -18,19 +19,26 @@ export const all_achievements: TAchievement[] = [
   {
     id: "pomodoro2",
     forHuman: "Two Pomodoro",
+    description: "Have 2 pomodoro",
     toShow: (g) => "pomodoro1" in g.achieved,
     toGet: (g) => g.resources.pomodoro >= 2,
   },
   {
     id: "pomodoro4",
-    forHuman: "Four Pomodoro",
+    forHuman: "Got Four Pomodoro",
     toShow: (g) => "pomodoro2" in g.achieved,
-    toGet: (g) => g.resources.pomodoro >= 4,
+    toGet: (g) => g.records.gotPomodoro >= 4,
   },
   {
     id: "cookie1",
     forHuman: "First Cookie",
     toShow: ALWAYS,
     toGet: (g) => g.resources.cookie >= 1,
+  },
+  {
+    id: "coal",
+    forHuman: "First Coal",
+    toShow: ALWAYS,
+    toGet: (g) => g.resources.coal >= 1,
   },
 ];

@@ -66,6 +66,9 @@ export const Converters = () => {
         <li key={c.id}>
           {c.forHuman ?? c.id}: {amount} {buyButton}:{" "}
           {g.activeConverters[c.id] ?? 0} {useButton}
+          <p>
+            Convert {c.fromAmount} {c.from} into {c.toAmount} {c.to}
+          </p>
         </li>
       );
     }
@@ -75,7 +78,10 @@ export const Converters = () => {
   return (
     <div>
       <h2>Converters</h2>
-      <ul>{list}</ul>
+      <div id="converters">
+        <p>Can be used once per a pomodoro</p>
+        <ul>{list}</ul>
+      </div>
     </div>
   );
 };
