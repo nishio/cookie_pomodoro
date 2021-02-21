@@ -48,4 +48,41 @@ export const all_achievements: TAchievement[] = [
     toShow: ALWAYS,
     toGet: (g) => g.resources.coal >= 1,
   },
+  {
+    id: "iron",
+    forHuman: "First Iron Ore",
+    toShow: (g) => "coal" in g.achieved,
+    toGet: (g) => g.resources.iron_ore >= 1,
+  },
+
+  {
+    id: "iron_ingot",
+    forHuman: "First Iron Ingot",
+    toShow: (g) => "iron" in g.achieved,
+    toGet: (g) => g.resources.iron_ingot >= 1,
+  },
+
+  {
+    id: "iron_pickaxe",
+    forHuman: "First Iron Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: (g) => "iron_ingot" in g.achieved,
+    toGet: (g) => g.resources.iron_pickaxe >= 1,
+  },
+
+  {
+    id: "iron_pickaxe2",
+    forHuman: "First Iron Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: (g) => "iron_pickaxe" in g.achieved,
+    toGet: (g) => g.resources.iron_pickaxe >= 2,
+  },
+
+  {
+    id: "iron_pickaxe4",
+    forHuman: "First Iron Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: (g) => "iron_pickaxe2" in g.achieved,
+    toGet: (g) => g.resources.iron_pickaxe >= 4,
+  },
 ];

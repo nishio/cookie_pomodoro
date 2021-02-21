@@ -1,6 +1,7 @@
 import { State } from "reactn/default";
 import { ALWAYS } from "../ALWAYS";
 import { TResourceID } from "../Resource/all_resources";
+import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
 
 export type TConverterID =
@@ -18,6 +19,7 @@ export const all_converters: TConverter[] = [
     froms: [["cookie", 5]],
     to: "coal",
     toAmount: 1,
+    addToAmount: addMiningProduction,
     toShow: ALWAYS,
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
@@ -29,6 +31,7 @@ export const all_converters: TConverter[] = [
     froms: [["cookie", 5]],
     to: "iron_ore",
     toAmount: 1,
+    addToAmount: addMiningProduction,
     toShow: (g) => {
       return g.converters.coal_mine >= 1;
     },
