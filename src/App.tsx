@@ -15,9 +15,9 @@ function App() {
     <div>
       <h1>CookiePomodoro</h1>
       <Pomodoro />
+      <Resources />
       <Converters />
       <Actions />
-      <Resources />
       <Achievements />
       <Records />
     </div>
