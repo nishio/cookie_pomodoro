@@ -14,8 +14,12 @@ export const getOnePomodoro = async () => {
     }
   });
   if ("mana" in g.achieved) {
+    let mana = numAchieved(g);
+    if ("no_mine" in g.achieved && g.converters.coal_mine === 0) {
+      mana *= 2;
+    }
     await setGlobal({
-      ...updateResource(g, "mana", numAchieved(g)),
+      ...updateResource(g, "mana", mana),
     });
   }
   await setGlobal((g) => {

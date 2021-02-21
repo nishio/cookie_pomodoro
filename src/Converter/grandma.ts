@@ -17,6 +17,9 @@ export const grandma: TConverter = {
     if ("has_pomodoro4" in g.achieved) {
       ret += 1;
     }
+    if ("three_grandma" in g.achieved) {
+      ret += 1;
+    }
     return ret;
   },
   decreaseCost: (g) => {
