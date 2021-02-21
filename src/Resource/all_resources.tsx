@@ -12,6 +12,11 @@ export const all_resources: Resource[] = [
     forHuman: "Cookie",
     toShow: ALWAYS,
   },
+  {
+    id: "coal",
+    forHuman: "Coal",
+    toShow: (g) => g.converters.coal_mine >= 1,
+  },
 ];
 type Resource = {
   id: string;
