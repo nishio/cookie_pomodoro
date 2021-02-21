@@ -1,6 +1,5 @@
 import { setGlobal } from "reactn";
 import { State } from "reactn/default";
-import { TResourceID } from "../Resource/all_resources";
 import { updateResource } from "../update";
 
 export const burn_coal = {

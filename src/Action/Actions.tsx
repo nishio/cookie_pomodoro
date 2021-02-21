@@ -3,8 +3,7 @@
  */
 import { setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
-import { TResourceID } from "../Resource/all_resources";
-import { update, updateResource } from "../update";
+import { updateResource } from "../update";
 import { burn_coal } from "./burn_coal";
 import { click } from "./click";
 import { reset } from "./reset";
