@@ -1,3 +1,7 @@
+/**
+ * Records
+ * It is not consumable.
+ */
 import React from "react";
 import { useGlobal } from "reactn";
 import { all_records } from "./all_records";
