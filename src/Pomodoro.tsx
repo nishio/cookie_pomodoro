@@ -5,23 +5,25 @@ import { PomodoroProgress } from "./PomodoroProgress";
 
 export const Pomodoro = () => {
   const [inPomodoro] = useGlobal("inPomodoro");
-  const onClick = () => {
-    setGlobal({
+  const onClick = async () => {
+    await setGlobal({
       inPomodoro: true,
       pomodoroStartTime: Date.now(),
       pomodoroSecond: 0,
     });
-    save();
+    await save();
   };
 
   return (
     <div>
       <h2>Pomodoro</h2>
-      {inPomodoro ? (
-        <PomodoroProgress />
-      ) : (
-        <button onClick={onClick}>Start Pomodoro</button>
-      )}
+      <div id="pomodoro">
+        {inPomodoro ? (
+          <PomodoroProgress />
+        ) : (
+          <button onClick={onClick}>Start Pomodoro</button>
+        )}
+      </div>
     </div>
   );
 };

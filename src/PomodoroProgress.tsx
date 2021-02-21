@@ -1,14 +1,16 @@
 import React, { ReactNode } from "react";
 import { setGlobal, useGlobal } from "reactn";
 import { getOnePomodoro } from "./getOnePomodoro";
+import { save } from "./localDB";
 import { toMinSec } from "./toMinSec";
 
 export const PomodoroProgress = () => {
   const [sec] = useGlobal("pomodoroSecond");
   const fromStart = toMinSec(sec);
   const toEnd = toMinSec(25 * 60 - sec);
-  const cancel = () => {
-    setGlobal({ inPomodoro: false });
+  const cancel = async () => {
+    await setGlobal({ inPomodoro: false });
+    await save();
   };
 
   let state: string | ReactNode;
