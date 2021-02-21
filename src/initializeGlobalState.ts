@@ -2,6 +2,7 @@ import { setGlobal } from "reactn";
 import { TAchivementID, TConverterID, TResourceID } from "./all_ids";
 
 const INITIAL_GLOBAL_STATE = {
+  version: 1,
   inPomodoro: false,
   pomodoroStartTime: 0,
   pomodoroSecond: 0,
