@@ -10,7 +10,9 @@ import { isConverterID } from "../all_ids";
 import { save } from "../localDB";
 import { update } from "../update";
 import { TResourceID } from "../Resource/all_resources";
+import { checkAchievements } from "../Achievement/checkAchievements";
 
+export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
   const [converters] = useGlobal("converters");
   const [resources] = useGlobal("resources");
@@ -33,11 +35,16 @@ export const Converters = () => {
           price.forEach(([value, unit]) => {
             newResources = update(newResources, unit, -value);
           });
-          setGlobal({
+          lastPromise = setGlobal({
             converters: update(g.converters, c.id, 1),
             resources: newResources,
-          });
-          save();
+          })
+            .then(() => {
+              return checkAchievements();
+            })
+            .then(() => {
+              return save();
+            });
         };
         buyButton = <button onClick={buy}>Buy({priceStr})</button>;
       } else {
@@ -59,7 +66,7 @@ export const Converters = () => {
 
       const canUse = isActive(g, c) && isEnoughResource(g, c, decreaseCost);
       if (canUse) {
-        const use = async () => {
+        const use = () => {
           let newResources = { ...g.resources };
           c.froms.forEach(([unit, value]) => {
             newResources = update(
@@ -69,11 +76,16 @@ export const Converters = () => {
             );
           });
 
-          await setGlobal({
+          lastPromise = setGlobal({
             activeConverters: update(g.activeConverters, c.id, -1),
             resources: update(newResources, c.to, c.toAmount + addToAmount),
-          });
-          await save();
+          })
+            .then(() => {
+              checkAchievements();
+            })
+            .then(() => {
+              save();
+            });
         };
         useButton = <button onClick={use}>Use 1</button>;
       } else {
