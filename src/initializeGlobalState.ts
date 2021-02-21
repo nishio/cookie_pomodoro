@@ -1,6 +1,8 @@
 import { setGlobal } from "reactn";
 import { TTemporaryEffect } from "./Action/Actions";
-import { TAchivementID, TConverterID, TRecordID, TResourceID } from "./all_ids";
+import { TAchivementID, TRecordID } from "./all_ids";
+import { TConverterID } from "./Converter/all_converters";
+import { TResourceID } from "./Resource/all_resources";
 
 const INITIAL_GLOBAL_STATE = {
   version: 1,

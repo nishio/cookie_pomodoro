@@ -1,7 +1,14 @@
 import { State } from "reactn/default";
-import { TConverterID, TResourceID } from "../all_ids";
 import { ALWAYS } from "../ALWAYS";
+import { TResourceID } from "../Resource/all_resources";
 import { grandma } from "./grandma";
+
+export type TConverterID =
+  | "grandma"
+  | "coal_mine"
+  | "iron_mine"
+  | "furnace_for_iron"
+  | "workbench_for_iron_pickaxe";
 
 export const all_converters: TConverter[] = [
   grandma,
@@ -45,9 +52,23 @@ export const all_converters: TConverter[] = [
       return [[1 + amount, "cookie"]];
     },
   },
+  {
+    id: "workbench_for_iron_pickaxe",
+    forHuman: "Workbench for Iron Pickaxe",
+    to: "iron_pickaxe",
+    froms: [["iron_ingot", 1]],
+    toAmount: 1,
+    toShow: (g) => {
+      return g.converters.coal_mine >= 1;
+    },
+    getPrice: (g, amount) => {
+      return [[1 + amount, "cookie"]];
+    },
+  },
 ];
 
 type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
+
 export type TConverter = {
   id: TConverterID;
   forHuman?: string;

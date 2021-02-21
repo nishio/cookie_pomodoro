@@ -1,7 +1,15 @@
 import { State } from "reactn/default";
 import { ALWAYS } from "../ALWAYS";
 
-export const all_resources: Resource[] = [
+export type TResourceID =
+  | "pomodoro"
+  | "cookie"
+  | "coal"
+  | "iron_ore"
+  | "iron_ingot"
+  | "iron_pickaxe";
+
+export const all_resources: TResource[] = [
   {
     id: "pomodoro",
     forHuman: "Pomodoro",
@@ -22,9 +30,19 @@ export const all_resources: Resource[] = [
     forHuman: "Iron Ore",
     toShow: (g) => g.converters.iron_mine >= 1,
   },
+  {
+    id: "iron_ingot",
+    forHuman: "Iron Ingot",
+    toShow: (g) => g.converters.furnace_for_iron >= 1,
+  },
+  {
+    id: "iron_pickaxe",
+    forHuman: "Iron Pickaxe",
+    toShow: (g) => g.converters.workbench_for_iron_pickaxe >= 1,
+  },
 ];
-type Resource = {
-  id: string;
+export type TResource = {
+  id: TResourceID;
   forHuman?: string;
   toShow: (g: State) => boolean;
 };

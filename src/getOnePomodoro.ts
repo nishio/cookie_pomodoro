@@ -1,6 +1,5 @@
 import { getGlobal, setGlobal } from "reactn";
-import { all_converters } from "./Converter/all_converters";
-import { TConverterID } from "./all_ids";
+import { all_converters, TConverterID } from "./Converter/all_converters";
 import { save } from "./localDB";
 import { update } from "./update";
 
