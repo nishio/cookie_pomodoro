@@ -72,7 +72,7 @@ export const all_achievements: TAchievement[] = [
 
   {
     id: "iron_pickaxe2",
-    forHuman: "First Iron Pickaxe",
+    forHuman: "More Iron Pickaxe",
     description: "increase production of mining (+1)",
     toShow: (g) => "iron_pickaxe" in g.achieved,
     toGet: (g) => g.resources.iron_pickaxe >= 2,
@@ -80,7 +80,7 @@ export const all_achievements: TAchievement[] = [
 
   {
     id: "iron_pickaxe4",
-    forHuman: "First Iron Pickaxe",
+    forHuman: "Enough Iron Pickaxe",
     description: "increase production of mining (+1)",
     toShow: (g) => "iron_pickaxe2" in g.achieved,
     toGet: (g) => g.resources.iron_pickaxe >= 4,

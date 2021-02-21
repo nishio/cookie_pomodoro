@@ -3,6 +3,7 @@ import { ALWAYS } from "../ALWAYS";
 import { TResourceID } from "../Resource/all_resources";
 import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
+import { hasConverter } from "./hasConverter";
 
 export type TConverterID =
   | "grandma"
@@ -32,9 +33,7 @@ export const all_converters: TConverter[] = [
     to: "iron_ore",
     toAmount: 1,
     addToAmount: addMiningProduction,
-    toShow: (g) => {
-      return g.converters.coal_mine >= 1;
-    },
+    toShow: hasConverter("coal_mine"),
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },
@@ -48,9 +47,7 @@ export const all_converters: TConverter[] = [
       ["iron_ore", 1],
     ],
     toAmount: 1,
-    toShow: (g) => {
-      return g.converters.coal_mine >= 1;
-    },
+    toShow: hasConverter("iron_mine"),
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },
@@ -61,9 +58,7 @@ export const all_converters: TConverter[] = [
     to: "iron_pickaxe",
     froms: [["iron_ingot", 1]],
     toAmount: 1,
-    toShow: (g) => {
-      return g.converters.coal_mine >= 1;
-    },
+    toShow: hasConverter("furnace_for_iron"),
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },
