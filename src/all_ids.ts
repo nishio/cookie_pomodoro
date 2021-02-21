@@ -3,8 +3,8 @@ import { all_converters } from "./Converter/all_converters";
 import { all_resources } from "./Resource/all_resources";
 
 export type TAchivementID = "pomodoro1" | "pomodoro2" | "pomodoro4";
-export type TConverterID = "grandma" | "coal_mine";
-export type TResourceID = "pomodoro" | "cookie" | "coal";
+export type TConverterID = "grandma" | "coal_mine" | "iron_mine";
+export type TResourceID = "pomodoro" | "cookie" | "coal" | "iron_ore";
 export type TRecordID = "lastVisit" | "firstVisit" | "gotPomodoro";
 
 export const isResouseID = (x: string): x is TResourceID => {

@@ -17,6 +17,11 @@ export const all_resources: Resource[] = [
     forHuman: "Coal",
     toShow: (g) => g.converters.coal_mine >= 1,
   },
+  {
+    id: "iron_ore",
+    forHuman: "Iron Ore",
+    toShow: (g) => g.converters.iron_mine >= 1,
+  },
 ];
 type Resource = {
   id: string;
