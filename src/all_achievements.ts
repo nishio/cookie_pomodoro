@@ -30,7 +30,7 @@ export const all_achievements: TAchievement[] = [
   {
     id: "cookie1",
     forHuman: "First Cookie",
-    toShow: HIDDEN,
+    toShow: ALWAYS,
     toGet: (g) => g.resources.cookie >= 1,
   },
 ];
