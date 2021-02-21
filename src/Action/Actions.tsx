@@ -39,8 +39,8 @@ export const Actions = () => {
     }
     return null;
   });
-  const effects = g.temporaryEffects.map((e) => {
-    return <li>{e.forHuman ?? e.id}</li>;
+  const effects = g.temporaryEffects.map((e, index) => {
+    return <li key="{index}">{e.forHuman ?? e.id}</li>;
   });
   return (
     <div>
