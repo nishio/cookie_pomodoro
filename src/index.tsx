@@ -5,8 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { initializeGlobalState } from "./initializeGlobalState";
 import addReactNDevTools from "reactn-devtools";
-import { load } from "./localDB";
+import { load, save } from "./localDB";
 import { updateLastVisit } from "./updateLastVisit";
+import { getGlobal, setGlobal } from "reactn";
 
 if (process.env.NODE_ENV !== "production") {
   // development
@@ -16,9 +17,23 @@ if (process.env.NODE_ENV !== "production") {
   // initSentry();
 }
 
-initializeGlobalState();
-load();
-updateLastVisit();
+const updateFirstVisit = () => {
+  const g = getGlobal();
+  if (g.records.firstVisit === undefined) {
+    return setGlobal((g) => {
+      return {
+        records: { ...g.records, firstVisit: Date.now() },
+      };
+    });
+  }
+};
+(async () => {
+  await initializeGlobalState();
+  await load();
+  await updateFirstVisit();
+  await updateLastVisit();
+  await save();
+})();
 
 ReactDOM.render(
   <React.StrictMode>

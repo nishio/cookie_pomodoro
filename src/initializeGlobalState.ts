@@ -14,7 +14,7 @@ const INITIAL_GLOBAL_STATE = {
 };
 
 export const initializeGlobalState = () => {
-  setGlobal(INITIAL_GLOBAL_STATE);
+  return setGlobal(INITIAL_GLOBAL_STATE);
 };
 
 type TYPE_GLOBAL_STATE = typeof INITIAL_GLOBAL_STATE;

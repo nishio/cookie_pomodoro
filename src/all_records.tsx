@@ -1,7 +1,16 @@
+const dateToStr = (x: unknown) => {
+  return new Date(x as number).toLocaleString();
+};
+
 export const all_records = [
+  {
+    id: "firstVisit",
+    forHuman: "First Visit",
+    toStr: dateToStr,
+  },
   {
     id: "lastVisit",
     forHuman: "Last Visit",
-    toStr: (x: unknown) => new Date(x as number).toLocaleString(),
+    toStr: dateToStr,
   },
 ];

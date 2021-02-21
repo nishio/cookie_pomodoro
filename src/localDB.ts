@@ -33,9 +33,9 @@ export const loadRaw = async (): Promise<string | null> => {
 };
 
 export const load = () => {
-  loadRaw().then((json) => {
+  return loadRaw().then((json) => {
     if (json !== null) {
-      setGlobal(JSON.parse(json));
+      return setGlobal(JSON.parse(json));
     }
   });
 };
