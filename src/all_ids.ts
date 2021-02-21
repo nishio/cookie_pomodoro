@@ -1,6 +1,6 @@
-import { all_achievements } from "./all_achievements";
-import { all_converters } from "./all_converters";
-import { all_resources } from "./all_resources";
+import { all_achievements } from "./Achievement/all_achievements";
+import { all_converters } from "./Converter/all_converters";
+import { all_resources } from "./Resource/all_resources";
 
 export type TAchivementID = "pomodoro1" | "pomodoro2" | "pomodoro4";
 export type TConverterID = "grandma" | "coal_mine";

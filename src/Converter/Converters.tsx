@@ -7,9 +7,9 @@ import React from "react";
 import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
 import { all_converters, TConverter } from "./all_converters";
-import { isConverterID } from "./all_ids";
-import { save } from "./localDB";
-import { update } from "./update";
+import { isConverterID } from "../all_ids";
+import { save } from "../localDB";
+import { update } from "../update";
 
 export const Converters = () => {
   const [converters] = useGlobal("converters");

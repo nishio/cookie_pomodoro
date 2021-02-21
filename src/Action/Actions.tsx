@@ -2,7 +2,7 @@
  * Action: works instantly without any resource
  */
 import React from "react";
-import { getOnePomodoro } from "./getOnePomodoro";
+import { getOnePomodoro } from "../getOnePomodoro";
 import { reset } from "./reset";
 
 export const Actions = () => {

@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { ALWAYS, HIDDEN } from "./ALWAYS";
+import { ALWAYS, HIDDEN } from "../ALWAYS";
 
 type TAchievement = {
   id: string;

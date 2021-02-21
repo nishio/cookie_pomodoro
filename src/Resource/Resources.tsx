@@ -1,10 +1,9 @@
-import React from "react";
 import { getGlobal, useGlobal } from "reactn";
-import { isResouseID } from "./all_ids";
+import { isResouseID } from "../all_ids";
 import { all_resources } from "./all_resources";
-import { checkAchievements } from "./checkAchievements";
+import { checkAchievements } from "../Achievement/checkAchievements";
 
-export const Inventory = () => {
+export const Resources = () => {
   const [resources] = useGlobal("resources");
   requestAnimationFrame(checkAchievements);
   const g = getGlobal();
@@ -24,7 +23,7 @@ export const Inventory = () => {
 
   return (
     <div>
-      <h2>Inventory</h2>
+      <h2>Resources</h2>
       <ul>{list}</ul>
     </div>
   );

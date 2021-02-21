@@ -1,6 +1,6 @@
 import { State } from "reactn/default";
-import { TConverterID, TResourceID } from "./all_ids";
-import { ALWAYS } from "./ALWAYS";
+import { TConverterID, TResourceID } from "../all_ids";
+import { ALWAYS } from "../ALWAYS";
 
 export const all_converters: TConverter[] = [
   {

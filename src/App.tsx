@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect } from "reactn";
-import { Achievements } from "./Achievements";
-import { Actions } from "./Actions";
+import { Achievements } from "./Achievement/Achievements";
+import { Actions } from "./Action/Actions";
 import "./App.css";
-import { Converters } from "./Converters";
-import { Inventory } from "./Inventory";
+import { Converters } from "./Converter/Converters";
+import { Resources } from "./Resource/Resources";
 import { Pomodoro } from "./Pomodoro";
-import { Records } from "./Records";
+import { Records } from "./Record/Records";
 import { startGlobalTimer } from "./startGlobalTimer";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <Pomodoro />
       <Converters />
       <Actions />
-      <Inventory />
+      <Resources />
       <Achievements />
       <Records />
     </div>

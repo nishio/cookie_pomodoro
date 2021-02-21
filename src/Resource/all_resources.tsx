@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { ALWAYS } from "./ALWAYS";
+import { ALWAYS } from "../ALWAYS";
 
 export const all_resources: Resource[] = [
   {
