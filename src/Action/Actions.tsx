@@ -23,7 +23,7 @@ export type TTemporaryEffect = {
   forHuman?: string;
 };
 
-const all_actions: TAction[] = [reset, click, burn_coal];
+const all_actions: TAction[] = [click, reset, burn_coal];
 export const Actions = () => {
   const [g] = useGlobal();
   const buttons = all_actions.map((a) => {
