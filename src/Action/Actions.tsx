@@ -9,6 +9,9 @@ export const Actions = () => {
   return (
     <div>
       <h2>Actions</h2>
+      <button key="reset" onClick={reset}>
+        Reset
+      </button>
       <DebugActions />
     </div>
   );
@@ -19,9 +22,6 @@ const DebugActions = () => {
     const buttons = [
       <button key="click" onClick={getOnePomodoro}>
         Click(for Debug)
-      </button>,
-      <button key="reset" onClick={reset}>
-        Reset
       </button>,
     ];
     return <>{buttons}</>;
