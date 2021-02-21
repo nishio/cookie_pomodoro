@@ -3,9 +3,7 @@
  */
 import React from "react";
 import { getOnePomodoro } from "./getOnePomodoro";
-import { initializeGlobalState } from "./initializeGlobalState";
-import { save } from "./localDB";
-import { updateLastVisit } from "./updateLastVisit";
+import { reset } from "./reset";
 
 export const Actions = () => {
   return (
@@ -16,11 +14,6 @@ export const Actions = () => {
   );
 };
 
-const reset = () => {
-  initializeGlobalState();
-  updateLastVisit();
-  save();
-};
 const DebugActions = () => {
   if (process.env.NODE_ENV !== "production") {
     const buttons = [

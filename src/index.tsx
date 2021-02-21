@@ -3,11 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { initializeGlobalState } from "./initializeGlobalState";
 import addReactNDevTools from "reactn-devtools";
-import { load, save } from "./localDB";
-import { updateLastVisit } from "./updateLastVisit";
-import { getGlobal, setGlobal } from "reactn";
+import { initWithLoad } from "./initWithLoad";
 
 if (process.env.NODE_ENV !== "production") {
   // development
@@ -17,23 +14,7 @@ if (process.env.NODE_ENV !== "production") {
   // initSentry();
 }
 
-const updateFirstVisit = () => {
-  const g = getGlobal();
-  if (g.records.firstVisit === undefined) {
-    return setGlobal((g) => {
-      return {
-        records: { ...g.records, firstVisit: Date.now() },
-      };
-    });
-  }
-};
-(async () => {
-  await initializeGlobalState();
-  await load();
-  await updateFirstVisit();
-  await updateLastVisit();
-  await save();
-})();
+initWithLoad();
 
 ReactDOM.render(
   <React.StrictMode>
