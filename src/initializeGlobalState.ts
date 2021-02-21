@@ -10,6 +10,7 @@ const INITIAL_GLOBAL_STATE = {
   achieved: {} as { [key in TAchivementID]: boolean },
   converters: {} as { [key in TConverterID]: number },
   activeConverters: {} as { [key in TConverterID]: number },
+  records: {} as { [key: string]: unknown },
 };
 
 export const initializeGlobalState = () => {

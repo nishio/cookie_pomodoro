@@ -6,6 +6,7 @@ import "./App.css";
 import { Converters } from "./Converters";
 import { Inventory } from "./Inventory";
 import { Pomodoro } from "./Pomodoro";
+import { Records } from "./Records";
 import { startGlobalTimer } from "./startGlobalTimer";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Actions />
       <Inventory />
       <Achievements />
+      <Records />
     </div>
   );
 }
