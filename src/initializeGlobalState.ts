@@ -1,5 +1,5 @@
 import { setGlobal } from "reactn";
-import { TAchivementID, TConverterID, TResourceID } from "./all_ids";
+import { TAchivementID, TConverterID, TRecordID, TResourceID } from "./all_ids";
 
 const INITIAL_GLOBAL_STATE = {
   version: 1,
@@ -10,7 +10,7 @@ const INITIAL_GLOBAL_STATE = {
   achieved: {} as { [key in TAchivementID]: boolean },
   converters: {} as { [key in TConverterID]: number },
   activeConverters: {} as { [key in TConverterID]: number },
-  records: {} as { [key: string]: unknown },
+  records: {} as { [key in TRecordID]: number },
 };
 
 export const initializeGlobalState = () => {

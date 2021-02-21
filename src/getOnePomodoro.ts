@@ -4,7 +4,7 @@ import { TConverterID } from "./all_ids";
 import { save } from "./localDB";
 import { update } from "./update";
 
-export const getOnePomodoro = () => {
+export const getOnePomodoro = async () => {
   const g = getGlobal();
   const activeConverters = {} as { [key in TConverterID]: number };
   all_converters.forEach((c) => {
@@ -12,9 +12,10 @@ export const getOnePomodoro = () => {
       activeConverters[c.id] = g.converters[c.id];
     }
   });
-  setGlobal({
+  await setGlobal({
     resources: update(g.resources, "pomodoro", 1),
     activeConverters: activeConverters,
+    records: update(g.records, "gotPomodoro", 1),
   });
-  save();
+  await save();
 };

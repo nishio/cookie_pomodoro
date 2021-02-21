@@ -13,4 +13,9 @@ export const all_records = [
     forHuman: "Last Visit",
     toStr: dateToStr,
   },
+  {
+    id: "gotPomodoro",
+    forHuman: "Got Pomodoro",
+    toStr: (x: unknown) => x as number,
+  },
 ];

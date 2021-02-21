@@ -5,6 +5,7 @@ import { all_resources } from "./all_resources";
 export type TAchivementID = "pomodoro1" | "pomodoro2" | "pomodoro4";
 export type TConverterID = "grandma" | "coal_mine";
 export type TResourceID = "pomodoro" | "cookie" | "coal";
+export type TRecordID = "lastVisit" | "firstVisit" | "gotPomodoro";
 
 export const isResouseID = (x: string): x is TResourceID => {
   return true;
