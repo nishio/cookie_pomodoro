@@ -1,3 +1,4 @@
+import { State } from "reactn/default";
 import { TResourceID } from "./Resource/all_resources";
 
 export const update = <T extends string>(
@@ -10,12 +11,8 @@ export const update = <T extends string>(
   return newObj;
 };
 
-export const updateResource = (
-  obj: { [key in TResourceID]: number },
-  k: TResourceID,
-  diff: number
-) => {
-  const newObj = { ...obj };
-  newObj[k] = (obj[k] ?? 0) + diff;
-  return newObj;
+export const updateResource = (g: State, k: TResourceID, diff: number) => {
+  const newObj = { ...g.resources };
+  newObj[k] = (g.resources[k] ?? 0) + diff;
+  return { resources: newObj };
 };
