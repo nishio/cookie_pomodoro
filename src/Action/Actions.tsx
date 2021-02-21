@@ -50,10 +50,8 @@ export const Actions = () => {
   const buttons = all_actions.map((a) => {
     if (a.toShow(g)) {
       return (
-        <li>
-          <button key="{a.id}" onClick={a.onClick}>
-            {a.forHuman ?? a.id}
-          </button>{" "}
+        <li key={a.id}>
+          <button onClick={a.onClick}>{a.forHuman ?? a.id}</button>{" "}
           {a.description}
         </li>
       );
@@ -61,7 +59,7 @@ export const Actions = () => {
     return null;
   });
   const effects = g.temporaryEffects.map((e, index) => {
-    return <li key="{index}">{e.forHuman ?? e.id}</li>;
+    return <li key={index}>{e.forHuman ?? e.id}</li>;
   });
   return (
     <div>
