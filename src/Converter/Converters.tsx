@@ -16,6 +16,7 @@ export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
   const [converters] = useGlobal("converters");
   const [resources] = useGlobal("resources");
+  const [achieved] = useGlobal("achieved");
   const g = getGlobal();
   const list = all_converters.map((c) => {
     if (c.toShow(g)) {
