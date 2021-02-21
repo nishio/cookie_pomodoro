@@ -37,10 +37,9 @@
   }
 }
 
-#pomodoro {
-  margin-left: 20px;
-}
-
+#pomodoro,
+#temporary-effects,
+#actions,
 #converters {
   margin-left: 20px;
 }
