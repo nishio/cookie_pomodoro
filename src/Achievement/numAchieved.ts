@@ -8,6 +8,5 @@ export const numAchieved = (g: State) => {
       ret += 1;
     }
   });
-  console.log(ret);
   return ret;
 };
