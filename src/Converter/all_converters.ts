@@ -1,31 +1,8 @@
 import { State } from "reactn/default";
 import { TConverterID, TResourceID } from "../all_ids";
 import { ALWAYS } from "../ALWAYS";
+import { grandma } from "./grandma";
 
-const grandma: TConverter = {
-  id: "grandma",
-  forHuman: "Grandma",
-  from: "pomodoro",
-  to: "cookie",
-  fromAmount: 1,
-  toAmount: 2,
-  addToAmount: (g) => {
-    let ret = 0;
-    g.temporaryEffects.forEach((e) => {
-      if (e.id === "burn_coal") {
-        ret += 1;
-      }
-    });
-    if ("has_pomodoro4" in g.achieved) {
-      ret += 1;
-    }
-    return ret;
-  },
-  toShow: ALWAYS,
-  getPrice: (g, amount) => {
-    return [[1 + amount, "pomodoro"]];
-  },
-};
 export const all_converters: TConverter[] = [
   grandma,
   {
@@ -36,6 +13,20 @@ export const all_converters: TConverter[] = [
     fromAmount: 5,
     toAmount: 1,
     toShow: ALWAYS,
+    getPrice: (g, amount) => {
+      return [[1 + amount, "cookie"]];
+    },
+  },
+  {
+    id: "iron_mine",
+    forHuman: "Iron Mine",
+    from: "cookie",
+    to: "iron_ore",
+    fromAmount: 5,
+    toAmount: 1,
+    toShow: (g) => {
+      return g.converters.coal_mine >= 1;
+    },
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },
