@@ -1,8 +1,11 @@
 import { getGlobal, setGlobal } from "reactn";
+import { State } from "reactn/default";
 import { numAchieved } from "./Achievement/numAchieved";
+import { TRecordID } from "./all_ids";
 import { all_converters, TConverterID } from "./Converter/all_converters";
 import { save } from "./localDB";
-import { update } from "./update";
+import { TRecord } from "./Record/all_records";
+import { update, updateResource } from "./update";
 
 export const getOnePomodoro = async () => {
   const g = getGlobal();
@@ -14,13 +17,15 @@ export const getOnePomodoro = async () => {
   });
   if ("mana" in g.achieved) {
     await setGlobal({
-      resources: update(g.resources, "mana", numAchieved(g)),
+      ...updateResource(g, "mana", numAchieved(g)),
     });
   }
-  await setGlobal({
-    resources: update(g.resources, "pomodoro", 1),
-    activeConverters: activeConverters,
-    records: update(g.records, "gotPomodoro", 1),
+  await setGlobal((g) => {
+    return {
+      ...updateResource(g, "pomodoro", 1),
+      activeConverters: activeConverters,
+      records: update<TRecordID>(g.records, "gotPomodoro", 1),
+    };
   });
   await save();
 };
