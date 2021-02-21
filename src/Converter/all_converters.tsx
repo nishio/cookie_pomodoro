@@ -10,6 +10,15 @@ export const all_converters: TConverter[] = [
     to: "cookie",
     fromAmount: 1,
     toAmount: 2,
+    addToAmount: (g) => {
+      let ret = 0;
+      g.temporaryEffects.forEach((e) => {
+        if (e.id === "burn_coal") {
+          ret += 1;
+        }
+      });
+      return ret;
+    },
     toShow: ALWAYS,
     getPrice: (g, amount) => {
       return [[1 + amount, "pomodoro"]];
@@ -37,6 +46,7 @@ export type TConverter = {
   to: TResourceID;
   fromAmount: number;
   toAmount: number;
+  addToAmount?: (g: State) => number;
   toShow: (g: State) => boolean;
   getPrice: TGetPrice;
 };

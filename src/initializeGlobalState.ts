@@ -1,4 +1,5 @@
 import { setGlobal } from "reactn";
+import { TTemporaryEffect } from "./Action/Actions";
 import { TAchivementID, TConverterID, TRecordID, TResourceID } from "./all_ids";
 
 const INITIAL_GLOBAL_STATE = {
@@ -11,6 +12,7 @@ const INITIAL_GLOBAL_STATE = {
   converters: {} as { [key in TConverterID]: number },
   activeConverters: {} as { [key in TConverterID]: number },
   records: {} as { [key in TRecordID]: number },
+  temporaryEffects: [] as TTemporaryEffect[],
 };
 
 export const initializeGlobalState = () => {

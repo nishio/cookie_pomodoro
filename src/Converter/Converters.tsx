@@ -44,6 +44,11 @@ export const Converters = () => {
         buyButton = <button disabled>Buy({priceStr})</button>;
       }
 
+      let addToAmount = 0;
+      if (c.addToAmount !== undefined) {
+        addToAmount = c.addToAmount(g);
+      }
+
       let useButton = null;
       const canUse = isActive(g, c) && isEnoughResource(g, c);
       if (canUse) {
@@ -53,7 +58,7 @@ export const Converters = () => {
             resources: update(
               update(g.resources, c.from, -c.fromAmount),
               c.to,
-              c.toAmount
+              c.toAmount + addToAmount
             ),
           });
           save();
@@ -62,12 +67,15 @@ export const Converters = () => {
       } else {
         useButton = <button disabled>Use 1</button>;
       }
+
       return (
         <li key={c.id}>
           {c.forHuman ?? c.id}: {amount} {buyButton}:{" "}
           {g.activeConverters[c.id] ?? 0} {useButton}
           <p>
-            Convert {c.fromAmount} {c.from} into {c.toAmount} {c.to}
+            Convert {c.fromAmount} {c.from} into {c.toAmount}
+            {addToAmount ? ` + ${addToAmount} ` : " "}
+            {c.to}
           </p>
         </li>
       );

@@ -10,6 +10,7 @@ export const Pomodoro = () => {
       inPomodoro: true,
       pomodoroStartTime: Date.now(),
       pomodoroSecond: 0,
+      temporaryEffects: [],
     });
     await save();
   };
