@@ -1,10 +1,8 @@
 import { getGlobal, setGlobal } from "reactn";
-import { State } from "reactn/default";
 import { numAchieved } from "./Achievement/numAchieved";
 import { TRecordID } from "./all_ids";
 import { all_converters, TConverterID } from "./Converter/all_converters";
 import { save } from "./localDB";
-import { TRecord } from "./Record/all_records";
 import { update, updateResource } from "./update";
 
 export const getOnePomodoro = async () => {
