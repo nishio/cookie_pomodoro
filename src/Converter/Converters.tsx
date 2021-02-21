@@ -62,7 +62,11 @@ export const Converters = () => {
         const use = async () => {
           let newResources = { ...g.resources };
           c.froms.forEach(([unit, value]) => {
-            newResources = update(newResources, unit, -value);
+            newResources = update(
+              newResources,
+              unit,
+              -(value - (decreaseCost[unit] ?? 0))
+            );
           });
 
           await setGlobal({
