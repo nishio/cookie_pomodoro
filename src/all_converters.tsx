@@ -22,9 +22,7 @@ export const all_converters: TConverter[] = [
     to: "coal",
     fromAmount: 5,
     toAmount: 1,
-    toShow: (g) => {
-      return g.resources.cookie >= 0;
-    },
+    toShow: ALWAYS,
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },
