@@ -1,3 +1,8 @@
+/**
+ * Converter: converts one resource into another resource
+ * It can use once per pomodoro.
+ */
+
 import React from "react";
 import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
