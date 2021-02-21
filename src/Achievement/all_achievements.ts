@@ -30,6 +30,13 @@ export const all_achievements: TAchievement[] = [
     toGet: (g) => g.records.gotPomodoro >= 4,
   },
   {
+    id: "has_pomodoro4",
+    forHuman: "Have 4 Pomodoro",
+    description: "patient kids get more cookie (+1)",
+    toShow: HIDDEN,
+    toGet: (g) => g.resources.pomodoro >= 4,
+  },
+  {
     id: "cookie1",
     forHuman: "First Cookie",
     toShow: ALWAYS,

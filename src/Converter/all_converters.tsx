@@ -17,6 +17,9 @@ export const all_converters: TConverter[] = [
           ret += 1;
         }
       });
+      if ("has_pomodoro4" in g.achieved) {
+        ret += 1;
+      }
       return ret;
     },
     toShow: ALWAYS,
