@@ -3,13 +3,13 @@
  * It can use once per pomodoro.
  */
 
-import React from "react";
 import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
 import { all_converters, TConverter } from "./all_converters";
 import { isConverterID } from "../all_ids";
 import { save } from "../localDB";
 import { update } from "../update";
+import { TResourceID } from "../Resource/all_resources";
 
 export const Converters = () => {
   const [converters] = useGlobal("converters");
@@ -50,7 +50,14 @@ export const Converters = () => {
       }
 
       let useButton = null;
-      const canUse = isActive(g, c) && isEnoughResource(g, c);
+      const decreaseCost = {} as { [key in TResourceID]: number };
+      if (c.decreaseCost !== undefined) {
+        c.decreaseCost(g).forEach(([unit, value]) => {
+          decreaseCost[unit] = value;
+        });
+      }
+
+      const canUse = isActive(g, c) && isEnoughResource(g, c, decreaseCost);
       if (canUse) {
         const use = async () => {
           let newResources = { ...g.resources };
@@ -70,7 +77,11 @@ export const Converters = () => {
       }
       let fromStr = c.froms
         .map(([unit, value]) => {
-          return `${value} ${unit}`;
+          if (decreaseCost[unit] !== undefined) {
+            return `${value} - ${decreaseCost[unit]} ${unit}`;
+          } else {
+            return `${value} ${unit}`;
+          }
         })
         .join(" ");
       let toStr = `${c.toAmount}`;
@@ -108,8 +119,12 @@ function isActive(g: State, c: TConverter) {
   return (g.activeConverters[c.id] ?? 0) > 0;
 }
 
-function isEnoughResource(g: State, c: TConverter) {
+function isEnoughResource(
+  g: State,
+  c: TConverter,
+  decreaseCost: { [key in TResourceID]: number }
+) {
   return c.froms.every(([unit, value]) => {
-    return g.resources[unit] >= value;
+    return g.resources[unit] >= value - (decreaseCost[unit] ?? 0);
   });
 }

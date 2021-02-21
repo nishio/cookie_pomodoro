@@ -1,5 +1,5 @@
 import { ALWAYS } from "../ALWAYS";
-import { TConverter } from "./all_converters";
+import { TConverter, TCosts } from "./all_converters";
 
 export const grandma: TConverter = {
   id: "grandma",
@@ -17,6 +17,15 @@ export const grandma: TConverter = {
     if ("has_pomodoro4" in g.achieved) {
       ret += 1;
     }
+    return ret;
+  },
+  decreaseCost: (g) => {
+    let ret = [] as TCosts;
+    g.temporaryEffects.forEach((e) => {
+      if (e.id === "no_hunger") {
+        ret = [["pomodoro", 1]];
+      }
+    });
     return ret;
   },
   toShow: ALWAYS,
