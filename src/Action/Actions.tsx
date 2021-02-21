@@ -2,10 +2,11 @@
  * Action: works instantly without any resource
  */
 import React from "react";
-import { getGlobal, setGlobal, useGlobal } from "reactn";
+import { getGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
 import { ALWAYS } from "../ALWAYS";
-import { getOnePomodoro } from "../getOnePomodoro";
+import { burn_coal } from "./burn_coal";
+import { click } from "./click";
 import { reset } from "./reset";
 
 type TActionID = string;
@@ -19,39 +20,10 @@ type TAction = {
 
 export type TTemporaryEffect = {
   id: TActionID;
+  forHuman?: string;
 };
-const inDeveleop = () => {
-  return process.env.NODE_ENV !== "production";
-};
-const all_actions: TAction[] = [
-  {
-    id: "reset",
-    forHuman: "Complete Reset",
-    description: "Notice: you will lose everything",
-    onClick: reset,
-    toShow: ALWAYS,
-  },
-  {
-    id: "click",
-    forHuman: "Click(for Debug)",
-    onClick: getOnePomodoro,
-    toShow: inDeveleop,
-  },
-  {
-    id: "burn_coal",
-    forHuman: "Burn coal",
-    onClick: () => {
-      setGlobal((g) => {
-        return {
-          ...g,
-          temporaryEffects: [...g.temporaryEffects, { id: "burn_coal" }],
-        };
-      });
-    },
-    toShow: (g) => g.resources.coal >= 1,
-    description: "Temporary increases grandma production (+1)",
-  },
-];
+
+const all_actions: TAction[] = [reset, click, burn_coal];
 export const Actions = () => {
   const [g] = useGlobal();
   const buttons = all_actions.map((a) => {
@@ -68,7 +40,7 @@ export const Actions = () => {
     return null;
   });
   const effects = g.temporaryEffects.map((e) => {
-    return <li>{(e as TTemporaryEffect).id}</li>;
+    return <li>{e.forHuman ?? e.id}</li>;
   });
   return (
     <div>
