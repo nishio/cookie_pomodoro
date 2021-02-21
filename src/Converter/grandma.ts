@@ -4,15 +4,14 @@ import { TConverter } from "./all_converters";
 export const grandma: TConverter = {
   id: "grandma",
   forHuman: "Grandma",
-  from: "pomodoro",
+  froms: [["pomodoro", 1]],
   to: "cookie",
-  fromAmount: 1,
   toAmount: 2,
   addToAmount: (g) => {
     let ret = 0;
     g.temporaryEffects.forEach((e) => {
       if (e.id === "burn_coal") {
-        ret += 1;
+        ret += 4;
       }
     });
     if ("has_pomodoro4" in g.achieved) {

@@ -1,10 +1,8 @@
 /**
  * Action: works instantly without any resource
  */
-import React from "react";
-import { getGlobal, useGlobal } from "reactn";
+import { useGlobal } from "reactn";
 import { State } from "reactn/default";
-import { ALWAYS } from "../ALWAYS";
 import { burn_coal } from "./burn_coal";
 import { click } from "./click";
 import { reset } from "./reset";

@@ -52,30 +52,40 @@ export const Converters = () => {
       let useButton = null;
       const canUse = isActive(g, c) && isEnoughResource(g, c);
       if (canUse) {
-        const use = () => {
-          setGlobal({
-            activeConverters: update(g.activeConverters, c.id, -1),
-            resources: update(
-              update(g.resources, c.from, -c.fromAmount),
-              c.to,
-              c.toAmount + addToAmount
-            ),
+        const use = async () => {
+          let newResources = { ...g.resources };
+          c.froms.forEach(([unit, value]) => {
+            newResources = update(newResources, unit, -value);
           });
-          save();
+
+          await setGlobal({
+            activeConverters: update(g.activeConverters, c.id, -1),
+            resources: update(newResources, c.to, c.toAmount + addToAmount),
+          });
+          await save();
         };
         useButton = <button onClick={use}>Use 1</button>;
       } else {
         useButton = <button disabled>Use 1</button>;
       }
-
+      let fromStr = c.froms
+        .map(([unit, value]) => {
+          return `${value} ${unit}`;
+        })
+        .join(" ");
+      let toStr = `${c.toAmount}`;
+      if (addToAmount) {
+        toStr += ` + ${addToAmount} `;
+      } else {
+        toStr += " ";
+      }
+      toStr += c.to;
       return (
         <li key={c.id}>
           {c.forHuman ?? c.id}: {amount} {buyButton}:{" "}
           {g.activeConverters[c.id] ?? 0} {useButton}
           <p>
-            Convert {c.fromAmount} {c.from} into {c.toAmount}
-            {addToAmount ? ` + ${addToAmount} ` : " "}
-            {c.to}
+            Convert {fromStr} into {toStr}
           </p>
         </li>
       );
@@ -93,10 +103,13 @@ export const Converters = () => {
     </div>
   );
 };
+
 function isActive(g: State, c: TConverter) {
   return (g.activeConverters[c.id] ?? 0) > 0;
 }
 
 function isEnoughResource(g: State, c: TConverter) {
-  return g.resources[c.from] >= c.fromAmount;
+  return c.froms.every(([unit, value]) => {
+    return g.resources[unit] >= value;
+  });
 }

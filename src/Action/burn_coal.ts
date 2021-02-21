@@ -13,7 +13,7 @@ export const burn_coal = {
     });
   },
   toShow: (g: State) => g.resources.coal >= 1,
-  description: "Temporary increases grandma production (+1)",
+  description: "Temporary increases grandma production (+4)",
 };
 
 export const burn_coal_effect = {

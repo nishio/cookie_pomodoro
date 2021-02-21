@@ -8,9 +8,8 @@ export const all_converters: TConverter[] = [
   {
     id: "coal_mine",
     forHuman: "Coal Mine",
-    from: "cookie",
+    froms: [["cookie", 5]],
     to: "coal",
-    fromAmount: 5,
     toAmount: 1,
     toShow: ALWAYS,
     getPrice: (g, amount) => {
@@ -20,9 +19,24 @@ export const all_converters: TConverter[] = [
   {
     id: "iron_mine",
     forHuman: "Iron Mine",
-    from: "cookie",
+    froms: [["cookie", 5]],
     to: "iron_ore",
-    fromAmount: 5,
+    toAmount: 1,
+    toShow: (g) => {
+      return g.converters.coal_mine >= 1;
+    },
+    getPrice: (g, amount) => {
+      return [[1 + amount, "cookie"]];
+    },
+  },
+  {
+    id: "furnace_for_iron",
+    forHuman: "Furnace for Iron",
+    to: "iron_ingot",
+    froms: [
+      ["coal", 1],
+      ["iron_ore", 1],
+    ],
     toAmount: 1,
     toShow: (g) => {
       return g.converters.coal_mine >= 1;
@@ -37,9 +51,8 @@ type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
 export type TConverter = {
   id: TConverterID;
   forHuman?: string;
-  from: TResourceID;
+  froms: [TResourceID, number][];
   to: TResourceID;
-  fromAmount: number;
   toAmount: number;
   addToAmount?: (g: State) => number;
   toShow: (g: State) => boolean;
