@@ -13,6 +13,10 @@ export const PomodoroProgress = () => {
     await save();
   };
 
+  const harvest = async () => {
+    await getOnePomodoro();
+    await cancel();
+  };
   let state: string | ReactNode;
   if (sec < 20 * 60) {
     state = (
@@ -21,7 +25,7 @@ export const PomodoroProgress = () => {
       </>
     );
   } else if (sec < 30 * 60) {
-    state = <button onClick={getOnePomodoro}>harvest</button>;
+    state = <button onClick={harvest}>harvest</button>;
   } else {
     state = (
       <>
