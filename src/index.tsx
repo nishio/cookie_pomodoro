@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { initializeGlobalState } from "./initializeGlobalState";
 import addReactNDevTools from "reactn-devtools";
+import { load } from "./localDB";
 
 if (process.env.NODE_ENV !== "production") {
   // development
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 initializeGlobalState();
+load();
 ReactDOM.render(
   <React.StrictMode>
     <App />

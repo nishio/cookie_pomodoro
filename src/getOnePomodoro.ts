@@ -1,6 +1,7 @@
 import { getGlobal, setGlobal } from "reactn";
 import { all_converters } from "./all_converters";
 import { TConverterID } from "./all_ids";
+import { save } from "./localDB";
 import { update } from "./update";
 
 export const getOnePomodoro = () => {
@@ -15,4 +16,5 @@ export const getOnePomodoro = () => {
     resources: update(g.resources, "pomodoro", 1),
     activeConverters: activeConverters,
   });
+  save();
 };

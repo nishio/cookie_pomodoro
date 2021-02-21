@@ -1,5 +1,6 @@
 import React from "react";
 import { setGlobal, useGlobal } from "reactn";
+import { save } from "./localDB";
 import { PomodoroProgress } from "./PomodoroProgress";
 
 export const Pomodoro = () => {
@@ -10,6 +11,7 @@ export const Pomodoro = () => {
       pomodoroStartTime: Date.now(),
       pomodoroSecond: 0,
     });
+    save();
   };
 
   return (

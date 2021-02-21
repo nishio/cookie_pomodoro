@@ -3,6 +3,7 @@ import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
 import { all_converters, TConverter } from "./all_converters";
 import { isConverterID } from "./all_ids";
+import { save } from "./localDB";
 import { update } from "./update";
 
 export const Converters = () => {
@@ -31,6 +32,7 @@ export const Converters = () => {
             converters: update(g.converters, c.id, 1),
             resources: newResources,
           });
+          save();
         };
         buyButton = <button onClick={buy}>Buy({priceStr})</button>;
       } else {
@@ -49,6 +51,7 @@ export const Converters = () => {
               c.toAmount
             ),
           });
+          save();
         };
         useButton = <button onClick={use}>Use 1</button>;
       } else {
