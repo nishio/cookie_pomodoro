@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { TResourceID } from "./all_resources";
+import { TResourceID } from "../all_ids";
 
 export const hasResource = (id: TResourceID) => {
   return (g: State) => {

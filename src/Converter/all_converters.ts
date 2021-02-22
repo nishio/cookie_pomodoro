@@ -1,16 +1,9 @@
 import { State } from "reactn/default";
+import { TConverterID, TResourceID } from "../all_ids";
 import { ALWAYS } from "../ALWAYS";
-import { TResourceID } from "../Resource/all_resources";
 import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
 import { hasConverter } from "./hasConverter";
-
-export type TConverterID =
-  | "grandma"
-  | "coal_mine"
-  | "iron_mine"
-  | "furnace_for_iron"
-  | "workbench_for_iron_pickaxe";
 
 export const all_converters: TConverter[] = [
   grandma,

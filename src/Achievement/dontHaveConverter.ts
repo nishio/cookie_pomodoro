@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { TConverterID } from "../Converter/all_converters";
+import { TConverterID } from "../all_ids";
 
 export const dontHaveConverter = (id: TConverterID, g: State) => {
   const num = g.converters[id] ?? 0;

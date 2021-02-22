@@ -1,9 +1,9 @@
 import { getGlobal, setGlobal } from "reactn";
 import { numAchieved } from "./Achievement/numAchieved";
-import { all_converters, TConverterID } from "./Converter/all_converters";
+import { all_converters } from "./Converter/all_converters";
 import { isDifferentDate } from "./isDifferentDate";
 import { save } from "./localDB";
-import { TRecordID } from "./Record/all_records";
+import { TConverterID, TRecordID } from "./all_ids";
 import { update, updateResource } from "./update";
 
 export const getOnePomodoro = async () => {

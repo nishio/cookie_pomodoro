@@ -7,11 +7,11 @@ import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { all_converters } from "./all_converters";
 import { save } from "../localDB";
 import { update } from "../update";
-import { TResourceID } from "../Resource/all_resources";
 import { checkAchievements } from "../Achievement/checkAchievements";
 import { isEnoughResource } from "./isEnoughResource";
 import { isActive } from "./isActive";
 import { modifiedValueToStr } from "./modifiedValueToStr";
+import { TResourceID } from "../all_ids";
 
 export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {

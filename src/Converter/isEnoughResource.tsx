@@ -1,6 +1,6 @@
 import { State } from "reactn/default";
 import { TConverter } from "./all_converters";
-import { TResourceID } from "../Resource/all_resources";
+import { TResourceID } from "../all_ids";
 
 export function isEnoughResource(
   g: State,

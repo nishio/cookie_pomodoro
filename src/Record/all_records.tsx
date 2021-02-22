@@ -1,11 +1,5 @@
+import { TRecordID } from "../all_ids";
 import { dateToStr } from "./dateToStr";
-
-export type TRecordID =
-  | "lastVisit"
-  | "firstVisit"
-  | "gotPomodoro"
-  | "lastPomodoro"
-  | "days";
 
 export type TRecord = {
   id: TRecordID;

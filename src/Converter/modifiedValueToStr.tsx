@@ -1,4 +1,5 @@
-import { idToResource, TResourceID } from "../Resource/all_resources";
+import { TResourceID } from "../all_ids";
+import { idToResource } from "../Resource/all_resources";
 
 export const modifiedValueToStr = (
   value?: number,

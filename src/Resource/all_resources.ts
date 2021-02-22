@@ -1,4 +1,5 @@
 import { State } from "reactn/default";
+import { TResourceID } from "../all_ids";
 import { ALWAYS } from "../ALWAYS";
 import { hasConverter } from "../Converter/hasConverter";
 import { hasResource } from "./hasResource";
@@ -8,15 +9,6 @@ export type TResource = {
   forHuman?: string;
   toShow: (g: State) => boolean;
 };
-
-export type TResourceID =
-  | "pomodoro"
-  | "cookie"
-  | "coal"
-  | "iron_ore"
-  | "iron_ingot"
-  | "iron_pickaxe"
-  | "mana";
 
 export const all_resources: TResource[] = [
   {

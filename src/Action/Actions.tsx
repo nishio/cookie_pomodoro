@@ -1,7 +1,7 @@
 /**
  * Action: works instantly without any resource
  */
-import { setGlobal, useGlobal } from "reactn";
+import { useGlobal } from "reactn";
 import { State } from "reactn/default";
 import { all_actions } from "./all_actions";
 

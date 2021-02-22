@@ -1,20 +1,53 @@
-import { all_achievements } from "./Achievement/all_achievements";
-import { all_converters } from "./Converter/all_converters";
-import { all_resources } from "./Resource/all_resources";
+/**
+ * auto-generated
+ */
 
-export const update_ids = () => {
-  let s = "export type TAchivementID = ";
-  s += all_achievements.map((x) => `"${x.id}"`).join(" | ");
-  s += ";\n";
+/*
+export type TAchievementID = string;
+export type TConverterID = string;
+export type TResourceID = string;
+export type TActionID = string;
+export type TRecordID = string;
+// */
 
-  s += "export type TConvertedID = ";
-  s += all_converters.map((x) => `"${x.id}"`).join(" | ");
-  s += ";\n";
-
-  s += "export type TResourceID = ";
-  s += all_resources.map((x) => `"${x.id}"`).join(" | ");
-  s += ";\n";
-  console.log(s);
-};
-// @ts-ignore
-window.update_ids = update_ids;
+// /*
+// auto-generated
+export type TAchievementID =
+  | "pomodoro1"
+  | "pomodoro2"
+  | "pomodoro4"
+  | "has_pomodoro4"
+  | "idle_assets"
+  | "cookie1"
+  | "coal"
+  | "iron"
+  | "iron_ingot"
+  | "iron_pickaxe"
+  | "iron_pickaxe2"
+  | "iron_pickaxe4"
+  | "mana"
+  | "three_grandma"
+  | "no_mine"
+  | "day2";
+export type TConverterID =
+  | "grandma"
+  | "coal_mine"
+  | "iron_mine"
+  | "furnace_for_iron"
+  | "workbench_for_iron_pickaxe";
+export type TResourceID =
+  | "pomodoro"
+  | "cookie"
+  | "coal"
+  | "iron_ore"
+  | "iron_ingot"
+  | "iron_pickaxe"
+  | "mana";
+export type TActionID = "click" | "reset" | "burn_coal" | "no_hunger";
+export type TRecordID =
+  | "firstVisit"
+  | "lastVisit"
+  | "gotPomodoro"
+  | "lastPomodoro"
+  | "days";
+// */

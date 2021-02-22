@@ -1,4 +1,5 @@
 import { State } from "reactn/default";
+import { TAchievementID } from "../all_ids";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
 import { dontHaveConverter } from "./dontHaveConverter";
 import { numAchieved } from "./numAchieved";
@@ -13,24 +14,6 @@ export type TAchievement = {
   toGet: (g: State) => boolean;
   getProgress?: (g: State) => TProgress;
 };
-
-export type TAchievementID =
-  | "pomodoro1"
-  | "pomodoro2"
-  | "pomodoro4"
-  | "has_pomodoro4"
-  | "cookie1"
-  | "coal"
-  | "iron"
-  | "iron_ingot"
-  | "iron_pickaxe"
-  | "iron_pickaxe2"
-  | "iron_pickaxe4"
-  | "mana"
-  | "three_grandma"
-  | "no_mine"
-  | "day2"
-  | "idle_assets";
 
 export const all_achievements: TAchievement[] = [
   {

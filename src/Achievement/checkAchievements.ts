@@ -1,5 +1,6 @@
 import { getGlobal, setGlobal } from "reactn";
-import { all_achievements, TAchievementID } from "./all_achievements";
+import { TAchievementID } from "../all_ids";
+import { all_achievements } from "./all_achievements";
 
 export const checkAchievements = (): Promise<unknown> => {
   const g = getGlobal();

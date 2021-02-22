@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { TResourceID } from "./Resource/all_resources";
+import { TResourceID } from "./all_ids";
 
 export const update = <T extends string>(
   obj: { [key in T]: number },
