@@ -1,8 +1,8 @@
 /**
- * auto-generated
+ * switch weak / auto-generated types
  */
 
-/*
+//*
 export type TAchievementID = string;
 export type TConverterID = string;
 export type TResourceID = string;
@@ -10,7 +10,7 @@ export type TActionID = string;
 export type TRecordID = string;
 // */
 
-// /*
+/*
 // auto-generated
 export type TAchievementID =
   | "pomodoro1"

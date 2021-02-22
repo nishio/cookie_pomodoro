@@ -130,3 +130,20 @@ export const all_achievements: TAchievement[] = [
     },
   },
 ];
+
+const makeDays = (n: number, prev: number): TAchievement => {
+  return {
+    id: `day${n}`,
+    forHuman: `Day ${n}`,
+    toShow: after(`day${prev}`),
+    toGet: (g) => g.records.days >= n,
+    getProgress: (g) => {
+      return { goal: n, current: g.records.days };
+    },
+  };
+};
+const after = (id: TAchievementID) => {
+  return (g: State) => id in g.achieved;
+};
+all_achievements.push(makeDays(4, 2));
+all_achievements.push(makeDays(7, 4));
