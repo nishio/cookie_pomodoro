@@ -4,10 +4,11 @@ import { TAchievement } from "./all_achievements";
 export const getProgress = (a: TAchievement, g: State, done: boolean) => {
   if (!done && a.getProgress !== undefined) {
     const p = a.getProgress(g);
-    const percent = Math.floor((100 * p.current) / p.goal);
+    const c = p.current ?? 0;
+    const percent = Math.floor((100 * c) / p.goal);
     return (
       <span>
-        ({p.current}/{p.goal} = {percent}%)
+        ({c}/{p.goal} = {percent}%)
       </span>
     );
   }
