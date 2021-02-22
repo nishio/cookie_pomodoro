@@ -110,7 +110,7 @@ export const Converters = () => {
       toStr += c.to;
       return (
         <li key={c.id}>
-          {c.forHuman ?? c.id}: {amount} {buyButton}:{" "}
+          {c.forHuman ?? c.id}: Have {amount} {buyButton}: Active{" "}
           {g.activeConverters[c.id] ?? 0} {useButton}
           <p>
             Convert {fromStr} into {toStr}
