@@ -1,6 +1,8 @@
+import { addListener } from "process";
 import { State } from "reactn/default";
 import { TAchievementID } from "../all_ids";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
+import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";
 import { generateAchievementsDays, makeDays } from "./generateAchievementsDays";
 import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
@@ -28,13 +30,13 @@ export const all_achievements: TAchievement[] = [
     id: "pomodoro2",
     forHuman: "Two Pomodoro",
     description: "Have 2 pomodoro",
-    toShow: (g) => "pomodoro1" in g.achieved,
+    toShow: after("pomodoro1"),
     toGet: (g) => g.resources.pomodoro >= 2,
   },
   {
     id: "pomodoro4",
     forHuman: "Got Four Pomodoro",
-    toShow: (g) => "pomodoro2" in g.achieved,
+    toShow: after("pomodoro2"),
     toGet: (g) => g.records.gotPomodoro >= 4,
   },
   {
@@ -66,14 +68,14 @@ export const all_achievements: TAchievement[] = [
   {
     id: "iron",
     forHuman: "First Iron Ore",
-    toShow: (g) => "coal" in g.achieved,
+    toShow: after("coal"),
     toGet: (g) => g.resources.iron_ore >= 1,
   },
 
   {
     id: "iron_ingot",
     forHuman: "First Iron Ingot",
-    toShow: (g) => "iron" in g.achieved,
+    toShow: after("iron"),
     toGet: (g) => g.resources.iron_ingot >= 1,
   },
 
@@ -81,7 +83,7 @@ export const all_achievements: TAchievement[] = [
     id: "iron_pickaxe",
     forHuman: "First Iron Pickaxe",
     description: "increase production of mining (+1)",
-    toShow: (g) => "iron_ingot" in g.achieved,
+    toShow: after("iron_ingot"),
     toGet: (g) => g.resources.iron_pickaxe >= 1,
   },
 
@@ -89,14 +91,14 @@ export const all_achievements: TAchievement[] = [
     id: "iron_pickaxe2",
     forHuman: "More Iron Pickaxe",
     description: "increase production of mining (+1)",
-    toShow: (g) => "iron_pickaxe" in g.achieved,
+    toShow: after("iron_pickaxe"),
     toGet: (g) => g.resources.iron_pickaxe >= 2,
   },
   {
     id: "iron_pickaxe4",
     forHuman: "Enough Iron Pickaxe",
     description: "increase production of mining (+1)",
-    toShow: (g) => "iron_pickaxe2" in g.achieved,
+    toShow: after("iron_pickaxe2"),
     toGet: (g) => g.resources.iron_pickaxe >= 4,
   },
   {
