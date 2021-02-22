@@ -1,4 +1,9 @@
-import { TRecordID } from "../all_ids";
+export type TRecordID =
+  | "lastVisit"
+  | "firstVisit"
+  | "gotPomodoro"
+  | "lastPomodoro"
+  | "days";
 
 const dateToStr = (x: unknown) => {
   return new Date(x as number).toLocaleString();
@@ -28,6 +33,14 @@ export const all_records: TRecord[] = [
   {
     id: "gotPomodoro",
     forHuman: "Got Pomodoro",
+    toStr: numberToStr,
+  },
+  {
+    id: "lastPomodoro",
+    toStr: dateToStr,
+  },
+  {
+    id: "days",
     toStr: numberToStr,
   },
 ];

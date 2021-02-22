@@ -24,7 +24,8 @@ export type TAchivementID =
   | "iron_pickaxe4"
   | "mana"
   | "three_grandma"
-  | "no_mine";
+  | "no_mine"
+  | "day2";
 
 export const all_achievements: TAchievement[] = [
   {
@@ -112,7 +113,7 @@ export const all_achievements: TAchievement[] = [
   {
     id: "three_grandma",
     forHuman: "Three Grandma",
-    description: "too many grandma!",
+    description: "too many grandma! (+1)",
     toShow: HIDDEN,
     toGet: (g) => g.converters.grandma >= 3 && g.records.gotPomodoro <= 12,
   },
@@ -123,5 +124,11 @@ export const all_achievements: TAchievement[] = [
     description: "magic power hates minerals",
     toShow: HIDDEN,
     toGet: (g) => numAchieved(g) >= 7 && g.converters.coal_mine === 0,
+  },
+  {
+    id: "day2",
+    forHuman: "Day2",
+    toShow: ALWAYS,
+    toGet: (g) => g.records.days >= 2,
   },
 ];

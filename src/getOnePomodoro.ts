@@ -1,8 +1,9 @@
 import { getGlobal, setGlobal } from "reactn";
 import { numAchieved } from "./Achievement/numAchieved";
-import { TRecordID } from "./all_ids";
 import { all_converters, TConverterID } from "./Converter/all_converters";
+import { isDifferentDate } from "./isDifferentDate";
 import { save } from "./localDB";
+import { TRecordID } from "./Record/all_records";
 import { update, updateResource } from "./update";
 
 export const getOnePomodoro = async () => {
@@ -22,6 +23,21 @@ export const getOnePomodoro = async () => {
       ...updateResource(g, "mana", mana),
     });
   }
+  if (g.records.lastPomodoro !== 0) {
+    if (isDifferentDate(g.records.lastPomodoro)) {
+      await setGlobal((g) => {
+        return {
+          records: update<TRecordID>(g.records, "days", 1),
+        };
+      });
+    }
+  }
+  await setGlobal((g) => {
+    return {
+      records: { ...g.records, lastPomodoro: Date.now() },
+    };
+  });
+
   await setGlobal((g) => {
     return {
       ...updateResource(g, "pomodoro", 1),

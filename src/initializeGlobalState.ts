@@ -1,8 +1,8 @@
 import { setGlobal } from "reactn";
 import { TAchivementID } from "./Achievement/all_achievements";
 import { TTemporaryEffect } from "./Action/Actions";
-import { TRecordID } from "./all_ids";
 import { TConverterID } from "./Converter/all_converters";
+import { TRecordID } from "./Record/all_records";
 import { TResourceID } from "./Resource/all_resources";
 
 const INITIAL_GLOBAL_STATE = {

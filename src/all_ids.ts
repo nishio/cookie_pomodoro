@@ -2,8 +2,6 @@ import { all_achievements } from "./Achievement/all_achievements";
 import { all_converters, TConverterID } from "./Converter/all_converters";
 import { all_resources, TResourceID } from "./Resource/all_resources";
 
-export type TRecordID = "lastVisit" | "firstVisit" | "gotPomodoro";
-
 export const isResouseID = (x: string): x is TResourceID => {
   return true;
 };
