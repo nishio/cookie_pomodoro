@@ -125,7 +125,7 @@ export const all_achievements: TAchievement[] = [
   {
     id: "three_grandma",
     forHuman: "Three Grandma",
-    description: "too many grandma! (Pomodoro +1)",
+    description: "too many grandma! (Cookie +1)",
     toShow: HIDDEN,
     toGet: (g) => g.converters.grandma >= 3 && g.records.gotPomodoro <= 12,
   },
