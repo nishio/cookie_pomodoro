@@ -1,7 +1,7 @@
 import { getGlobal } from "reactn";
-import { TAchivementID } from "../Achievement/all_achievements";
+import { TAchievementID } from "../Achievement/all_achievements";
 
-export const isAchieved = (id: TAchivementID): boolean => {
+export const isAchieved = (id: TAchievementID): boolean => {
   if (id in getGlobal().achieved) {
     return true;
   }

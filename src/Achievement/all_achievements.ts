@@ -6,7 +6,7 @@ import { numAchieved } from "./numAchieved";
 type TProgress = { goal: number; current: number };
 
 export type TAchievement = {
-  id: TAchivementID;
+  id: TAchievementID;
   forHuman?: string;
   description?: string;
   toShow: (g: State) => boolean;
@@ -14,7 +14,7 @@ export type TAchievement = {
   getProgress?: (g: State) => TProgress;
 };
 
-export type TAchivementID =
+export type TAchievementID =
   | "pomodoro1"
   | "pomodoro2"
   | "pomodoro4"

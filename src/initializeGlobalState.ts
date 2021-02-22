@@ -1,5 +1,5 @@
 import { setGlobal } from "reactn";
-import { TAchivementID } from "./Achievement/all_achievements";
+import { TAchievementID } from "./Achievement/all_achievements";
 import { TTemporaryEffect } from "./Action/Actions";
 import { TConverterID } from "./Converter/all_converters";
 import { TRecordID } from "./Record/all_records";
@@ -11,7 +11,7 @@ const INITIAL_GLOBAL_STATE = {
   pomodoroStartTime: 0,
   pomodoroSecond: 0,
   resources: {} as { [key in TResourceID]: number },
-  achieved: {} as { [key in TAchivementID]: boolean },
+  achieved: {} as { [key in TAchievementID]: boolean },
   converters: {} as { [key in TConverterID]: number },
   activeConverters: {} as { [key in TConverterID]: number },
   records: {} as { [key in TRecordID]: number },
