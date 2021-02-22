@@ -29,7 +29,8 @@ export type TAchivementID =
   | "mana"
   | "three_grandma"
   | "no_mine"
-  | "day2";
+  | "day2"
+  | "idle_assets";
 
 export const all_achievements: TAchievement[] = [
   {
@@ -57,6 +58,13 @@ export const all_achievements: TAchievement[] = [
     description: "patient kids get more cookie (+1)",
     toShow: HIDDEN,
     toGet: (g) => g.resources.pomodoro >= 4,
+  },
+  {
+    id: "idle_assets",
+    forHuman: "Idle assets",
+    description: "Have 8 Pomodoro",
+    toShow: HIDDEN,
+    toGet: (g) => g.resources.pomodoro >= 8,
   },
   {
     id: "cookie1",
@@ -117,7 +125,7 @@ export const all_achievements: TAchievement[] = [
   {
     id: "three_grandma",
     forHuman: "Three Grandma",
-    description: "too many grandma! (+1)",
+    description: "too many grandma! (Pomodoro +1)",
     toShow: HIDDEN,
     toGet: (g) => g.converters.grandma >= 3 && g.records.gotPomodoro <= 12,
   },
