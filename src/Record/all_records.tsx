@@ -1,16 +1,11 @@
+import { dateToStr } from "./dateToStr";
+
 export type TRecordID =
   | "lastVisit"
   | "firstVisit"
   | "gotPomodoro"
   | "lastPomodoro"
   | "days";
-
-const dateToStr = (x?: number) => {
-  if (x === undefined) {
-    return "Not yet";
-  }
-  return new Date(x as number).toLocaleString();
-};
 
 export type TRecord = {
   id: TRecordID;
