@@ -1,10 +1,9 @@
-import { addListener } from "process";
 import { State } from "reactn/default";
 import { TAchievementID } from "../all_ids";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
 import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";
-import { generateAchievementsDays, makeDays } from "./generateAchievementsDays";
+import { generateAchievementsDays } from "./generateAchievementsDays";
 import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
 
