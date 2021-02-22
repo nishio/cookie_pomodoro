@@ -1,6 +1,7 @@
 import { all_achievements, TAchievement } from "./all_achievements";
 import { after } from "./after";
 import { fibonacci } from "./fibonacci";
+import { TAchievementID } from "../all_ids";
 export const generateAchievementsPomodoro = () => {
   let prev = 4;
   fibonacci(prev, prev + 1, 15).forEach((n) => {
@@ -10,9 +11,9 @@ export const generateAchievementsPomodoro = () => {
 };
 const makePomodoro = (n: number, prev: number): TAchievement => {
   return {
-    id: `pomodoro${n}`,
+    id: `pomodoro${n}` as TAchievementID,
     forHuman: `Got ${n} Pomodoro`,
-    toShow: after(`pomodoro${prev}`),
+    toShow: after(`pomodoro${prev}` as TAchievementID),
     toGet: (g) => g.records.gotPomodoro >= n,
     getProgress: (g) => {
       return { goal: n, current: g.records.gotPomodoro };

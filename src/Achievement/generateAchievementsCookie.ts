@@ -1,6 +1,7 @@
 import { after } from "./after";
 import { fibonacci } from "./fibonacci";
 import { all_achievements, TAchievement } from "./all_achievements";
+import { TAchievementID } from "../all_ids";
 
 export const generateAchievementsCookie = () => {
   let prev = 1;
@@ -11,9 +12,9 @@ export const generateAchievementsCookie = () => {
 };
 const makeCookie = (n: number, prev: number): TAchievement => {
   return {
-    id: `cookie${n}`,
+    id: `cookie${n}` as TAchievementID,
     forHuman: `Have ${n} Cookie`,
-    toShow: after(`cookie${prev}`),
+    toShow: after(`cookie${prev}` as TAchievementID),
     toGet: (g) => g.resources.cookie >= n,
     getProgress: (g) => {
       return { goal: n, current: g.resources.cookie };
