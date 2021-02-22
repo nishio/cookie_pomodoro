@@ -5,18 +5,21 @@ import { isDifferentDate } from "./isDifferentDate";
 import { save } from "./localDB";
 import { TConverterID, TRecordID } from "./all_ids";
 import { update, updateResource } from "./update";
+import { dontHaveConverter } from "./Achievement/dontHaveConverter";
+import { isAchieved } from "./Converter/isAchieved";
+import { hasConverter } from "./Converter/hasConverter";
 
 export const getOnePomodoro = async () => {
   const g = getGlobal();
   const activeConverters = {} as { [key in TConverterID]: number };
   all_converters.forEach((c) => {
-    if ((g.converters[c.id] ?? 0) > 0) {
+    if (hasConverter(c.id)) {
       activeConverters[c.id] = g.converters[c.id];
     }
   });
-  if ("mana" in g.achieved) {
+  if (isAchieved("mana")) {
     let mana = numAchieved(g);
-    if ("no_mine" in g.achieved && g.converters.coal_mine === 0) {
+    if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       mana *= 2;
     }
     await setGlobal({
