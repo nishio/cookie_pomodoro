@@ -83,7 +83,7 @@ export const all_achievements: TAchievement[] = [
     id: "iron_pickaxe",
     forHuman: "First Iron Pickaxe",
     description: "increase production of mining (+1)",
-    toShow: after("iron_ingot"),
+    toShow: ALWAYS,
     toGet: (g) => g.resources.iron_pickaxe >= 1,
   },
 
@@ -108,6 +108,13 @@ export const all_achievements: TAchievement[] = [
     toShow: HIDDEN,
     toGet: (g) => numAchieved(g) >= 7,
   },
+  {
+    id: "mana100",
+    forHuman: "100 Mana",
+    toShow: ALWAYS,
+    toGet: (g) => g.resources.mana >= 100,
+    getProgress: (g) => ({ goal: 100, current: g.resources.mana }),
+  },
 
   {
     id: "three_grandma",
@@ -126,7 +133,7 @@ export const all_achievements: TAchievement[] = [
   },
   {
     id: "day2",
-    forHuman: "Day2",
+    forHuman: "Day 2",
     toShow: ALWAYS,
     toGet: (g) => g.records.days >= 2,
     getProgress: (g) => {
