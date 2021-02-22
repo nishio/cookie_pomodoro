@@ -1,9 +1,9 @@
 import { all_achievements, TAchievement } from "./all_achievements";
 import { after } from "./after";
-
+import { fibonacci } from "./fibonacci";
 export const generateAchievementsPomodoro = () => {
   let prev = 4;
-  [8, 16, 32, 64, 128, 256, 512, 1024].forEach((n) => {
+  fibonacci(prev, prev + 1, 15).forEach((n) => {
     all_achievements.push(makePomodoro(n, prev));
     prev = n;
   });
