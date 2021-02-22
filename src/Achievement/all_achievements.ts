@@ -1,5 +1,6 @@
 import { State } from "reactn/default";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
+import { dontHaveConverter } from "./dontHaveConverter";
 import { numAchieved } from "./numAchieved";
 
 type TProgress = { goal: number; current: number };
@@ -124,9 +125,9 @@ export const all_achievements: TAchievement[] = [
   {
     id: "no_mine",
     forHuman: "No Mine",
-    description: "magic power hates minerals",
+    description: "magic power hates minerals (Mana *2)",
     toShow: HIDDEN,
-    toGet: (g) => numAchieved(g) >= 7 && g.converters.coal_mine === 0,
+    toGet: (g) => numAchieved(g) >= 7 && dontHaveConverter("coal_mine", g),
   },
   {
     id: "day2",
