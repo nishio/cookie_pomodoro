@@ -5,14 +5,17 @@ export type TRecordID =
   | "lastPomodoro"
   | "days";
 
-const dateToStr = (x: unknown) => {
+const dateToStr = (x?: number) => {
+  if (x === undefined) {
+    return "Not yet";
+  }
   return new Date(x as number).toLocaleString();
 };
 
 export type TRecord = {
   id: TRecordID;
   forHuman?: string;
-  toStr: (x: unknown) => string;
+  toStr: (x?: number) => string;
 };
 
 const numberToStr = (x: unknown) => {
@@ -37,10 +40,12 @@ export const all_records: TRecord[] = [
   },
   {
     id: "lastPomodoro",
+    forHuman: "Last Pomodoro",
     toStr: dateToStr,
   },
   {
     id: "days",
+    forHuman: "Days with Pomodoro",
     toStr: numberToStr,
   },
 ];
