@@ -1,5 +1,6 @@
 import { ALWAYS } from "../ALWAYS";
 import { TConverter, TCosts } from "./all_converters";
+import { isAchieved } from "./isAchieved";
 
 export const grandma: TConverter = {
   id: "grandma",
@@ -14,10 +15,10 @@ export const grandma: TConverter = {
         ret += 4;
       }
     });
-    if ("has_pomodoro4" in g.achieved) {
+    if (isAchieved("has_pomodoro4")) {
       ret += 1;
     }
-    if ("three_grandma" in g.achieved) {
+    if (isAchieved("three_grandma")) {
       ret += 1;
     }
     return ret;
