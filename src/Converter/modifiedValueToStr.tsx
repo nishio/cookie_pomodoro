@@ -1,8 +1,10 @@
+import { idToResource, TResourceID } from "../Resource/all_resources";
+
 export const modifiedValueToStr = (
   value?: number,
   inc?: number,
   dec?: number,
-  unit?: string
+  unit?: TResourceID
 ) => {
   value = value ?? 0;
   let ret = `${value}`;
@@ -18,7 +20,8 @@ export const modifiedValueToStr = (
     ret = `${ret} = ${value + inc - dec}`;
   }
   if (unit !== undefined) {
-    ret += ` ${unit}`;
+    const s = idToResource[unit].forHuman ?? unit;
+    ret += ` ${s}`;
   }
   return ret;
 };

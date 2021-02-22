@@ -55,3 +55,8 @@ export const all_resources: TResource[] = [
     toShow: hasResource("mana"),
   },
 ];
+
+export const idToResource = {} as { [key in TResourceID]: TResource };
+all_resources.forEach((r) => {
+  idToResource[r.id] = r;
+});
