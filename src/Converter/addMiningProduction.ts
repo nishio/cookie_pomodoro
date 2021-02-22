@@ -1,14 +1,15 @@
 import { State } from "reactn/default";
+import { isAchieved } from "./isAchieved";
 
 export const addMiningProduction = (g: State) => {
   let ret = 0;
-  if ("iron_pickaxe" in g.achieved) {
+  if (isAchieved("iron_pickaxe")) {
     ret += 1;
   }
-  if ("iron_pickaxe2" in g.achieved) {
+  if (isAchieved("iron_pickaxe2")) {
     ret += 1;
   }
-  if ("iron_pickaxe3" in g.achieved) {
+  if (isAchieved("iron_pickaxe4")) {
     ret += 1;
   }
   return ret;
