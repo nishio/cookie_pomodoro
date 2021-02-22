@@ -2,12 +2,15 @@ import { State } from "reactn/default";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
 import { numAchieved } from "./numAchieved";
 
-type TAchievement = {
+type TProgress = { goal: number; current: number };
+
+export type TAchievement = {
   id: TAchivementID;
   forHuman?: string;
   description?: string;
   toShow: (g: State) => boolean;
   toGet: (g: State) => boolean;
+  getProgress?: (g: State) => TProgress;
 };
 
 export type TAchivementID =
@@ -130,5 +133,8 @@ export const all_achievements: TAchievement[] = [
     forHuman: "Day2",
     toShow: ALWAYS,
     toGet: (g) => g.records.days >= 2,
+    getProgress: (g) => {
+      return { goal: 2, current: g.records.days };
+    },
   },
 ];
