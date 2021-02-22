@@ -5,6 +5,8 @@ import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
 import { getGlobal } from "reactn";
 import { lastPromise } from "../Converter/Converters";
+import { mockUseState } from "../mockUseState";
+import { mockSetGlobal } from "../mockSetGlobal";
 
 const click = (regex: RegExp, regex2: RegExp) => {
   act(() => {
@@ -16,9 +18,10 @@ jest.mock("../localDB"); // disable load/save
 test("senario1", async () => {
   initializeGlobalState();
   render(<App />);
-
-  act(() => {
-    getOnePomodoro();
+  mockUseState();
+  mockSetGlobal();
+  await act(async () => {
+    await getOnePomodoro();
   });
   expect(getGlobal().resources.pomodoro).toBe(1);
 
@@ -26,8 +29,8 @@ test("senario1", async () => {
   expect(getGlobal().resources.pomodoro).toBe(0);
   expect(getGlobal().converters.grandma).toBe(1);
 
-  act(() => {
-    getOnePomodoro();
+  await act(async () => {
+    await getOnePomodoro();
   });
   expect(getGlobal().resources.pomodoro).toBe(1);
 
@@ -39,38 +42,52 @@ test("senario1", async () => {
   expect(getGlobal().converters.coal_mine).toBe(1);
   click(/^Iron Mine/, /^Buy/);
 
-  const getOnePomoAndUseGrandma = () => {
-    act(() => {
-      getOnePomodoro();
-    });
-    click(/^Grandma/, /Use 1/);
-  };
-
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(4);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(6);
   click(/^Coal Mine/, /Use 1/);
   expect(getGlobal().resources.coal).toBe(1);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(3);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(5);
   click(/^Iron Mine/, /Use 1/);
   expect(getGlobal().resources.iron_ore).toBe(1);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Buy/);
   click(/^Workbench/, /Buy/);
 
-  getOnePomoAndUseGrandma();
+  await act(async () => {
+    await getOnePomodoro();
+  });
+  click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Use 1/);
   expect(getGlobal().resources.iron_ingot).toBe(1);
