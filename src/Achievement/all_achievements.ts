@@ -3,6 +3,7 @@ import { TAchievementID } from "../all_ids";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
 import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";
+import { generateAchievementsCookie } from "./generateAchievementsCookie";
 import { generateAchievementsDays } from "./generateAchievementsDays";
 import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
@@ -136,3 +137,4 @@ export const all_achievements: TAchievement[] = [
 
 generateAchievementsDays();
 generateAchievementsPomodoro();
+generateAchievementsCookie();
