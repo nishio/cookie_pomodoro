@@ -65,12 +65,12 @@ export const Actions = () => {
     <div>
       <h2>Actions</h2>
       <div id="actions">
-        <p>create temporary effects</p>
+        <p>create instant/temporary effects</p>
         <ul>{buttons}</ul>
       </div>
       <h2>Temporary Effects</h2>
       <div id="temporary-effects">
-        <p>effect until next pomodoro start</p>
+        <p>last until next pomodoro start</p>
         <ul>{effects}</ul>
       </div>
     </div>
