@@ -4,13 +4,14 @@
  */
 
 import { getGlobal, setGlobal, useGlobal } from "reactn";
-import { State } from "reactn/default";
-import { all_converters, TConverter } from "./all_converters";
+import { all_converters } from "./all_converters";
 import { isConverterID } from "../all_ids";
 import { save } from "../localDB";
 import { update } from "../update";
 import { TResourceID } from "../Resource/all_resources";
 import { checkAchievements } from "../Achievement/checkAchievements";
+import { isEnoughResource } from "./isEnoughResource";
+import { isActive } from "./isActive";
 
 export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
@@ -131,17 +132,3 @@ export const Converters = () => {
     </div>
   );
 };
-
-function isActive(g: State, c: TConverter) {
-  return (g.activeConverters[c.id] ?? 0) > 0;
-}
-
-function isEnoughResource(
-  g: State,
-  c: TConverter,
-  decreaseCost: { [key in TResourceID]: number }
-) {
-  return c.froms.every(([unit, value]) => {
-    return g.resources[unit] >= value - (decreaseCost[unit] ?? 0);
-  });
-}
