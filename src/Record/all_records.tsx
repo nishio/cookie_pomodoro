@@ -1,16 +1,7 @@
-import { TRecordID } from "../all_ids";
 import { dateToStr } from "./dateToStr";
+import { numberToStr } from "./numberToStr";
+import { TRecord } from "./TRecord";
 
-export type TRecord = {
-  id: TRecordID;
-  forHuman?: string;
-  toStr: (x?: number) => string;
-};
-
-const numberToStr = (x: unknown) => {
-  const n: number = (x as number | undefined) ?? 0;
-  return n.toString();
-};
 export const all_records: TRecord[] = [
   {
     id: "firstVisit",
