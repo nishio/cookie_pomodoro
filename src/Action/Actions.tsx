@@ -3,13 +3,10 @@
  */
 import { setGlobal, useGlobal } from "reactn";
 import { State } from "reactn/default";
-import { updateResource } from "../update";
-import { burn_coal } from "./burn_coal";
-import { click } from "./click";
-import { reset } from "./reset";
+import { all_actions } from "./all_actions";
 
 type TActionID = string;
-type TAction = {
+export type TAction = {
   id: TActionID;
   forHuman?: string;
   description?: string;
@@ -21,29 +18,6 @@ export type TTemporaryEffect = {
   id: TActionID;
   forHuman?: string;
 };
-
-const no_hunger_effect = {
-  id: "no_hunger",
-  forHuman: "No Hunger",
-};
-const no_hunger: TAction = {
-  id: "no_hunger",
-  forHuman: "No hunger",
-  description: "grandma doesn't require pomodoro",
-  toShow: (g) => g.resources.mana >= 100,
-
-  onClick: () => {
-    setGlobal((g: State) => {
-      return {
-        ...g,
-        ...updateResource(g, "mana", -100),
-        temporaryEffects: [...g.temporaryEffects, no_hunger_effect],
-      };
-    });
-  },
-};
-
-const all_actions: TAction[] = [click, reset, burn_coal, no_hunger];
 
 export const Actions = () => {
   const [g] = useGlobal();
