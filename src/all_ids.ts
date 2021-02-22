@@ -1,14 +1,6 @@
 import { all_achievements } from "./Achievement/all_achievements";
-import { all_converters, TConverterID } from "./Converter/all_converters";
-import { all_resources, TResourceID } from "./Resource/all_resources";
-
-export const isResouseID = (x: string): x is TResourceID => {
-  return true;
-};
-
-export const isConverterID = (x: string): x is TConverterID => {
-  return true;
-};
+import { all_converters } from "./Converter/all_converters";
+import { all_resources } from "./Resource/all_resources";
 
 export const update_ids = () => {
   let s = "export type TAchivementID = ";

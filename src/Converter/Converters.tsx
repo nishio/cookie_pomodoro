@@ -5,7 +5,6 @@
 
 import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { all_converters } from "./all_converters";
-import { isConverterID } from "../all_ids";
 import { save } from "../localDB";
 import { update } from "../update";
 import { TResourceID } from "../Resource/all_resources";
@@ -22,9 +21,6 @@ export const Converters = () => {
   const g = getGlobal();
   const list = all_converters.map((c) => {
     if (c.toShow(g)) {
-      if (!isConverterID(c.id)) {
-        throw new TypeError(`${c.id} not in TConvererID`);
-      }
       const amount = converters[c.id] ?? 0;
       const price = c.getPrice(g, amount);
       const priceStr = price.map(([value, unit]) => `${value} ${unit}`);
