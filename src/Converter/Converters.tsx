@@ -1,8 +1,3 @@
-/**
- * Converter: converts one resource into another resource
- * It can use once per pomodoro.
- */
-
 import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { all_converters } from "./all_converters";
 import { save } from "../localDB";
@@ -12,6 +7,8 @@ import { isEnoughResource } from "./isEnoughResource";
 import { isActive } from "./isActive";
 import { modifiedValueToStr } from "./modifiedValueToStr";
 import { TResourceID } from "../all_ids";
+import React from "react";
+import { Github } from "../Resource/Github";
 
 export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
@@ -112,7 +109,10 @@ export const Converters = () => {
 
   return (
     <div>
-      <h2>Converters</h2>
+      <h2>
+        Converters
+        <Github filename="Converter/all_converters.ts" />
+      </h2>
       <div id="converters">
         <p>Can be used once per a pomodoro</p>
         <ul>{list}</ul>

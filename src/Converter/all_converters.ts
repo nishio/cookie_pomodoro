@@ -1,3 +1,8 @@
+/**
+ * Converter: converts one resource into another resource
+ * It can use once per pomodoro.
+ */
+
 import { State } from "reactn/default";
 import { TConverterID, TResourceID } from "../all_ids";
 import { ALWAYS } from "../ALWAYS";

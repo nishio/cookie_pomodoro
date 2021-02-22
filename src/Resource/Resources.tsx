@@ -1,6 +1,7 @@
 import { getGlobal, useGlobal } from "reactn";
 import { all_resources } from "./all_resources";
 import { checkAchievements } from "../Achievement/checkAchievements";
+import { Github } from "./Github";
 
 export const Resources = () => {
   const [resources] = useGlobal("resources");
@@ -19,7 +20,10 @@ export const Resources = () => {
 
   return (
     <div>
-      <h2>Resources</h2>
+      <h2>
+        Resources
+        <Github filename="Resource/all_resources.ts" />
+      </h2>
       <ul>{list}</ul>
     </div>
   );

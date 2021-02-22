@@ -1,4 +1,5 @@
 import { getGlobal, useGlobal } from "reactn";
+import { Github } from "../Resource/Github";
 import { all_achievements } from "./all_achievements";
 import { getProgress } from "./getProgress";
 
@@ -21,7 +22,10 @@ export const Achievements = () => {
   });
   return (
     <div>
-      <h2>Achievements</h2>
+      <h2>
+        Achievements
+        <Github filename="Achievement/all_achievements.ts" />
+      </h2>
       <ul>{list}</ul>
     </div>
   );
