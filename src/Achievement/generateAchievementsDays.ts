@@ -1,9 +1,10 @@
 import { all_achievements, TAchievement } from "./all_achievements";
 import { after } from "./after";
+import { fibonacci } from "./fibonacci";
 
 export const generateAchievementsDays = () => {
   let prev = 2;
-  [4, 8, 16, 32, 64, 128, 256, 512, 1024].forEach((n) => {
+  fibonacci(2, 3, 10).forEach((n) => {
     all_achievements.push(makeDays(n, prev));
     prev = n;
   });
