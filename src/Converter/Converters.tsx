@@ -95,20 +95,11 @@ export const Converters = () => {
       }
       let fromStr = c.froms
         .map(([unit, value]) => {
-          if (decreaseCost[unit] !== undefined) {
-            return `${value} - ${decreaseCost[unit]} ${unit}`;
-          } else {
-            return `${value} ${unit}`;
-          }
+          return modifiedValueToStr(value, 0, decreaseCost[unit], unit);
         })
         .join(" ");
-      let toStr = `${c.toAmount}`;
-      if (addToAmount) {
-        toStr += ` + ${addToAmount} `;
-      } else {
-        toStr += " ";
-      }
-      toStr += c.to;
+      const toStr = modifiedValueToStr(c.toAmount, addToAmount, 0, c.to);
+
       return (
         <li key={c.id}>
           {c.forHuman ?? c.id}: Have {amount} {buyButton}: Active{" "}
@@ -131,4 +122,29 @@ export const Converters = () => {
       </div>
     </div>
   );
+};
+
+const modifiedValueToStr = (
+  value?: number,
+  inc?: number,
+  dec?: number,
+  unit?: string
+) => {
+  value = value ?? 0;
+  let ret = `${value}`;
+  inc = inc ?? 0;
+  dec = dec ?? 0;
+  if (inc !== 0) {
+    ret += ` + ${inc}`;
+  }
+  if (dec !== 0) {
+    ret += ` - ${dec}`;
+  }
+  if (inc !== 0 || dec !== 0) {
+    ret = `${ret} = ${value + inc - dec}`;
+  }
+  if (unit !== undefined) {
+    ret += ` ${unit}`;
+  }
+  return ret;
 };
