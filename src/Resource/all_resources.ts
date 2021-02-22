@@ -3,6 +3,12 @@ import { ALWAYS } from "../ALWAYS";
 import { hasConverter } from "../Converter/hasConverter";
 import { hasResource } from "./hasResource";
 
+export type TResource = {
+  id: TResourceID;
+  forHuman?: string;
+  toShow: (g: State) => boolean;
+};
+
 export type TResourceID =
   | "pomodoro"
   | "cookie"
@@ -49,9 +55,3 @@ export const all_resources: TResource[] = [
     toShow: hasResource("mana"),
   },
 ];
-
-export type TResource = {
-  id: TResourceID;
-  forHuman?: string;
-  toShow: (g: State) => boolean;
-};
