@@ -1,5 +1,5 @@
 import { State } from "reactn/default";
-import { TAchievement } from "./all_achievements";
+import { TAchievement } from "./TAchievement";
 
 export const getProgress = (a: TAchievement, g: State, done: boolean) => {
   if (!done && a.getProgress !== undefined) {

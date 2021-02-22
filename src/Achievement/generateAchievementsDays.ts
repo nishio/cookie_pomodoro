@@ -1,4 +1,5 @@
-import { all_achievements, TAchievement } from "./all_achievements";
+import { all_achievements } from "./all_achievements";
+import { TAchievement } from "./TAchievement";
 import { after } from "./after";
 import { fibonacci } from "./fibonacci";
 import { TAchievementID } from "../all_ids";

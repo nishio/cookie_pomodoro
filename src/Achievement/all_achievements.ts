@@ -1,5 +1,3 @@
-import { State } from "reactn/default";
-import { TAchievementID } from "../all_ids";
 import { ALWAYS, HIDDEN } from "../ALWAYS";
 import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";
@@ -7,17 +5,7 @@ import { generateAchievementsCookie } from "./generateAchievementsCookie";
 import { generateAchievementsDays } from "./generateAchievementsDays";
 import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
-
-type TProgress = { goal: number; current: number };
-
-export type TAchievement = {
-  id: TAchievementID;
-  forHuman?: string;
-  description?: string;
-  toShow: (g: State) => boolean;
-  toGet: (g: State) => boolean;
-  getProgress?: (g: State) => TProgress;
-};
+import { TAchievement } from "./TAchievement";
 
 export const all_achievements: TAchievement[] = [
   {
