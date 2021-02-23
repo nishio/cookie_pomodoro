@@ -3,6 +3,7 @@ import { setGlobal, useGlobal } from "reactn";
 import { getOnePomodoro } from "./getOnePomodoro";
 import { save } from "./localDB";
 import { toMinSec } from "./toMinSec";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const TimeToMature = 20 * 60;
 const TimeToOvergrow = 60 * 60;
@@ -23,11 +24,24 @@ export const PomodoroProgress = () => {
   if (sec < TimeToMature) {
     state = (
       <>
+        <LinearProgress
+          variant="determinate"
+          value={(100 * sec) / TimeToMature}
+        />
         Growing <button onClick={cancel}>cancel</button>
       </>
     );
   } else if (sec < TimeToMature + TimeToOvergrow) {
-    state = <button onClick={harvest}>harvest</button>;
+    state = (
+      <>
+        <LinearProgress
+          variant="determinate"
+          value={(100 * (sec - TimeToMature)) / TimeToOvergrow}
+        />
+
+        <button onClick={harvest}>harvest</button>
+      </>
+    );
   } else {
     state = (
       <>
