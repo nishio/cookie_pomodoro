@@ -4,6 +4,8 @@ import { getOnePomodoro } from "./getOnePomodoro";
 import { save } from "./localDB";
 import { toMinSec } from "./toMinSec";
 
+const TimeToMature = 20 * 60;
+const TimeToOvergrow = 60 * 60;
 export const PomodoroProgress = () => {
   const [sec] = useGlobal("pomodoroSecond");
   const fromStart = toMinSec(sec);
@@ -18,13 +20,13 @@ export const PomodoroProgress = () => {
     await cancel();
   };
   let state: string | ReactNode;
-  if (sec < 20 * 60) {
+  if (sec < TimeToMature) {
     state = (
       <>
         Growing <button onClick={cancel}>cancel</button>
       </>
     );
-  } else if (sec < 30 * 60) {
+  } else if (sec < TimeToMature + TimeToOvergrow) {
     state = <button onClick={harvest}>harvest</button>;
   } else {
     state = (
