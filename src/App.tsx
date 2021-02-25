@@ -8,6 +8,7 @@ import { Resources } from "./Resource/Resources";
 import { Pomodoro } from "./Pomodoro";
 import { Records } from "./Record/Records";
 import { startGlobalTimer } from "./startGlobalTimer";
+import { MySnack } from "./MySnack";
 
 function App() {
   useEffect(startGlobalTimer, []);
@@ -24,6 +25,7 @@ function App() {
       <Actions />
       <Achievements />
       <Records />
+      <MySnack />
     </div>
   );
 }

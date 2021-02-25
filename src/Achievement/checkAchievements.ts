@@ -1,5 +1,6 @@
 import { getGlobal, setGlobal } from "reactn";
 import { TAchievementID } from "../all_ids";
+import { addSnack } from "../MySnack";
 import { all_achievements } from "./all_achievements";
 
 export const checkAchievements = (): Promise<unknown> => {
@@ -10,6 +11,7 @@ export const checkAchievements = (): Promise<unknown> => {
     if (!(a.id in g.achieved)) {
       if (a.toGet(g)) {
         newObj[a.id as TAchievementID] = true;
+        addSnack("New achievement: " + a.forHuman ?? a.id);
       }
     }
   });
