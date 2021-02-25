@@ -5,12 +5,13 @@ import { save } from "./localDB";
 import { toMinSec } from "./toMinSec";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
-const TimeToMature = 20 * 60;
+const TimeToMature = 25 * 60;
 const TimeToOvergrow = 60 * 60;
 export const PomodoroProgress = () => {
   const [sec] = useGlobal("pomodoroSecond");
   const fromStart = toMinSec(sec);
-  const toEnd = toMinSec(25 * 60 - sec);
+  const toMature = toMinSec(TimeToMature - sec);
+  const toOvergrow = toMinSec(TimeToMature + TimeToOvergrow - sec);
   const cancel = async () => {
     await setGlobal({ inPomodoro: false });
     await save();
@@ -28,6 +29,7 @@ export const PomodoroProgress = () => {
           variant="determinate"
           value={(100 * sec) / TimeToMature}
         />
+        {fromStart} / Mature to {toMature} <br />
         Growing <button onClick={cancel}>cancel</button>
       </>
     );
@@ -38,7 +40,7 @@ export const PomodoroProgress = () => {
           variant="determinate"
           value={(100 * (sec - TimeToMature)) / TimeToOvergrow}
         />
-
+        {fromStart} / Overgrow to {toOvergrow} <br />
         <button onClick={harvest}>harvest</button>
       </>
     );
@@ -49,10 +51,5 @@ export const PomodoroProgress = () => {
       </>
     );
   }
-  return (
-    <span id="pomodoro-progress">
-      {fromStart} / {toEnd} <br />
-      {state}
-    </span>
-  );
+  return <span id="pomodoro-progress">{state}</span>;
 };
