@@ -6,6 +6,9 @@ import {
   TRecordID,
   TResourceID,
 } from "./all_ids";
+import { all_converters } from "./Converter/all_converters";
+import { all_records } from "./Record/all_records";
+import { all_resources } from "./Resource/all_resources";
 
 const INITIAL_GLOBAL_STATE = {
   version: 1,
@@ -21,6 +24,15 @@ const INITIAL_GLOBAL_STATE = {
 };
 
 export const initializeGlobalState = () => {
+  all_converters.forEach((c) => {
+    INITIAL_GLOBAL_STATE.converters[c.id] = 0;
+  });
+  all_resources.forEach((r) => {
+    INITIAL_GLOBAL_STATE.resources[r.id] = 0;
+  });
+  all_records.forEach((r) => {
+    INITIAL_GLOBAL_STATE.records[r.id] = 0;
+  });
   return setGlobal(INITIAL_GLOBAL_STATE);
 };
 
