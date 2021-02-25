@@ -6,7 +6,7 @@ import { State } from "reactn/default";
 export const no_hunger: TAction = {
   id: "no_hunger",
   forHuman: "No hunger",
-  description: "grandma doesn't require pomodoro",
+  description: "-100 Mana. Grandma doesn't require pomodoro (-1 pomodoro cost)",
   toShow: (g) => g.resources.mana >= 100,
 
   onClick: () => {

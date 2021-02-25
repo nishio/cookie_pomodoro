@@ -15,7 +15,7 @@ export const burn_coal = {
     });
   },
   toShow: (g: State) => g.resources.coal >= 1,
-  description: "Temporary increases grandma production (+4)",
+  description: "-1 coal. Increases grandma production (+4 cookie)",
 };
 
 export const burn_coal_effect = {
