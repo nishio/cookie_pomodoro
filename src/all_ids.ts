@@ -90,5 +90,9 @@ export type TRecordID =
   | "lastVisit"
   | "gotPomodoro"
   | "lastPomodoro"
-  | "days";
+  | "days"
+  | "totalAmountOfResources"
+  | "totalAmountOfResources10"
+  | "totalAmountOfResources20"
+  | "totalAmountOfResources40";
 // */
