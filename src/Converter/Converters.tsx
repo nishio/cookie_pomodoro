@@ -96,10 +96,11 @@ export const Converters = () => {
 
       return (
         <li key={c.id}>
-          {c.forHuman ?? c.id}: Have {amount} {buyButton}: Active{" "}
-          {g.activeConverters[c.id] ?? 0} {useButton}
+          {c.forHuman ?? c.id}: Have <strong>{amount}</strong> {buyButton}
+          <br />
+          Active <strong>{g.activeConverters[c.id] ?? 0}</strong> {useButton}
           <p>
-            Convert {fromStr} into {toStr}
+            Convert <strong>{fromStr}</strong> into <strong>{toStr}</strong>
           </p>
         </li>
       );
