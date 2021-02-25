@@ -14,7 +14,7 @@ export const getProgress = (a: TAchievement, g: State, done: boolean) => {
         <CircularProgress
           size={12}
           thickness={15}
-          variant="static"
+          variant="determinate"
           value={percent}
         />
         )
