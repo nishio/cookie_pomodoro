@@ -91,6 +91,7 @@ export type TRecordID =
   | "gotPomodoro"
   | "lastPomodoro"
   | "days"
+  | "manaLimit"
   | "totalAmountOfResources"
   | "totalAmountOfResources10"
   | "totalAmountOfResources20"

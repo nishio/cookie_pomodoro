@@ -10,6 +10,9 @@ export const updateMana = (g: State) => {
       manaRegene *= 2;
     }
     const mana = Math.min((g.resources.mana ?? 0) + manaRegene, 100);
-    return { resources: { ...g.resources, mana } };
+    return {
+      resources: { ...g.resources, mana },
+      records: { ...g.records, manaLimit: 100 },
+    };
   }
 };

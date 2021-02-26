@@ -29,6 +29,11 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
   },
   {
+    id: "manaLimit",
+    forHuman: "Mana Limit",
+    toStr: numberToStr,
+  },
+  {
     id: "totalAmountOfResources",
     forHuman: "Total Amount of Resources(TAoR)",
     toStr: numberToStr,
