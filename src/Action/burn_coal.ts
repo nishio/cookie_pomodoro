@@ -11,6 +11,7 @@ export const burn_coal = {
         ...g,
         ...updateResource(g, "coal", -1),
         temporaryEffects: [...g.temporaryEffects, burn_coal_effect],
+        records: { ...g.records, pollution: g.records.pollution + 1 },
       };
     });
   },

@@ -53,4 +53,9 @@ export const all_records: TRecord[] = [
     forHuman: "TAoR @ 40 Pomodoro",
     toStr: numberToStr,
   },
+  {
+    id: "pollution",
+    forHuman: "Air Pollution",
+    toStr: numberToStr,
+  },
 ];

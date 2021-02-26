@@ -100,5 +100,6 @@ export type TRecordID =
   | "totalAmountOfResources"
   | "totalAmountOfResources10"
   | "totalAmountOfResources20"
-  | "totalAmountOfResources40";
+  | "totalAmountOfResources40"
+  | "pollution";
 // */
