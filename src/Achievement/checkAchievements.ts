@@ -3,6 +3,11 @@ import { TAchievementID } from "../all_ids";
 import { addSnack } from "../MySnack";
 import { all_achievements } from "./all_achievements";
 
+let lastAchieved: TAchievementID[] = [];
+export const getLastAchieved = () => lastAchieved;
+export const resetLastAchieved = () => {
+  lastAchieved = [];
+};
 export const checkAchievements = (): Promise<unknown> => {
   const g = getGlobal();
   const newObj = { ...g.achieved };
@@ -12,6 +17,7 @@ export const checkAchievements = (): Promise<unknown> => {
       if (a.toGet(g)) {
         newObj[a.id as TAchievementID] = true;
         addSnack("New achievement: " + a.forHuman ?? a.id);
+        lastAchieved.push(a.id);
       }
     }
   });
