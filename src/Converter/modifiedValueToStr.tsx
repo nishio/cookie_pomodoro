@@ -13,7 +13,7 @@ export const modifiedValueToStr = (
     ret += ` + ${mod}`;
   }
   if (mod < 0) {
-    ret += ` - ${mod}`;
+    ret += ` - ${-mod}`;
   }
   if (mod !== 0) {
     ret = `${ret} = ${value + mod}`;
