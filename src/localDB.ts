@@ -35,7 +35,21 @@ export const loadRaw = async (): Promise<string | null> => {
 export const load = () => {
   return loadRaw().then((json) => {
     if (json !== null) {
-      return setGlobal(JSON.parse(json));
+      const value = JSON.parse(json);
+      // rename
+      if (value.converters.furnace_for_iron) {
+        value.converters.furnace =
+          (value.converters.furnace ?? 0) +
+          (value.converters.furnace_for_iron ?? 0);
+        value.converters.furnace_for_iron = undefined;
+      }
+      if (value.converters.workbench_for_iron_pickaxe) {
+        value.converters.workbench =
+          (value.converters.workbench ?? 0) +
+          (value.converters.workbench_for_iron_pickaxe ?? 0);
+        value.converters.workbench_for_iron_pickaxe = undefined;
+      }
+      return setGlobal(value);
     }
   });
 };

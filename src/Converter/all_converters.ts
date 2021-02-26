@@ -51,8 +51,8 @@ export const all_converters: TConverter[] = [
     ],
   },
   {
-    id: "furnace_for_iron",
-    forHuman: "Furnace for Iron",
+    id: "furnace",
+    forHuman: "Furnace",
     toShow: hasConverter("iron_mine"),
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
@@ -79,9 +79,9 @@ export const all_converters: TConverter[] = [
     ],
   },
   {
-    id: "workbench_for_iron_pickaxe",
-    forHuman: "Workbench for Iron Pickaxe",
-    toShow: hasConverter("furnace_for_iron"),
+    id: "workbench",
+    forHuman: "Workbench",
+    toShow: hasConverter("furnace"),
     getPrice: (g, amount) => {
       return [[1 + amount, "cookie"]];
     },

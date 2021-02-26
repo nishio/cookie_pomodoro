@@ -77,8 +77,8 @@ export type TConverterID =
   | "grandma"
   | "coal_mine"
   | "iron_mine"
-  | "furnace_for_iron"
-  | "workbench_for_iron_pickaxe";
+  | "furnace"
+  | "workbench";
 export type TResourceID =
   | "pomodoro"
   | "cookie"

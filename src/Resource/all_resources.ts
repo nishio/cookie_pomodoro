@@ -34,12 +34,12 @@ export const all_resources: TResource[] = [
   {
     id: "iron_ingot",
     forHuman: "Iron Ingot",
-    toShow: hasConverter("furnace_for_iron"),
+    toShow: hasConverter("furnace"),
   },
   {
     id: "iron_pickaxe",
     forHuman: "Iron Pickaxe",
-    toShow: hasConverter("workbench_for_iron_pickaxe"),
+    toShow: hasConverter("workbench"),
   },
   {
     id: "mana",
