@@ -11,7 +11,7 @@ export const updateTotalAmountOfResourcces = (g: State) => {
     ...g.records,
     totalAmountOfResources: taor,
   };
-  console.log(g.records.gotPomodoro);
+
   if (g.records.gotPomodoro === 10) {
     if (taor > (g.records.totalAmountOfResources10 ?? 0)) {
       newRecord["totalAmountOfResources10"] = taor;
