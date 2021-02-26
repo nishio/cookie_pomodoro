@@ -20,7 +20,8 @@ export function isEnoughResource(
 
 export function renderRecipe(
   this: { isActive: boolean; converter: TConverter },
-  r: TRecipe
+  r: TRecipe,
+  index: number
 ) {
   let useButton = null;
   const g = getGlobal();
@@ -64,7 +65,7 @@ export function renderRecipe(
     .join(" ");
 
   return (
-    <p>
+    <p key={index}>
       Convert <strong>{fromStr}</strong> into <strong>{toStr}</strong>{" "}
       {useButton}
     </p>
