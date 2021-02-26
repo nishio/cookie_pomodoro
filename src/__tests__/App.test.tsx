@@ -8,6 +8,7 @@ import { lastPromise } from "../Converter/Converters";
 import { mockUseState } from "../mockUseState";
 import { mockSetGlobal } from "../mockSetGlobal";
 import {
+  checkAchievements,
   getLastAchieved,
   resetLastAchieved,
 } from "../Achievement/checkAchievements";
@@ -28,7 +29,9 @@ test("senario1", async () => {
     await getOnePomodoro();
   });
   expect(getGlobal().resources.pomodoro).toBe(1);
-  expect(getLastAchieved()).toStrictEqual([]);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["pomodoro1"]);
+  resetLastAchieved();
 
   click(/^Grandma/, /^Buy/);
   expect(getGlobal().resources.pomodoro).toBe(0);
@@ -43,7 +46,8 @@ test("senario1", async () => {
   click(/^Grandma/, /^Use 1/);
   expect(getGlobal().resources.pomodoro).toBe(0);
   expect(getGlobal().resources.cookie).toBe(2);
-  expect(getLastAchieved()).toStrictEqual(["pomodoro1"]);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["cookie1", "cookie2"]);
   resetLastAchieved();
 
   click(/^Coal Mine/, /^Buy/);
@@ -62,21 +66,30 @@ test("senario1", async () => {
   await act(async () => {
     await getOnePomodoro();
   });
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["pomodoro4"]);
+  resetLastAchieved();
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(4);
   expect(getGlobal().resources.mana).toBe(0);
-  expect(getLastAchieved()).toStrictEqual(["cookie1", "cookie2", "pomodoro4"]);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["cookie3"]);
   resetLastAchieved();
 
   await act(async () => {
     await getOnePomodoro();
   });
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["pomodoro5"]);
+  resetLastAchieved();
+
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(6);
   click(/^Coal Mine/, /Use 1/);
   expect(getGlobal().resources.coal).toBe(1);
   expect(getGlobal().resources.mana).toBe(0);
-  expect(getLastAchieved()).toStrictEqual(["cookie3"]);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["coal"]);
   resetLastAchieved();
 
   await act(async () => {
@@ -85,7 +98,8 @@ test("senario1", async () => {
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(3);
   expect(getGlobal().resources.mana).toBe(0);
-  expect(getLastAchieved()).toStrictEqual(["coal", "pomodoro5", "mana"]);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["mana"]);
   resetLastAchieved();
 
   await act(async () => {
@@ -118,6 +132,7 @@ test("senario1", async () => {
   click(/^Workbench/, /Use 1/);
   expect(getGlobal().resources.iron_pickaxe).toBe(1);
   await lastPromise;
+  checkAchievements();
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
   expect(getGlobal().records.gotPomodoro).toBe(9);
   expect(getGlobal().resources.mana).toBe(25);

@@ -1,37 +1,41 @@
+import { getGlobal } from "reactn";
 import { ALWAYS } from "../ALWAYS";
-import { TConverter, TCosts } from "./all_converters";
+import { TConverter, TModifier } from "./all_converters";
 import { isAchieved } from "./isAchieved";
+
+const modifier: TModifier = () => {
+  const g = getGlobal();
+  let cookie = 0;
+  let pomodoro = 0;
+  g.temporaryEffects.forEach((e) => {
+    if (e.id === "burn_coal") {
+      cookie += 4;
+    }
+    if (e.id === "no_hunger") {
+      pomodoro = -1;
+    }
+  });
+  if (isAchieved("has_pomodoro4")) {
+    cookie += 1;
+  }
+  if (isAchieved("three_grandma")) {
+    cookie += 1;
+  }
+
+  return { cookie, pomodoro };
+};
 
 export const grandma: TConverter = {
   id: "grandma",
   forHuman: "Grandma",
-  froms: [["pomodoro", 1]],
-  to: "cookie",
-  toAmount: 2,
-  addToAmount: (g) => {
-    let ret = 0;
-    g.temporaryEffects.forEach((e) => {
-      if (e.id === "burn_coal") {
-        ret += 4;
-      }
-    });
-    if (isAchieved("has_pomodoro4")) {
-      ret += 1;
-    }
-    if (isAchieved("three_grandma")) {
-      ret += 1;
-    }
-    return ret;
-  },
-  decreaseCost: (g) => {
-    let ret = [] as TCosts;
-    g.temporaryEffects.forEach((e) => {
-      if (e.id === "no_hunger") {
-        ret = [["pomodoro", 1]];
-      }
-    });
-    return ret;
-  },
+  recipes: [
+    {
+      from: [["pomodoro", 1]],
+      to: [["cookie", 2]],
+      modifier,
+      toShow: ALWAYS,
+    },
+  ],
   toShow: ALWAYS,
   getPrice: (g, amount) => {
     return [[1 + amount, "pomodoro"]];

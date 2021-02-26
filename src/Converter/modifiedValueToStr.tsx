@@ -3,22 +3,20 @@ import { idToResource } from "../Resource/all_resources";
 
 export const modifiedValueToStr = (
   value?: number,
-  inc?: number,
-  dec?: number,
+  mod?: number,
   unit?: TResourceID
 ) => {
   value = value ?? 0;
   let ret = `${value}`;
-  inc = inc ?? 0;
-  dec = dec ?? 0;
-  if (inc !== 0) {
-    ret += ` + ${inc}`;
+  mod = mod ?? 0;
+  if (mod > 0) {
+    ret += ` + ${mod}`;
   }
-  if (dec !== 0) {
-    ret += ` - ${dec}`;
+  if (mod < 0) {
+    ret += ` - ${mod}`;
   }
-  if (inc !== 0 || dec !== 0) {
-    ret = `${ret} = ${value + inc - dec}`;
+  if (mod !== 0) {
+    ret = `${ret} = ${value + mod}`;
   }
   if (unit !== undefined) {
     const s = idToResource[unit].forHuman ?? unit;

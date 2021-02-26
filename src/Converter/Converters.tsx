@@ -3,12 +3,10 @@ import { all_converters } from "./all_converters";
 import { save } from "../localDB";
 import { update } from "../update";
 import { checkAchievements } from "../Achievement/checkAchievements";
-import { isEnoughResource } from "./isEnoughResource";
 import { isActive } from "./isActive";
-import { modifiedValueToStr } from "./modifiedValueToStr";
-import { TResourceID } from "../all_ids";
 import React from "react";
 import { Github } from "../Resource/Github";
+import { renderRecipe } from "./renderRecipe";
 
 export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
@@ -47,61 +45,20 @@ export const Converters = () => {
         buyButton = <button disabled>Buy({priceStr})</button>;
       }
 
-      let addToAmount = 0;
-      if (c.addToAmount !== undefined) {
-        addToAmount = c.addToAmount(g);
-      }
-
-      let useButton = null;
-      const decreaseCost = {} as { [key in TResourceID]: number };
-      if (c.decreaseCost !== undefined) {
-        c.decreaseCost(g).forEach(([unit, value]) => {
-          decreaseCost[unit] = value;
+      let recipes = null;
+      if (c.recipes) {
+        recipes = c.recipes.map(renderRecipe, {
+          isActive: isActive(g, c),
+          converter: c,
         });
       }
-
-      const canUse = isActive(g, c) && isEnoughResource(g, c, decreaseCost);
-      if (canUse) {
-        const use = () => {
-          let newResources = { ...g.resources };
-          c.froms.forEach(([unit, value]) => {
-            newResources = update(
-              newResources,
-              unit,
-              -(value - (decreaseCost[unit] ?? 0))
-            );
-          });
-
-          lastPromise = setGlobal({
-            activeConverters: update(g.activeConverters, c.id, -1),
-            resources: update(newResources, c.to, c.toAmount + addToAmount),
-          })
-            .then(() => {
-              checkAchievements();
-            })
-            .then(() => {
-              save();
-            });
-        };
-        useButton = <button onClick={use}>Use 1</button>;
-      } else {
-        useButton = <button disabled>Use 1</button>;
-      }
-      let fromStr = c.froms
-        .map(([unit, value]) => {
-          return modifiedValueToStr(value, 0, decreaseCost[unit], unit);
-        })
-        .join(" ");
-      const toStr = modifiedValueToStr(c.toAmount, addToAmount, 0, c.to);
 
       return (
         <li key={c.id}>
           {c.forHuman ?? c.id}: Have <strong>{amount}</strong> {buyButton}
           <br />
-          Active <strong>{g.activeConverters[c.id] ?? 0}</strong> {useButton}
-          <p>
-            Convert <strong>{fromStr}</strong> into <strong>{toStr}</strong>
-          </p>
+          Active <strong>{g.activeConverters[c.id] ?? 0}</strong>
+          {recipes}
         </li>
       );
     }
