@@ -6,7 +6,7 @@ import { State } from "reactn/default";
 export const updateMana = (g: State) => {
   if (isAchieved("mana")) {
     let manaRegene = numAchieved(g);
-    manaRegene -= Math.floor(g.records.pollution / 10);
+    manaRegene -= Math.floor(g.records.pollution ?? 0 / 10);
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;
     }
