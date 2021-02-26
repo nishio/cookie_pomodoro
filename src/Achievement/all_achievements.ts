@@ -150,7 +150,7 @@ export const all_achievements: TAchievement[] = [
     forHuman: "Enough Steel Pickaxe",
     description: "increase production of mining (+1)",
     toShow: after("steel_pickaxe2"),
-    toGet: (g) => g.resources.iron_pickaxe >= 4,
+    toGet: (g) => g.resources.steel_pickaxe >= 4,
   },
 ];
 
