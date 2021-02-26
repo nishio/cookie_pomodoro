@@ -14,7 +14,7 @@ export function isEnoughResource(
   mod: Partial<{ [key in TResourceID]: number }>
 ) {
   return r.from.every(([unit, value]) => {
-    return g.resources[unit] >= value - (mod[unit] ?? 0);
+    return g.resources[unit] >= value + (mod[unit] ?? 0);
   });
 }
 
@@ -25,6 +25,9 @@ export function renderRecipe(
 ) {
   let useButton = null;
   const g = getGlobal();
+  if (!r.toShow(g)) {
+    return null;
+  }
   const mod = r.modifier();
   const canUse = this.isActive && isEnoughResource(r, g, mod);
   if (canUse) {
