@@ -53,6 +53,7 @@ test("senario1", async () => {
   });
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(4);
+  expect(getGlobal().resources.mana).toBe(0);
 
   await act(async () => {
     await getOnePomodoro();
@@ -61,12 +62,14 @@ test("senario1", async () => {
   expect(getGlobal().resources.cookie).toBe(6);
   click(/^Coal Mine/, /Use 1/);
   expect(getGlobal().resources.coal).toBe(1);
+  expect(getGlobal().resources.mana).toBe(0);
 
   await act(async () => {
     await getOnePomodoro();
   });
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(3);
+  expect(getGlobal().resources.mana).toBe(0);
 
   await act(async () => {
     await getOnePomodoro();
@@ -75,6 +78,7 @@ test("senario1", async () => {
   expect(getGlobal().resources.cookie).toBe(5);
   click(/^Iron Mine/, /Use 1/);
   expect(getGlobal().resources.iron_ore).toBe(1);
+  expect(getGlobal().resources.mana).toBe(8);
 
   await act(async () => {
     await getOnePomodoro();
@@ -96,4 +100,5 @@ test("senario1", async () => {
   await lastPromise;
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
   expect(getGlobal().records.gotPomodoro).toBe(9);
+  expect(getGlobal().resources.mana).toBe(25);
 });
