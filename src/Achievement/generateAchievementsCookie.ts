@@ -5,7 +5,7 @@ import { TAchievement } from "./TAchievement";
 import { TAchievementID } from "../all_ids";
 
 export const generateAchievementsCookie = () => {
-  let prev = 1;
+  let prev = 2;
   fibonacci(prev, prev + 1, 15).forEach((n) => {
     all_achievements.push(makeCookie(n, prev));
     prev = n;

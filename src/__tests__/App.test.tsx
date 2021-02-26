@@ -12,6 +12,7 @@ import {
   getLastAchieved,
   resetLastAchieved,
 } from "../Achievement/checkAchievements";
+import { TAchievementID } from "../all_ids";
 
 const click = (regex: RegExp, regex2: RegExp) => {
   act(() => {
@@ -19,6 +20,11 @@ const click = (regex: RegExp, regex2: RegExp) => {
   });
 };
 
+const expectAchieve = (xs: TAchievementID[]) => {
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(xs);
+  resetLastAchieved();
+};
 jest.mock("../localDB"); // disable load/save
 
 test("senario1", async () => {
@@ -44,7 +50,7 @@ test("senario1", async () => {
   expect(getGlobal().resources.pomodoro).toBe(0);
   expect(getGlobal().resources.cookie).toBe(2);
   checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["cookie1", "cookie2"]);
+  expect(getLastAchieved()).toStrictEqual(["cookie1"]);
   resetLastAchieved();
 
   click(/^Coal Mine/, /^Buy/);
@@ -87,25 +93,21 @@ test("senario1", async () => {
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(3);
   expect(getGlobal().resources.mana).toBe(0);
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["mana"]);
-  resetLastAchieved();
+  expectAchieve([]);
 
   await getOnePomodoro();
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(5);
   click(/^Iron Mine/, /Use 1/);
   expect(getGlobal().resources.iron_ore).toBe(1);
-  expect(getGlobal().resources.mana).toBe(8);
-  expect(getLastAchieved()).toStrictEqual([]);
+  expectAchieve(["iron"]);
 
   await getOnePomodoro();
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Buy/);
   click(/^Workbench/, /Buy/);
-  expect(getLastAchieved()).toStrictEqual(["iron"]);
-  resetLastAchieved();
+  expectAchieve(["mana"]);
 
   await getOnePomodoro();
   click(/^Grandma/, /Use 1/);
@@ -118,5 +120,8 @@ test("senario1", async () => {
   checkAchievements();
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
   expect(getGlobal().records.gotPomodoro).toBe(9);
-  expect(getGlobal().resources.mana).toBe(25);
+  expect(getGlobal().resources.mana).toBe(8);
+
+  await getOnePomodoro();
+  expect(getGlobal().records.totalAmountOfResources).toBe(22);
 });
