@@ -46,6 +46,11 @@ export const all_resources: TResource[] = [
     forHuman: "Mana",
     toShow: hasResource("mana"),
   },
+  {
+    id: "steel",
+    forHuman: "Steel",
+    toShow: hasResource("steel"),
+  },
 ];
 
 export const idToResource = {} as { [key in TResourceID]: TResource };

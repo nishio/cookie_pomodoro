@@ -83,7 +83,8 @@ export type TResourceID =
   | "iron_ore"
   | "iron_ingot"
   | "iron_pickaxe"
-  | "mana";
+  | "mana"
+  | "steel";
 export type TActionID = "click" | "reset" | "burn_coal" | "no_hunger";
 export type TRecordID =
   | "firstVisit"

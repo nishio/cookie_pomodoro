@@ -9,6 +9,7 @@ import { ALWAYS } from "../ALWAYS";
 import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
 import { hasConverter } from "./hasConverter";
+import { isAchieved } from "./isAchieved";
 
 const NoMod = () => {
   return {};
@@ -64,6 +65,15 @@ export const all_converters: TConverter[] = [
         to: [["iron_ingot", 1]],
         modifier: NoMod,
         toShow: ALWAYS,
+      },
+      {
+        from: [
+          ["iron_ingot", 2],
+          ["coal", 2],
+        ],
+        to: [["steel", 1]],
+        modifier: NoMod,
+        toShow: () => isAchieved("iron_pickaxe"),
       },
     ],
   },
