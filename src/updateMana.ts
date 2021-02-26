@@ -12,11 +12,10 @@ export const updateMana = (g: State) => {
     }
     const mana = Math.max(
       0,
-      Math.min((g.resources.mana ?? 0) + manaRegene, g.records.manaLimit ?? 100)
+      Math.min((g.resources.mana ?? 0) + manaRegene, g.records.manaLimit)
     );
     return {
       resources: { ...g.resources, mana },
-      records: { ...g.records, manaLimit: 100 },
     };
   }
 };
