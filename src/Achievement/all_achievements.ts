@@ -1,4 +1,5 @@
 import { ALWAYS, HIDDEN } from "../ALWAYS";
+import { hasResource } from "../Resource/hasResource";
 import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";
 import { generateAchievementsCookie } from "./generateAchievementsCookie";
@@ -127,6 +128,29 @@ export const all_achievements: TAchievement[] = [
     getProgress: (g) => {
       return { goal: 2, current: g.records.days };
     },
+  },
+
+  {
+    id: "steel_pickaxe",
+    forHuman: "First Steel Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: hasResource("iron_pickaxe"),
+    toGet: (g) => g.resources.steel_pickaxe >= 1,
+  },
+
+  {
+    id: "steel_pickaxe2",
+    forHuman: "More Steel Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: after("steel_pickaxe"),
+    toGet: (g) => g.resources.steel_pickaxe >= 2,
+  },
+  {
+    id: "steel_pickaxe4",
+    forHuman: "Enough Steel Pickaxe",
+    description: "increase production of mining (+1)",
+    toShow: after("steel_pickaxe2"),
+    toGet: (g) => g.resources.iron_pickaxe >= 4,
   },
 ];
 

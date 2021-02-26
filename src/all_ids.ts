@@ -69,7 +69,10 @@ export type TAchievementID =
   | "cookie610"
   | "cookie987"
   | "cookie1597"
-  | "mana100";
+  | "mana100"
+  | "steel_pickaxe"
+  | "steel_pickaxe2"
+  | "steel_pickaxe4";
 export type TConverterID =
   | "grandma"
   | "coal_mine"
