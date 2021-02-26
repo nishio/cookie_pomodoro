@@ -6,10 +6,14 @@ import { State } from "reactn/default";
 export const updateMana = (g: State) => {
   if (isAchieved("mana")) {
     let manaRegene = numAchieved(g);
+    manaRegene -= Math.floor(g.records.pollution / 10);
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;
     }
-    const mana = Math.min((g.resources.mana ?? 0) + manaRegene, 100);
+    const mana = Math.max(
+      0,
+      Math.min((g.resources.mana ?? 0) + manaRegene, g.records.manaLimit ?? 100)
+    );
     return {
       resources: { ...g.resources, mana },
       records: { ...g.records, manaLimit: 100 },
