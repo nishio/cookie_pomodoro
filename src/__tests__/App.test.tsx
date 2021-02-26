@@ -21,9 +21,9 @@ const click = (regex: RegExp, regex2: RegExp) => {
 
 jest.mock("../localDB"); // disable load/save
 test("senario1", async () => {
+  mockUseState();
   initializeGlobalState();
   render(<App />);
-  mockUseState();
   mockSetGlobal();
   await act(async () => {
     await getOnePomodoro();
