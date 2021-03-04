@@ -10,12 +10,19 @@ export const updateMana = (g: State) => {
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;
     }
-    const mana = Math.max(
-      0,
-      Math.min((g.resources.mana ?? 0) + manaRegene, g.records.manaLimit)
-    );
+    const manaLimit = g.records.manaLimit ?? 100;
+    let mana = (g.resources.mana ?? 0) + manaRegene;
+    mana = clip(mana, 0, manaLimit);
+    if (mana === null || isNaN(mana)) {
+      mana = manaLimit;
+    }
     return {
       resources: { ...g.resources, mana },
+      records: { ...g.records, manaLimit },
     };
   }
+};
+
+const clip = (value: number, min: number, max: number) => {
+  return Math.max(min, Math.min(max, value));
 };
