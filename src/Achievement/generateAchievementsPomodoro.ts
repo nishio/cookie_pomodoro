@@ -19,5 +19,6 @@ const makePomodoro = (n: number, prev: number): TAchievement => {
     getProgress: (g) => {
       return { goal: n, current: g.records.gotPomodoro };
     },
+    isPermanent: true,
   };
 };

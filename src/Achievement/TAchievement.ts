@@ -8,5 +8,6 @@ export type TAchievement = {
   toShow: (g: State) => boolean;
   toGet: (g: State) => boolean;
   getProgress?: (g: State) => TProgress;
+  isPermanent: boolean;
 };
 type TProgress = { goal: number; current: number };

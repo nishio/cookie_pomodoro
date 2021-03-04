@@ -20,5 +20,6 @@ const makeCookie = (n: number, prev: number): TAchievement => {
     getProgress: (g) => {
       return { goal: n, current: g.resources.cookie };
     },
+    isPermanent: false,
   };
 };

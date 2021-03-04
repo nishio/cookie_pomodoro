@@ -20,5 +20,6 @@ export const makeDays = (n: number, prev: number): TAchievement => {
     getProgress: (g) => {
       return { goal: n, current: g.records.days };
     },
+    isPermanent: true,
   };
 };

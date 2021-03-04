@@ -1,4 +1,5 @@
 import { getGlobal, useGlobal } from "reactn";
+import { isPermanent } from "../Record/isPermanent";
 import { Github } from "../Resource/Github";
 import { all_achievements } from "./all_achievements";
 import { getProgress } from "./getProgress";
@@ -13,7 +14,8 @@ export const Achievements = () => {
       const progress = getProgress(a, g, done);
       return (
         <li key={a.id}>
-          {checkbox} {a.forHuman ?? a.id} {progress}
+          {checkbox} {isPermanent(a)}
+          {a.forHuman ?? a.id} {progress}
           {a.description ? <p>{a.description}</p> : null}
         </li>
       );
