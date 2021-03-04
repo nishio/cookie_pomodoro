@@ -7,12 +7,14 @@ import addReactNDevTools from "reactn-devtools";
 import { initWithLoad } from "./initWithLoad";
 import { update_ids } from "./update_ids";
 
+import { initSentry } from "./initSentry";
+
 if (process.env.NODE_ENV !== "production") {
   // development
   addReactNDevTools({ trace: true, traceLimit: 25 });
 } else {
   // production
-  // initSentry();
+  initSentry();
 }
 
 initWithLoad();
