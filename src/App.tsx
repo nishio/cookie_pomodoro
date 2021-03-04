@@ -27,6 +27,7 @@ function App() {
       <Actions />
       <Achievements />
       <Records />
+      <hr />
       <button onClick={exportSaveData}>Export Save Data</button>
       <button onClick={importSaveData}>Import Save Data</button>
       <MySnack />
