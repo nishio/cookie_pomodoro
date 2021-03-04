@@ -53,11 +53,25 @@ export const Converters = () => {
         });
       }
 
+      let numActive = g.activeConverters[c.id] ?? 0;
+      let showNumActive = (
+        <>
+          Active <strong style={{ color: "red" }}>0</strong>
+        </>
+      );
+      if (numActive > 0) {
+        showNumActive = (
+          <>
+            Active <strong>{numActive}</strong>
+          </>
+        );
+      }
+
       return (
         <li key={c.id}>
           {c.forHuman ?? c.id}: Have <strong>{amount}</strong> {buyButton}
           <br />
-          Active <strong>{g.activeConverters[c.id] ?? 0}</strong>
+          {showNumActive}
           {recipes}
         </li>
       );
