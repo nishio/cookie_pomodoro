@@ -12,6 +12,7 @@ import { initSentry } from "./initSentry";
 if (process.env.NODE_ENV !== "production") {
   // development
   addReactNDevTools({ trace: true, traceLimit: 25 });
+  // initSentry();
 } else {
   // production
   initSentry();

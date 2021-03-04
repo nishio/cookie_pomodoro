@@ -1,5 +1,6 @@
 import Dexie from "dexie";
 import { getGlobal, setGlobal } from "reactn";
+import { checkLoadData, checkSaveData } from "./checkSaveData";
 
 export interface ISave {
   id?: number; // Primary key. Optional (autoincremented)
@@ -49,11 +50,13 @@ export const load = () => {
           (value.converters.workbench_for_iron_pickaxe ?? 0);
         value.converters.workbench_for_iron_pickaxe = undefined;
       }
+      checkLoadData(value);
       return setGlobal(value);
     }
   });
 };
 export const save = (): Promise<number> => {
+  checkSaveData();
   return localDB.saves
     .orderBy("id")
     .reverse()
