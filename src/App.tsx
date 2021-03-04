@@ -9,6 +9,8 @@ import { Pomodoro } from "./Pomodoro";
 import { Records } from "./Record/Records";
 import { startGlobalTimer } from "./startGlobalTimer";
 import { MySnack } from "./MySnack";
+import { exportSaveData } from "./exportSaveData";
+import { importSaveData } from "./importSaveData";
 
 function App() {
   useEffect(startGlobalTimer, []);
@@ -25,6 +27,8 @@ function App() {
       <Actions />
       <Achievements />
       <Records />
+      <button onClick={exportSaveData}>Export Save Data</button>
+      <button onClick={importSaveData}>Import Save Data</button>
       <MySnack />
     </div>
   );
