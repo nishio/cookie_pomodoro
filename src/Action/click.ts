@@ -1,7 +1,5 @@
 import { getOnePomodoro } from "../getOnePomodoro";
-const inDeveleop = () => {
-  return process.env.NODE_ENV !== "production";
-};
+import { inDeveleop } from "./inDeveleop";
 
 export const click = {
   id: "click",
