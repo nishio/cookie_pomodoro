@@ -23,7 +23,7 @@ const INITIAL_GLOBAL_STATE = {
   temporaryEffects: [] as TTemporaryEffect[],
 };
 
-export const initializeGlobalState = () => {
+export const getInitialGlobalState = () => {
   all_converters.forEach((c) => {
     INITIAL_GLOBAL_STATE.converters[c.id] = 0;
   });
@@ -34,7 +34,11 @@ export const initializeGlobalState = () => {
     INITIAL_GLOBAL_STATE.records[r.id] = 0;
   });
   INITIAL_GLOBAL_STATE.records.manaLimit = 100;
-  return setGlobal(INITIAL_GLOBAL_STATE);
+  return INITIAL_GLOBAL_STATE;
+};
+
+export const initializeGlobalState = () => {
+  return setGlobal(getInitialGlobalState());
 };
 
 type TYPE_GLOBAL_STATE = typeof INITIAL_GLOBAL_STATE;
