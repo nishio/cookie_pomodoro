@@ -28,7 +28,11 @@ export const getOnePomodoro = async () => {
       ...updateResource(g, "pomodoro", 1),
       temporaryEffects: [],
       activeConverters: activeConverters,
-      records: update<TRecordID>(g.records, "gotPomodoro", 1),
+      records: update<TRecordID>(
+        update<TRecordID>(g.records, "gotPomodoro_t1", 1),
+        "gotPomodoro",
+        1
+      ),
     };
   });
   await setGlobal(updateTotalAmountOfResourcces);

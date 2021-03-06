@@ -22,6 +22,12 @@ export const all_records: TRecord[] = [
     isPermanent: true,
   },
   {
+    id: "gotPomodoro_t1",
+    forHuman: "Got Pomodoro(T1)",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
+  {
     id: "lastPomodoro",
     forHuman: "Last Pomodoro",
     toStr: dateToStr,
@@ -68,5 +74,11 @@ export const all_records: TRecord[] = [
     forHuman: "Air Pollution",
     toStr: numberToStr,
     isPermanent: false,
+  },
+  {
+    id: "numSoftReset",
+    forHuman: "Number of Soft Reset",
+    toStr: numberToStr,
+    isPermanent: true,
   },
 ];

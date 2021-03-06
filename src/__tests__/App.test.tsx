@@ -25,6 +25,7 @@ const expectAchieve = (xs: TAchievementID[]) => {
   expect(getLastAchieved()).toStrictEqual(xs);
   resetLastAchieved();
 };
+
 jest.mock("../localDB"); // disable load/save
 
 test("senario1", async () => {
@@ -124,4 +125,25 @@ test("senario1", async () => {
 
   await getOnePomodoro();
   expect(getGlobal().records.totalAmountOfResources).toBe(22);
+  expect(getLastAchieved()).toStrictEqual(["iron_pickaxe", "pomodoro9"]);
+  resetLastAchieved();
+});
+
+test("softReset", async () => {
+  mockUseState();
+  mockSetGlobal();
+  await initializeGlobalState();
+  render(<App />);
+  await getOnePomodoro();
+  expect(getGlobal().resources.pomodoro).toBe(1);
+  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["pomodoro1"]);
+  resetLastAchieved();
+
+  screen.getByText("Soft Reset").click();
+  const g = getGlobal();
+  expect(g.achieved.pomodoro1).toBeFalsy();
+  expect(g.records.gotPomodoro).toBe(1);
+  expect(g.records.gotPomodoro_t1).toBe(0);
+  expect(g.records.numSoftReset).toBe(1);
 });

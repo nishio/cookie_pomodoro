@@ -1,6 +1,6 @@
 /**
  * If x.isPermanent for x in Record or Achievement,
- * x keeps value after soft-reset (not implemented yet)
+ * x keeps value after soft-reset (./Action/softReset.ts)
  */
 
 import { TAchievement } from "../Achievement/TAchievement";
