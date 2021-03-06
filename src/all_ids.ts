@@ -1,5 +1,6 @@
 /**
  * switch weak / auto-generated types
+ * use `window.update_ids` to update
  */
 
 /*
@@ -26,9 +27,13 @@ export type TAchievementID =
   | "iron_pickaxe2"
   | "iron_pickaxe4"
   | "mana"
+  | "mana100"
   | "three_grandma"
   | "no_mine"
   | "day2"
+  | "steel_pickaxe"
+  | "steel_pickaxe2"
+  | "steel_pickaxe4"
   | "day3"
   | "day5"
   | "day8"
@@ -54,7 +59,6 @@ export type TAchievementID =
   | "pomodoro1741"
   | "pomodoro2817"
   | "pomodoro4558"
-  | "cookie2"
   | "cookie3"
   | "cookie5"
   | "cookie8"
@@ -69,10 +73,7 @@ export type TAchievementID =
   | "cookie610"
   | "cookie987"
   | "cookie1597"
-  | "mana100"
-  | "steel_pickaxe"
-  | "steel_pickaxe2"
-  | "steel_pickaxe4";
+  | "cookie2584";
 export type TConverterID =
   | "grandma"
   | "coal_mine"
@@ -89,11 +90,18 @@ export type TResourceID =
   | "mana"
   | "steel"
   | "steel_pickaxe";
-export type TActionID = "click" | "reset" | "burn_coal" | "no_hunger";
+export type TActionID =
+  | "click"
+  | "reset"
+  | "burn_coal"
+  | "no_hunger"
+  | "breakData"
+  | "soft_reset";
 export type TRecordID =
   | "firstVisit"
   | "lastVisit"
   | "gotPomodoro"
+  | "gotPomodoro_t1"
   | "lastPomodoro"
   | "days"
   | "manaLimit"
@@ -101,5 +109,6 @@ export type TRecordID =
   | "totalAmountOfResources10"
   | "totalAmountOfResources20"
   | "totalAmountOfResources40"
-  | "pollution";
+  | "pollution"
+  | "numSoftReset";
 // */
