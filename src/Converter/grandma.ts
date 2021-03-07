@@ -1,5 +1,5 @@
 import { getGlobal } from "reactn";
-import { ALWAYS } from "../ALWAYS";
+import { ALWAYS } from "../utils/ALWAYS";
 import { TConverter, TModifier } from "./all_converters";
 import { isAchieved } from "./isAchieved";
 

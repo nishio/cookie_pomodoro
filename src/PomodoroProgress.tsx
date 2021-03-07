@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { setGlobal, useGlobal } from "reactn";
 import { getOnePomodoro } from "./getOnePomodoro";
 import { save } from "./localDB";
-import { toMinSec } from "./toMinSec";
+import { toMinSec } from "./utils/toMinSec";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 const TimeToMature = 25 * 60;

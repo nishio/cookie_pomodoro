@@ -1,6 +1,6 @@
 import { State } from "reactn/default";
 import { TResourceID } from "../all_ids";
-import { ALWAYS } from "../ALWAYS";
+import { ALWAYS } from "../utils/ALWAYS";
 import { hasConverter } from "../Converter/hasConverter";
 import { hasResource } from "./hasResource";
 

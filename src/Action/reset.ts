@@ -1,4 +1,4 @@
-import { ALWAYS } from "../ALWAYS";
+import { ALWAYS } from "../utils/ALWAYS";
 import { initializeGlobalState } from "../initializeGlobalState";
 import { save } from "../localDB";
 import { updateFirstVisit } from "../Record/updateFirstVisit";

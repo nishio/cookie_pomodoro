@@ -1,4 +1,4 @@
-import { ALWAYS, HIDDEN } from "../ALWAYS";
+import { ALWAYS, HIDDEN } from "../utils/ALWAYS";
 import { hasResource } from "../Resource/hasResource";
 import { after } from "./after";
 import { dontHaveConverter } from "./dontHaveConverter";

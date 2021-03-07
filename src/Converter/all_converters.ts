@@ -5,7 +5,7 @@
 
 import { State } from "reactn/default";
 import { TConverterID, TResourceID } from "../all_ids";
-import { ALWAYS } from "../ALWAYS";
+import { ALWAYS } from "../utils/ALWAYS";
 import { hasResource } from "../Resource/hasResource";
 import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";

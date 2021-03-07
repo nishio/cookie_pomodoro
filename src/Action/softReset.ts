@@ -1,4 +1,4 @@
-import { ALWAYS } from "../ALWAYS";
+import { ALWAYS } from "../utils/ALWAYS";
 import { getInitialGlobalState } from "../initializeGlobalState";
 import { all_records } from "../Record/all_records";
 import { getGlobal, setGlobal } from "reactn";
