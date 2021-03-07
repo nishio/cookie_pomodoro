@@ -1,26 +1,34 @@
 import Dexie from "dexie";
 import { getGlobal, setGlobal } from "reactn";
 import { checkLoadData, checkSaveData } from "./checkSaveData";
+import { getDateStr } from "./utils/getDateStr";
 
 export interface ISave {
   id?: number; // Primary key. Optional (autoincremented)
+  json: string;
+}
+export interface IDailyBackup {
+  id: string;
   json: string;
 }
 class MyAppDatabase extends Dexie {
   // Declare implicit table properties.
   // (just to inform Typescript. Instanciated by Dexie in stores() method)
   saves: Dexie.Table<ISave, number>; // number = type of the primkey
+  dailyBackup: Dexie.Table<IDailyBackup, string>;
   //...other tables goes here...
 
   constructor() {
     super("CookiePomodoro");
     this.version(1).stores({
       saves: "++id",
+      dailyBackup: "id",
       //...other tables goes here...
     });
     // The following line is needed if your typescript
     // is compiled using babel instead of tsc:
     this.saves = this.table("saves");
+    this.dailyBackup = this.table("dailyBackup");
   }
 }
 
@@ -55,20 +63,30 @@ export const load = () => {
     }
   });
 };
-export const save = (): Promise<number> => {
+export const save = (): Promise<unknown> => {
   checkSaveData();
+  const g = getGlobal();
   return localDB.saves
     .orderBy("id")
     .reverse()
     .limit(1)
     .toArray()
     .then((x) => {
-      const g = getGlobal();
       if (x.length === 0) {
         return localDB.saves.add({ json: JSON.stringify(g) });
       } else {
         return localDB.saves.update(x[0].id!, { json: JSON.stringify(g) });
       }
+    })
+    .then(() => {
+      const today = getDateStr();
+      return localDB.dailyBackup.put(
+        {
+          id: today,
+          json: JSON.stringify(g),
+        },
+        today
+      );
     });
 };
 
