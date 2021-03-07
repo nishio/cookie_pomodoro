@@ -22,6 +22,10 @@ class MyAppDatabase extends Dexie {
     super("CookiePomodoro");
     this.version(1).stores({
       saves: "++id",
+      //...other tables goes here...
+    });
+    this.version(2).stores({
+      saves: "++id",
       dailyBackup: "id",
       //...other tables goes here...
     });
