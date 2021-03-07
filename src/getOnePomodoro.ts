@@ -1,8 +1,8 @@
-import { getGlobal, setGlobal } from "reactn";
+import { setGlobal } from "reactn";
 import { all_converters } from "./Converter/all_converters";
 import { save } from "./localDB";
-import { TConverterID, TRecordID, TResourceID } from "./all_ids";
-import { update, updateResource } from "./update";
+import { TConverterID } from "./all_ids";
+import { updateResource } from "./update";
 import { hasConverter } from "./Converter/hasConverter";
 import { updateTotalAmountOfResourcces } from "./updateTotalAmountOfResourcces";
 import { updateMana } from "./updateMana";
@@ -28,11 +28,11 @@ export const getOnePomodoro = async () => {
       ...updateResource(g, "pomodoro", 1),
       temporaryEffects: [],
       activeConverters: activeConverters,
-      records: update<TRecordID>(
-        update<TRecordID>(g.records, "gotPomodoro_t1", 1),
-        "gotPomodoro",
-        1
-      ),
+      records: {
+        ...g.records,
+        gotPomodoro: (g.records.gotPomodoro ?? 0) + 1,
+        gotPomodoro_t1: (g.records.gotPomodoro_t1 ?? 0) + 1,
+      },
     };
   });
   await setGlobal(updateTotalAmountOfResourcces);
