@@ -1,5 +1,6 @@
 import React from "react";
 import { Sentry } from "../initSentry";
+import { recover } from "../localDB";
 import { Github } from "../Resource/Github";
 import { exportSaveData } from "./exportSaveData";
 import { importSaveData } from "./importSaveData";
@@ -12,9 +13,14 @@ export const System = () => {
         System
         <Github filename="System/System.tsx" />
       </h2>
-      <button onClick={exportSaveData}>Export Save Data</button>
-      {" / "}
-      <button onClick={importSaveData}>Import Save Data</button>
+      <p>
+        <button onClick={exportSaveData}>Export Save Data</button>
+        {" / "}
+        <button onClick={importSaveData}>Import Save Data</button>
+      </p>
+      <p>
+        <button onClick={recover}>Recover to yesterday data(alpha)</button>
+      </p>
       <p>
         <button onClick={grantNotificationPermission}>
           Grant Notification Permission
