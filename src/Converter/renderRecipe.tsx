@@ -18,8 +18,25 @@ export function isEnoughResource(
   });
 }
 
+const getMaxUse = (
+  r: TRecipe,
+  g: State,
+  mod: Partial<{ [key in TResourceID]: number }>,
+  numActive: number
+) => {
+  let ret = numActive;
+  r.from.forEach(([unit, value]) => {
+    const denom = value + (mod[unit] ?? 0);
+    if (denom > 0) {
+      const canUse = Math.floor(g.resources[unit] / denom);
+      ret = Math.min(ret, canUse);
+    }
+  });
+  return ret;
+};
+
 export function renderRecipe(
-  this: { isActive: boolean; converter: TConverter },
+  this: { isActive: boolean; converter: TConverter; numActive: number },
   r: TRecipe,
   index: number
 ) {
@@ -31,27 +48,29 @@ export function renderRecipe(
   const mod = r.modifier();
   const canUse = this.isActive && isEnoughResource(r, g, mod);
   if (canUse) {
-    const use = () => {
-      let newResources = { ...g.resources };
-      r.from.forEach(([unit, value]) => {
-        newResources = update(newResources, unit, -(value + (mod[unit] ?? 0)));
-      });
-      r.to.forEach(([unit, value]) => {
-        newResources = update(newResources, unit, value + (mod[unit] ?? 0));
-      });
-
-      setGlobal({
-        activeConverters: update(g.activeConverters, this.converter.id, -1),
-        resources: newResources,
-      })
-        .then(() => {
-          checkAchievements();
-        })
-        .then(() => {
-          save();
-        });
-    };
-    useButton = <button onClick={use}>Use 1</button>;
+    const use = build_onUse(r, g, mod, this.converter, 1);
+    const maxUse = getMaxUse(r, g, mod, this.numActive);
+    const onMaxUse = build_onUse(r, g, mod, this.converter, maxUse);
+    if (maxUse < 2) {
+      useButton = <button onClick={use}>Use 1</button>;
+    } else if (maxUse < 4) {
+      useButton = (
+        <>
+          <button onClick={use}>Use 1</button>
+          <button onClick={onMaxUse}>Use {maxUse}</button>
+        </>
+      );
+    } else {
+      const halfUse = Math.floor(maxUse / 2);
+      const onHalfUse = build_onUse(r, g, mod, this.converter, halfUse);
+      useButton = (
+        <>
+          <button onClick={use}>Use 1</button>
+          <button onClick={onHalfUse}>Use {halfUse}</button>
+          <button onClick={onMaxUse}>Use {maxUse}</button>
+        </>
+      );
+    }
   } else {
     useButton = <button disabled>Use 1</button>;
   }
@@ -74,3 +93,40 @@ export function renderRecipe(
     </p>
   );
 }
+
+const build_onUse = (
+  r: TRecipe,
+  g: State,
+  mod: Partial<{ [key in TResourceID]: number }>,
+  converter: TConverter,
+  repeat: number
+) => {
+  const use = () => {
+    let newResources = { ...g.resources };
+    r.from.forEach(([unit, value]) => {
+      let diff = value + (mod[unit] ?? 0);
+      if (diff < 0) {
+        diff = 0; // dont increse resouces
+      }
+      diff *= repeat;
+      newResources = update(newResources, unit, -diff);
+    });
+    r.to.forEach(([unit, value]) => {
+      let diff = mod[unit] ?? 0;
+      diff *= repeat;
+      newResources = update(newResources, unit, value + diff);
+    });
+
+    setGlobal({
+      activeConverters: update(g.activeConverters, converter.id, -repeat),
+      resources: newResources,
+    })
+      .then(() => {
+        checkAchievements();
+      })
+      .then(() => {
+        save();
+      });
+  };
+  return use;
+};

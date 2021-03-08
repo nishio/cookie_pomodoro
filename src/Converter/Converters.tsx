@@ -46,14 +46,16 @@ export const Converters = () => {
       }
 
       let recipes = null;
+      let numActive = g.activeConverters[c.id] ?? 0;
+
       if (c.recipes) {
         recipes = c.recipes.map(renderRecipe, {
           isActive: isActive(g, c),
           converter: c,
+          numActive,
         });
       }
 
-      let numActive = g.activeConverters[c.id] ?? 0;
       let showNumActive = (
         <>
           Active <strong style={{ color: "red" }}>0</strong>
