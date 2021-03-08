@@ -15,10 +15,8 @@ export const checkSaveData = () => {
         }
       })
       .then(() => {
-        Sentry.setContext("data", {
-          prevData: JSON.stringify(prevData),
-          newData: JSON.stringify(newData),
-        });
+        Sentry.setContext("prevData", prevData);
+        Sentry.setContext("newData", newData);
         Sentry.captureMessage("Insane Save Data");
       });
   }
@@ -26,7 +24,7 @@ export const checkSaveData = () => {
 
 export const checkLoadData = (g: State) => {
   if (isInsane(g)) {
-    Sentry.setContext("data", { data: JSON.stringify(g) });
+    Sentry.setContext("newData", g);
     Sentry.captureMessage("Insane Load Data");
   }
 };
