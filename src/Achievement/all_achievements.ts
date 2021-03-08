@@ -7,6 +7,7 @@ import { generateAchievementsDays } from "./generateAchievementsDays";
 import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
 import { TAchievement } from "./TAchievement";
+import { generateAchievementsSteel } from "./generateAchievementsSteel";
 
 export const all_achievements: TAchievement[] = [
   {
@@ -213,3 +214,4 @@ export const all_achievements: TAchievement[] = [
 generateAchievementsDays();
 generateAchievementsPomodoro();
 generateAchievementsCookie();
+generateAchievementsSteel();
