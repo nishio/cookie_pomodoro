@@ -18,6 +18,7 @@ const onClick = async () => {
       g.achieved[a.id] = c.achieved[a.id];
     }
   });
+  g.temporaryEffects = c.temporaryEffects; // temporary effect is not target
   g.records.numSoftReset = (g.records.numSoftReset ?? 0) + 1;
   await setGlobal(g);
   await save();

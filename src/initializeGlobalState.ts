@@ -26,6 +26,7 @@ const INITIAL_GLOBAL_STATE = {
 export const getInitialGlobalState = () => {
   all_converters.forEach((c) => {
     INITIAL_GLOBAL_STATE.converters[c.id] = 0;
+    INITIAL_GLOBAL_STATE.activeConverters[c.id] = 0;
   });
   all_resources.forEach((r) => {
     INITIAL_GLOBAL_STATE.resources[r.id] = 0;
@@ -34,6 +35,8 @@ export const getInitialGlobalState = () => {
     INITIAL_GLOBAL_STATE.records[r.id] = 0;
   });
   INITIAL_GLOBAL_STATE.records.manaLimit = 100;
+  INITIAL_GLOBAL_STATE.achieved = {} as typeof INITIAL_GLOBAL_STATE.achieved;
+  INITIAL_GLOBAL_STATE.temporaryEffects = [];
   return INITIAL_GLOBAL_STATE;
 };
 
