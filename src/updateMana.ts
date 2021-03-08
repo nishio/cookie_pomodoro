@@ -16,8 +16,12 @@ export const updateMana = (g: State) => {
     if (mana === null || isNaN(mana)) {
       mana = manaLimit;
     }
+
+    let green_mana = g.resources.green_mana ?? 0;
+    green_mana = clip(green_mana, 0, manaLimit);
+
     return {
-      resources: { ...g.resources, mana },
+      resources: { ...g.resources, mana, green_mana },
       records: { ...g.records, manaLimit },
     };
   }

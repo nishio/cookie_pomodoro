@@ -99,7 +99,10 @@ export type TConverterID =
   | "coal_mine"
   | "iron_mine"
   | "furnace"
-  | "workbench";
+  | "workbench"
+  | "forest"
+  | "apple_tree"
+  | "newton";
 export type TResourceID =
   | "pomodoro"
   | "cookie"
@@ -109,7 +112,11 @@ export type TResourceID =
   | "iron_pickaxe"
   | "mana"
   | "steel"
-  | "steel_pickaxe";
+  | "steel_pickaxe"
+  | "green_mana"
+  | "lumber"
+  | "apple"
+  | "science";
 export type TActionID =
   | "click"
   | "burn_coal"
