@@ -12,6 +12,13 @@ export const System = () => {
       </h2>
       <button onClick={exportSaveData}>Export Save Data</button>
       <button onClick={importSaveData}>Import Save Data</button>
+      <button onClick={grantNotificationPermission}>
+        Grant Notification Permission
+      </button>
     </div>
   );
+};
+
+const grantNotificationPermission = () => {
+  Notification.requestPermission();
 };
