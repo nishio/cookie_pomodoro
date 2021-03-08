@@ -16,7 +16,7 @@ export const makeDays = (n: number, prev: number): TAchievement => {
     id: `day${n}` as TAchievementID,
     forHuman: `Day ${n}`,
     toShow: after(`day${prev}` as TAchievementID),
-    toGet: (g) => g.records.days >= n,
+    toGet: (g) => (g.records.days ?? 0) >= n,
     getProgress: (g) => {
       return { goal: n, current: g.records.days };
     },

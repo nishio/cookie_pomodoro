@@ -15,7 +15,7 @@ const makePomodoro = (n: number, prev: number): TAchievement => {
     id: `pomodoro${n}` as TAchievementID,
     forHuman: `Got ${n} Pomodoro`,
     toShow: after(`pomodoro${prev}` as TAchievementID),
-    toGet: (g) => g.records.gotPomodoro >= n,
+    toGet: (g) => (g.records.gotPomodoro ?? 0) >= n,
     getProgress: (g) => {
       return { goal: n, current: g.records.gotPomodoro };
     },
