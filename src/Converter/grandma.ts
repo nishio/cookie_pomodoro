@@ -21,6 +21,9 @@ const modifier: TModifier = () => {
   if (isAchieved("three_grandma")) {
     cookie += 1;
   }
+  if (isAchieved("sick")) {
+    cookie -= Math.floor(g.records.pollution / 100);
+  }
 
   return { cookie, pomodoro };
 };

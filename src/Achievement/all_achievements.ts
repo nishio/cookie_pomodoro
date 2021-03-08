@@ -201,12 +201,20 @@ export const all_achievements: TAchievement[] = [
     isPermanent: true,
   },
   {
+    id: "sick",
+    forHuman: "Gramma got sick",
+    description:
+      "Due to polluted air, her lungs were broken (-1 cookie per 100 pollution)",
+    toShow: HIDDEN,
+    toGet: (g) => g.records.pollution >= 100,
+    isPermanent: false,
+  },
+  {
     id: "cookie_earth",
     forHuman: "Cookie Earth",
     description: "It is a cookie.",
     toShow: HIDDEN,
-    toGet: (g) =>
-      g.records.pollution >= 10000 && g.records.gotPomodoro_t1 <= 40,
+    toGet: (g) => g.resources.cookie >= 10000 && g.records.gotPomodoro_t1 <= 40,
     isPermanent: true,
   },
 ];
