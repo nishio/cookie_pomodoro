@@ -19,6 +19,9 @@ export const modifiedValueToStr = (
     ret = `${ret} = ${value + mod}`;
   }
   if (unit !== undefined) {
+    if (!(unit in idToResource)) {
+      throw new TypeError(`${unit} not in resouces`);
+    }
     const s = idToResource[unit].forHuman ?? unit;
     ret += ` ${s}`;
   }
