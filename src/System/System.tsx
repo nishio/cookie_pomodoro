@@ -11,10 +11,28 @@ export const System = () => {
         <Github filename="System/System.tsx" />
       </h2>
       <button onClick={exportSaveData}>Export Save Data</button>
+      {" / "}
       <button onClick={importSaveData}>Import Save Data</button>
-      <button onClick={grantNotificationPermission}>
-        Grant Notification Permission
-      </button>
+      <p>
+        <button onClick={grantNotificationPermission}>
+          Grant Notification Permission
+        </button>
+      </p>
+      <p>
+        <a href="https://github.com/nishio/cookie_pomodoro/projects/1">
+          Kanban
+        </a>
+      </p>
+      <p>
+        <a href="https://twitter.com/hashtag/CookiePomodoro?src=hashtag_click&f=live">
+          Twitter Search
+        </a>
+      </p>
+      <p>
+        <a href="https://github.com/nishio/cookie_pomodoro/commits/main">
+          Commits
+        </a>
+      </p>
     </div>
   );
 };
