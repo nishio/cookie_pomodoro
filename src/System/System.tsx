@@ -5,6 +5,7 @@ import { Github } from "../Resource/Github";
 import { exportSaveData } from "./exportSaveData";
 import { importSaveData } from "./importSaveData";
 import { grantNotificationPermission } from "./notify";
+import { reset } from "./reset";
 
 export const System = () => {
   return (
@@ -18,6 +19,11 @@ export const System = () => {
         {" / "}
         <button onClick={importSaveData}>Import Save Data</button>
       </p>
+      <p>
+        <button onClick={reset}>Complete Reset</button>Notice: you will lose
+        everything
+      </p>
+
       <p>
         <button onClick={recover}>Recover to yesterday data(alpha)</button>
       </p>
