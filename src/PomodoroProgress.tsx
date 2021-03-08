@@ -18,6 +18,8 @@ export const PomodoroProgress = () => {
   };
 
   const harvest = async () => {
+    window.gtag("event", "harvest");
+    window.gtag("event", "click", { event_label: "harvest_button" });
     await getOnePomodoro();
     await cancel();
   };
