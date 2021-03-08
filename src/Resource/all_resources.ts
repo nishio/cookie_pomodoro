@@ -56,6 +56,31 @@ export const all_resources: TResource[] = [
     forHuman: "Steel Pickaxe",
     toShow: hasAchieved("steel_pickaxe"),
   },
+  {
+    id: "green_mana",
+    forHuman: "Green Mana",
+    toShow: hasConverter("forest"),
+  },
+  {
+    id: "lumber",
+    forHuman: "Lumber",
+    toShow: hasConverter("forest"),
+  },
+  {
+    id: "apple",
+    forHuman: "Apple",
+    toShow: hasConverter("apple_tree"),
+  },
+  {
+    id: "science",
+    forHuman: "Science",
+    toShow: hasConverter("apple_tree"),
+  },
+  {
+    id: "grape",
+    forHuman: "Grape",
+    toShow: hasConverter("grape_tree"),
+  },
 ];
 
 export const idToResource = {} as { [key in TResourceID]: TResource };

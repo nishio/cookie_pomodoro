@@ -13,7 +13,7 @@ export const create_forest: TAction = {
     setGlobal((g: State) => {
       return {
         ...g,
-        converter: { ...g.converters, forest: (g.converters.forest ?? 0) + 1 },
+        converters: { ...g.converters, forest: (g.converters.forest ?? 0) + 1 },
         ...updateResource(g, "mana", -80),
       };
     });

@@ -150,8 +150,27 @@ export const all_converters: TConverter[] = [
     },
     recipes: [
       {
-        from: [["cookie", 5]],
+        from: [
+          ["cookie", 5],
+          ["apple", 1],
+        ],
         to: [["science", 1]],
+        modifier: NoMod,
+        toShow: ALWAYS,
+      },
+    ],
+  },
+  {
+    id: "grape_tree",
+    forHuman: "Grape Tree",
+    toShow: hasConverter("grape_tree"),
+    getPrice: (g, amount) => {
+      return [[nth_fibonacci(amount), "grape"]];
+    },
+    recipes: [
+      {
+        from: [],
+        to: [["grape", 1]],
         modifier: NoMod,
         toShow: ALWAYS,
       },

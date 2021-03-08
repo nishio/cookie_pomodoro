@@ -102,7 +102,8 @@ export type TConverterID =
   | "workbench"
   | "forest"
   | "apple_tree"
-  | "newton";
+  | "newton"
+  | "grape_tree";
 export type TResourceID =
   | "pomodoro"
   | "cookie"
@@ -116,7 +117,8 @@ export type TResourceID =
   | "green_mana"
   | "lumber"
   | "apple"
-  | "science";
+  | "science"
+  | "grape";
 export type TActionID =
   | "click"
   | "burn_coal"

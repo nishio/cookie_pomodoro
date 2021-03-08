@@ -17,13 +17,13 @@ export const all_actions: TAction[] = [
     id: "create_apple_tree",
     forHuman: "Create Apple Tree",
     description: "-1 Green Mana, -60 Mana, create Apple Tree",
-    toShow: (g) => g.resources.green_mana >= 1 || g.resources.mana >= 60,
+    toShow: (g) => g.resources.green_mana >= 1 && g.resources.mana >= 60,
 
     onClick: () => {
       setGlobal((g: State) => {
         return {
           ...g,
-          converter: {
+          converters: {
             ...g.converters,
             apple_tree: (g.converters.apple_tree ?? 0) + 1,
           },
@@ -31,6 +31,29 @@ export const all_actions: TAction[] = [
             ...g.resources,
             green_mana: (g.resources.green_mana ?? 0) - 1,
             mana: g.resources.mana - 60,
+          },
+        };
+      });
+    },
+  },
+  {
+    id: "create_grape_tree",
+    forHuman: "Create Grape Tree",
+    description: "-2 Green Mana, -30 Mana, create Grape Tree",
+    toShow: (g) => (g.resources.green_mana ?? 0) >= 2 && g.resources.mana >= 30,
+
+    onClick: () => {
+      setGlobal((g: State) => {
+        return {
+          ...g,
+          converters: {
+            ...g.converters,
+            grape_tree: (g.converters.grape_tree ?? 0) + 1,
+          },
+          resources: {
+            ...g.resources,
+            green_mana: (g.resources.green_mana ?? 0) - 2,
+            mana: g.resources.mana - 30,
           },
         };
       });
