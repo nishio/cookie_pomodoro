@@ -3,6 +3,7 @@ import { Sentry } from "../initSentry";
 import { Github } from "../Resource/Github";
 import { exportSaveData } from "./exportSaveData";
 import { importSaveData } from "./importSaveData";
+import { grantNotificationPermission } from "./notify";
 
 export const System = () => {
   return (
@@ -40,16 +41,6 @@ export const System = () => {
       </p>
     </div>
   );
-};
-
-const grantNotificationPermission = () => {
-  if (Notification !== undefined) {
-    Notification.requestPermission();
-  } else {
-    alert(
-      "Your browser doesn't support Notifiation API (for example iOS Safari)"
-    );
-  }
 };
 
 const bugReport = () => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { setGlobal, useGlobal } from "reactn";
 import { save } from "./localDB";
+import { notify } from "./System/notify";
 import { PomodoroProgress } from "./PomodoroProgress";
 
 export const Pomodoro = () => {
@@ -13,11 +14,7 @@ export const Pomodoro = () => {
       temporaryEffects: [],
     });
     await save();
-    setTimeout(() => {
-      if (Notification.permission === "granted") {
-        new Notification("You can harvest new Pomodoro!");
-      }
-    }, 25 * 60 * 1000);
+    setTimeout(notify, 25 * 60 * 1000);
   };
 
   return (
