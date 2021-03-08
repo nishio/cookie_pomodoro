@@ -73,7 +73,9 @@ export type TAchievementID =
   | "cookie610"
   | "cookie987"
   | "cookie1597"
-  | "cookie2584";
+  | "cookie2584"
+  | "cookie_volcano"
+  | "burn_earth";
 export type TConverterID =
   | "grandma"
   | "coal_mine"
@@ -110,5 +112,6 @@ export type TRecordID =
   | "totalAmountOfResources20"
   | "totalAmountOfResources40"
   | "pollution"
-  | "numSoftReset";
+  | "numSoftReset"
+  | "numAchieved";
 // */

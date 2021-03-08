@@ -17,13 +17,13 @@ export const all_records: TRecord[] = [
   },
   {
     id: "gotPomodoro",
-    forHuman: "Got Pomodoro",
+    forHuman: "Got Pomodoro(Total)",
     toStr: numberToStr,
     isPermanent: true,
   },
   {
     id: "gotPomodoro_t1",
-    forHuman: "Got Pomodoro(T1)",
+    forHuman: "Got Pomodoro(This game)",
     toStr: numberToStr,
     isPermanent: false,
   },
@@ -80,5 +80,11 @@ export const all_records: TRecord[] = [
     forHuman: "Number of Soft Reset",
     toStr: numberToStr,
     isPermanent: true,
+  },
+  {
+    id: "numAchieved",
+    forHuman: "Number of Achievement",
+    toStr: numberToStr,
+    isPermanent: false,
   },
 ];

@@ -131,14 +131,15 @@ export const all_achievements: TAchievement[] = [
   {
     id: "no_mine",
     forHuman: "No Mine",
-    description: "magic power hates minerals (Mana *2)",
+    description:
+      "magic power hates minerals (Mana Regeneration *= 2, if you don't have coal mine)",
     toShow: HIDDEN,
     toGet: (g) => numAchieved(g) >= 7 && dontHaveConverter("coal_mine", g),
     isPermanent: true,
   },
   {
     id: "day2",
-    forHuman: "Day 2",
+    forHuman: "Day 2: Welcome again!",
     toShow: ALWAYS,
     toGet: (g) => g.records.days >= 2,
     getProgress: (g) => {
@@ -170,6 +171,22 @@ export const all_achievements: TAchievement[] = [
     description: "increase production of mining (+1)",
     toShow: after("steel_pickaxe2"),
     toGet: (g) => g.resources.steel_pickaxe >= 4,
+    isPermanent: false,
+  },
+  {
+    id: "cookie_volcano",
+    forHuman: "Cookie Volcano",
+    description: "Too many cookie!",
+    toShow: HIDDEN,
+    toGet: (g) => g.resources.cookie >= 3000 && g.records.gotPomodoro_t1 <= 30,
+    isPermanent: false,
+  },
+  {
+    id: "burn_earth",
+    forHuman: "Burn Earth",
+    description: "Stop! You burned the earth!",
+    toShow: HIDDEN,
+    toGet: (g) => g.records.pollution >= 1000 && g.records.gotPomodoro_t1 <= 40,
     isPermanent: false,
   },
 ];
