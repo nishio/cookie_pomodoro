@@ -9,7 +9,10 @@ export const initSentry = () => {
     integrations: [new Integrations.BrowserTracing()],
     beforeSend(event, hint) {
       // Check if it is an exception, and if so, show the report dialog
-      if (event.exception && !shownReportDialog) {
+      if (
+        (event.exception || event.message === "Manual Bug Report") &&
+        !shownReportDialog
+      ) {
         shownReportDialog = true;
         Sentry.showReportDialog({ eventId: event.event_id });
       }
@@ -24,3 +27,4 @@ export const initSentry = () => {
   });
 };
 let shownReportDialog = false;
+export { Sentry };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Sentry } from "../initSentry";
 import { Github } from "../Resource/Github";
 import { exportSaveData } from "./exportSaveData";
 import { importSaveData } from "./importSaveData";
@@ -18,6 +19,10 @@ export const System = () => {
           Grant Notification Permission
         </button>
       </p>
+      <p>
+        <button onClick={bugReport}>Open Bug Report Dialog</button>
+      </p>
+
       <p>
         <a href="https://github.com/nishio/cookie_pomodoro/projects/1">
           Kanban
@@ -45,4 +50,8 @@ const grantNotificationPermission = () => {
       "Your browser doesn't support Notifiation API (for example iOS Safari)"
     );
   }
+};
+
+const bugReport = () => {
+  Sentry.captureMessage("Manual Bug Report");
 };
