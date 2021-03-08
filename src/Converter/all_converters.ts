@@ -6,11 +6,10 @@
 import { State } from "reactn/default";
 import { TConverterID, TResourceID } from "../all_ids";
 import { ALWAYS } from "../utils/ALWAYS";
-import { hasResource } from "../Resource/hasResource";
 import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
 import { hasConverter } from "./hasConverter";
-import { isAchieved } from "./isAchieved";
+import { hasAchieved } from "../Resource/hasAchieved";
 
 const NoMod = () => {
   return {};
@@ -74,7 +73,7 @@ export const all_converters: TConverter[] = [
         ],
         to: [["steel", 1]],
         modifier: NoMod,
-        toShow: () => isAchieved("iron_pickaxe"),
+        toShow: hasAchieved("iron_pickaxe"),
       },
     ],
   },
@@ -99,7 +98,7 @@ export const all_converters: TConverter[] = [
         ],
         to: [["steel_pickaxe", 1]],
         modifier: NoMod,
-        toShow: hasResource("steel"),
+        toShow: hasAchieved("steel"),
       },
     ],
   },

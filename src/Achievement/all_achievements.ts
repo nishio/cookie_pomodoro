@@ -139,13 +139,23 @@ export const all_achievements: TAchievement[] = [
   },
   {
     id: "day2",
-    forHuman: "Day 2: Welcome again!",
+    forHuman: "Day 2",
+    description: "Welcome again!",
     toShow: ALWAYS,
     toGet: (g) => g.records.days >= 2,
     getProgress: (g) => {
       return { goal: 2, current: g.records.days };
     },
     isPermanent: true,
+  },
+  {
+    id: "steel",
+    forHuman: "First Steel",
+    description:
+      '"There are three things extremely hard: steel, a diamond, and to know one\'s self." – Benjamin Franklin',
+    toShow: hasResource("iron_ingot"),
+    toGet: (g) => g.resources.steel >= 1,
+    isPermanent: false,
   },
 
   {
@@ -179,7 +189,7 @@ export const all_achievements: TAchievement[] = [
     description: "Too many cookie!",
     toShow: HIDDEN,
     toGet: (g) => g.resources.cookie >= 3000 && g.records.gotPomodoro_t1 <= 30,
-    isPermanent: false,
+    isPermanent: true,
   },
   {
     id: "burn_earth",
@@ -187,7 +197,16 @@ export const all_achievements: TAchievement[] = [
     description: "Stop! You burned the earth!",
     toShow: HIDDEN,
     toGet: (g) => g.records.pollution >= 1000 && g.records.gotPomodoro_t1 <= 40,
-    isPermanent: false,
+    isPermanent: true,
+  },
+  {
+    id: "cookie_earth",
+    forHuman: "Cookie Earth",
+    description: "It is a cookie.",
+    toShow: HIDDEN,
+    toGet: (g) =>
+      g.records.pollution >= 10000 && g.records.gotPomodoro_t1 <= 40,
+    isPermanent: true,
   },
 ];
 

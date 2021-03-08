@@ -2,8 +2,7 @@ import { State } from "reactn/default";
 import { TResourceID } from "../all_ids";
 import { ALWAYS } from "../utils/ALWAYS";
 import { hasConverter } from "../Converter/hasConverter";
-import { hasResource } from "./hasResource";
-import { isAchieved } from "../Converter/isAchieved";
+import { hasAchieved } from "./hasAchieved";
 
 export type TResource = {
   id: TResourceID;
@@ -45,17 +44,17 @@ export const all_resources: TResource[] = [
   {
     id: "mana",
     forHuman: "Mana",
-    toShow: hasResource("mana"),
+    toShow: hasAchieved("mana"),
   },
   {
     id: "steel",
     forHuman: "Steel",
-    toShow: hasResource("steel"),
+    toShow: hasAchieved("steel"),
   },
   {
     id: "steel_pickaxe",
     forHuman: "Steel Pickaxe",
-    toShow: (g) => isAchieved("steel_pickaxe") || hasResource("steel")(g),
+    toShow: hasAchieved("steel_pickaxe"),
   },
 ];
 

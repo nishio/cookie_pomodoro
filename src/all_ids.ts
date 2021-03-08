@@ -23,6 +23,7 @@ export type TAchievementID =
   | "coal"
   | "iron"
   | "iron_ingot"
+  | "steel"
   | "iron_pickaxe"
   | "iron_pickaxe2"
   | "iron_pickaxe4"
@@ -75,7 +76,8 @@ export type TAchievementID =
   | "cookie1597"
   | "cookie2584"
   | "cookie_volcano"
-  | "burn_earth";
+  | "burn_earth"
+  | "cookie_earth";
 export type TConverterID =
   | "grandma"
   | "coal_mine"
