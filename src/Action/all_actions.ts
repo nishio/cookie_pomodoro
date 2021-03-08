@@ -59,6 +59,26 @@ export const all_actions: TAction[] = [
       });
     },
   },
+  {
+    id: "rain",
+    forHuman: "Rain",
+    description: "-20 Mana. Instantly create Green Mana (+= #Forest)",
+    toShow: (g) => g.resources.mana >= 20,
+
+    onClick: () => {
+      setGlobal((g: State) => {
+        return {
+          ...g,
+          resources: {
+            ...g.resources,
+            green_mana:
+              (g.resources.green_mana ?? 0) + (g.converters.forest ?? 0),
+            mana: g.resources.mana - 20,
+          },
+        };
+      });
+    },
+  },
   breakData,
   softReset,
 ];
