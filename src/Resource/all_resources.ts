@@ -3,6 +3,7 @@ import { TResourceID } from "../all_ids";
 import { ALWAYS } from "../utils/ALWAYS";
 import { hasConverter } from "../Converter/hasConverter";
 import { hasResource } from "./hasResource";
+import { isAchieved } from "../Converter/isAchieved";
 
 export type TResource = {
   id: TResourceID;
@@ -54,7 +55,7 @@ export const all_resources: TResource[] = [
   {
     id: "steel_pickaxe",
     forHuman: "Steel Pickaxe",
-    toShow: hasResource("steel"),
+    toShow: (g) => isAchieved("steel_pickaxe") || hasResource("steel")(g),
   },
 ];
 
