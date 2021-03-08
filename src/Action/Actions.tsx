@@ -9,6 +9,7 @@ export type TAction = {
   description?: string;
   toShow: (g: State) => boolean;
   onClick: () => void;
+  getMax?: (g: State) => number;
 };
 
 export type TTemporaryEffect = {
@@ -20,6 +21,28 @@ export const Actions = () => {
   const [g] = useGlobal();
   const buttons = all_actions.map((a) => {
     if (a.toShow(g)) {
+      if (a.getMax !== undefined) {
+        const maxUse = a.getMax(g);
+        if (maxUse > 4) {
+          const half = Math.floor(maxUse / 2);
+          const repeat = (num: number) => {
+            return () => {
+              for (let i = 0; i < num; i++) {
+                a.onClick();
+              }
+            };
+          };
+          return (
+            <li key={a.id}>
+              <button onClick={a.onClick}>{a.forHuman ?? a.id}</button>
+              <button onClick={repeat(half)}>x{half}</button>
+              <button onClick={repeat(maxUse)}>x{maxUse}</button>{" "}
+              {a.description}
+            </li>
+          );
+        }
+      }
+
       return (
         <li key={a.id}>
           <button onClick={a.onClick}>{a.forHuman ?? a.id}</button>{" "}
