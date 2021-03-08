@@ -38,5 +38,11 @@ export const System = () => {
 };
 
 const grantNotificationPermission = () => {
-  Notification.requestPermission();
+  if (Notification !== undefined) {
+    Notification.requestPermission();
+  } else {
+    alert(
+      "Your browser doesn't support Notifiation API (for example iOS Safari)"
+    );
+  }
 };
