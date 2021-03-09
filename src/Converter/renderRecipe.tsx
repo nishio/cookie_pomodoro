@@ -112,9 +112,9 @@ const build_onUse = (
       newResources = update(newResources, unit, -diff);
     });
     r.to.forEach(([unit, value]) => {
-      let diff = mod[unit] ?? 0;
+      let diff = value + (mod[unit] ?? 0);
       diff *= repeat;
-      newResources = update(newResources, unit, value + diff);
+      newResources = update(newResources, unit, diff);
     });
 
     setGlobal({

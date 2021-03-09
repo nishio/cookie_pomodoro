@@ -37,7 +37,18 @@ export type TAchievementID =
   | "steel_pickaxe4"
   | "cookie_volcano"
   | "burn_earth"
+  | "sick"
   | "cookie_earth"
+  | "science"
+  | "green_mana"
+  | "lumber"
+  | "apple"
+  | "grape"
+  | "wine"
+  | "forest"
+  | "apple_tree"
+  | "grape_tree"
+  | "newton"
   | "day3"
   | "day5"
   | "day8"
@@ -92,8 +103,7 @@ export type TAchievementID =
   | "steel610"
   | "steel987"
   | "steel1597"
-  | "steel2584"
-  | "sick";
+  | "steel2584";
 export type TConverterID =
   | "grandma"
   | "coal_mine"
@@ -118,11 +128,16 @@ export type TResourceID =
   | "lumber"
   | "apple"
   | "science"
-  | "grape";
+  | "grape"
+  | "wine";
 export type TActionID =
   | "click"
   | "burn_coal"
   | "no_hunger"
+  | "create_forest"
+  | "create_apple_tree"
+  | "create_grape_tree"
+  | "rain"
   | "breakData"
   | "soft_reset";
 export type TRecordID =

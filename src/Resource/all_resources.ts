@@ -81,6 +81,11 @@ export const all_resources: TResource[] = [
     forHuman: "Grape",
     toShow: hasConverter("grape_tree"),
   },
+  {
+    id: "wine",
+    forHuman: "Wine",
+    toShow: hasConverter("grape_tree"),
+  },
 ];
 
 export const idToResource = {} as { [key in TResourceID]: TResource };

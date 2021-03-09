@@ -5,7 +5,8 @@ import { State } from "reactn/default";
 
 export const updateMana = (g: State) => {
   if (isAchieved("mana")) {
-    let manaRegene = numAchieved(g);
+    const newton = g.converters.newton ?? 0;
+    let manaRegene = numAchieved(g) + newton;
     manaRegene -= Math.floor(g.records.pollution ?? 0 / 10);
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;
@@ -18,6 +19,7 @@ export const updateMana = (g: State) => {
     }
 
     let green_mana = g.resources.green_mana ?? 0;
+    green_mana += newton;
     green_mana = clip(green_mana, 0, manaLimit);
 
     return {

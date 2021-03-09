@@ -8,6 +8,24 @@ import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
 import { TAchievement } from "./TAchievement";
 import { generateAchievementsSteel } from "./generateAchievementsSteel";
+import { idToResource } from "../Resource/all_resources";
+import { TAchievementID, TResourceID } from "../all_ids";
+import { TConverter } from "../Converter/all_converters";
+import { hasConverter } from "../Converter/hasConverter";
+
+const firstResource = (
+  id: TResourceID,
+  description?: string,
+  toShow = HIDDEN
+): TAchievement => {
+  return {
+    id: (id as unknown) as TAchievementID,
+    forHuman: `First ${idToResource[id].forHuman}`,
+    toShow,
+    toGet: hasResource(id),
+    isPermanent: false,
+  };
+};
 
 export const all_achievements: TAchievement[] = [
   {
@@ -216,6 +234,50 @@ export const all_achievements: TAchievement[] = [
     toShow: HIDDEN,
     toGet: (g) => g.resources.cookie >= 10000 && g.records.gotPomodoro_t1 <= 40,
     isPermanent: true,
+  },
+
+  {
+    id: "science",
+    forHuman: "Eureka!",
+    description: "Ouch! An Apple!",
+    toShow: HIDDEN,
+    toGet: hasResource("science"),
+    isPermanent: false,
+  },
+  firstResource("green_mana"),
+  firstResource("lumber"),
+  firstResource("apple"),
+  firstResource("grape"),
+  firstResource("wine"),
+
+  {
+    id: "forest",
+    forHuman: "First Forest",
+    toShow: HIDDEN,
+    toGet: hasConverter("forest"),
+    isPermanent: false,
+  },
+  {
+    id: "apple_tree",
+    forHuman: "First Apple Tree",
+    toShow: HIDDEN,
+    toGet: hasConverter("apple_tree"),
+    isPermanent: false,
+  },
+  {
+    id: "grape_tree",
+    forHuman: "First Grape Tree",
+    toShow: HIDDEN,
+    toGet: hasConverter("grape_tree"),
+    isPermanent: false,
+  },
+  {
+    id: "newton",
+    forHuman: "First Scientist, Last Magician",
+    description: "increase Mana regeneration +1 per a Newton",
+    toShow: HIDDEN,
+    toGet: hasConverter("newton"),
+    isPermanent: false,
   },
 ];
 

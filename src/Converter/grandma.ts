@@ -1,6 +1,7 @@
 import { getGlobal } from "reactn";
 import { ALWAYS } from "../utils/ALWAYS";
 import { TConverter, TModifier } from "./all_converters";
+import { hasConverter } from "./hasConverter";
 import { isAchieved } from "./isAchieved";
 
 const modifier: TModifier = () => {
@@ -37,6 +38,12 @@ export const grandma: TConverter = {
       to: [["cookie", 2]],
       modifier,
       toShow: ALWAYS,
+    },
+    {
+      from: [["grape", 3]],
+      to: [["wine", 1]],
+      modifier,
+      toShow: hasConverter("grape_tree"),
     },
   ],
   toShow: ALWAYS,
