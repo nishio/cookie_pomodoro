@@ -3,7 +3,7 @@ import { act } from "@testing-library/react";
 import { useState as originalUseState } from "react";
 
 export const mockUseState = () => {
-  jest.spyOn(React, "useState").mockImplementation((arg?: unknown): [
+  return jest.spyOn(React, "useState").mockImplementation((arg?: unknown): [
     unknown,
     Dispatch<unknown>
   ] => {

@@ -6,7 +6,7 @@ import { getOnePomodoro } from "../getOnePomodoro";
 import { getGlobal } from "reactn";
 import { lastPromise } from "../Converter/Converters";
 import { mockUseState } from "../mockUseState";
-import { mockSetGlobal } from "../mockSetGlobal";
+import { mockSetGlobal } from "../testutil/mockSetGlobal";
 import {
   checkAchievements,
   getLastAchieved,
@@ -29,10 +29,10 @@ const expectAchieve = (xs: TAchievementID[]) => {
 jest.mock("../localDB"); // disable load/save
 
 test("senario1", async () => {
-  mockUseState();
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
   await initializeGlobalState();
   render(<App />);
-  mockSetGlobal();
   await getOnePomodoro();
   expect(getGlobal().resources.pomodoro).toBe(1);
   checkAchievements();
@@ -127,11 +127,13 @@ test("senario1", async () => {
   expect(getGlobal().records.totalAmountOfResources).toBe(22);
   expect(getLastAchieved()).toStrictEqual(["iron_pickaxe", "pomodoro9"]);
   resetLastAchieved();
+  m.mockRestore();
+  m2.mockRestore();
 });
 
 test("softReset", async () => {
-  mockUseState();
-  mockSetGlobal();
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
   await initializeGlobalState();
   render(<App />);
   await getOnePomodoro();
@@ -146,4 +148,6 @@ test("softReset", async () => {
   expect(g.records.gotPomodoro).toBe(1);
   expect(g.records.gotPomodoro_t1).toBe(0);
   expect(g.records.numSoftReset).toBe(1);
+  m.mockRestore();
+  m2.mockRestore();
 });

@@ -4,7 +4,7 @@ import NewGlobalState from "reactn/types/new-global-state";
 import { Reducers } from "reactn/default";
 import Callback from "reactn/types/callback";
 export const mockSetGlobal = () => {
-  jest
+  return jest
     .spyOn(ReactN, "setGlobal")
     .mockImplementation(
       (
