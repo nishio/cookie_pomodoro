@@ -5,7 +5,7 @@ import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
 import { getGlobal } from "reactn";
 import { lastPromise } from "../Converter/Converters";
-import { mockUseState } from "../mockUseState";
+import { mockUseState } from "../testutil/mockUseState";
 import { mockSetGlobal } from "../testutil/mockSetGlobal";
 import {
   checkAchievements,
