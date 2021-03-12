@@ -4,8 +4,10 @@ import { initializeGlobalState } from "../initializeGlobalState";
 import { render } from "@testing-library/react";
 import { load } from "../localDB";
 
-test("success load", () => {
+jest.mock("../localDB"); // disable load/save
+
+test("success load", async () => {
   initializeGlobalState();
-  load();
+  await load();
   render(<App />);
 });

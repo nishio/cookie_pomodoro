@@ -8,12 +8,12 @@ import { updateTotalAmountOfResourcces } from "./updateTotalAmountOfResourcces";
 import { updateMana } from "./updateMana";
 import { updateDays } from "./updateDays";
 
-export const getOnePomodoro = async () => {
-  await setGlobal(updateMana);
+export const getOnePomodoro = () => {
+  setGlobal(updateMana);
 
-  await setGlobal(updateDays);
+  setGlobal(updateDays);
 
-  await setGlobal((g) => {
+  setGlobal((g) => {
     // activate all converter
     const activeConverters: { [key in TConverterID]: number } = {
       ...g.activeConverters,
@@ -35,6 +35,6 @@ export const getOnePomodoro = async () => {
       },
     };
   });
-  await setGlobal(updateTotalAmountOfResourcces);
-  await save();
+  setGlobal(updateTotalAmountOfResourcces);
+  return save();
 };

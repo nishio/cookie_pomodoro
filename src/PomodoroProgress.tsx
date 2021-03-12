@@ -12,16 +12,15 @@ export const PomodoroProgress = () => {
   const fromStart = toMinSec(sec);
   const toMature = toMinSec(TimeToMature - sec);
   const toOvergrow = toMinSec(TimeToMature + TimeToOvergrow - sec);
-  const cancel = async () => {
-    await setGlobal({ inPomodoro: false });
-    await save();
+  const cancel = () => {
+    setGlobal({ inPomodoro: false });
+    save();
   };
 
-  const harvest = async () => {
+  const harvest = () => {
     window.gtag("event", "harvest");
-    window.gtag("event", "click", { event_label: "harvest_button" });
-    await getOnePomodoro();
-    await cancel();
+    getOnePomodoro();
+    cancel();
   };
   let state: string | ReactNode;
   if (sec < TimeToMature) {

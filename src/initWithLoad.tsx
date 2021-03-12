@@ -4,7 +4,7 @@ import { updateLastVisit } from "./Record/updateLastVisit";
 import { updateFirstVisit } from "./Record/updateFirstVisit";
 
 export const initWithLoad = async () => {
-  await initializeGlobalState();
+  initializeGlobalState();
   await load();
   await updateFirstVisit();
   await updateLastVisit();

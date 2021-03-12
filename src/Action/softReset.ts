@@ -5,7 +5,7 @@ import { getGlobal, setGlobal } from "reactn";
 import { all_achievements } from "../Achievement/all_achievements";
 import { save } from "../localDB";
 
-const onClick = async () => {
+const onClick = () => {
   const c = getGlobal(); // current daat
   const g = getInitialGlobalState();
   all_records.forEach((r) => {
@@ -20,8 +20,8 @@ const onClick = async () => {
   });
   g.temporaryEffects = c.temporaryEffects; // temporary effect is not target
   g.records.numSoftReset = (g.records.numSoftReset ?? 0) + 1;
-  await setGlobal(g);
-  await save();
+  setGlobal(g);
+  save();
 };
 
 export const softReset = {

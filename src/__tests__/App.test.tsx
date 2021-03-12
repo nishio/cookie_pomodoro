@@ -3,7 +3,7 @@ import App from "../App";
 import { initializeGlobalState } from "../initializeGlobalState";
 import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
-import { getGlobal } from "reactn";
+import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { lastPromise } from "../Converter/Converters";
 import { mockUseState } from "../testutil/mockUseState";
 import { mockSetGlobal } from "../testutil/mockSetGlobal";
@@ -13,6 +13,18 @@ import {
   resetLastAchieved,
 } from "../Achievement/checkAchievements";
 import { TAchievementID } from "../all_ids";
+import * as MySnack from "../MySnack";
+
+let mockAddSnack: jest.SpyInstance<any, unknown[]>;
+beforeEach(() => {
+  const MySnack = require("../Mysnack");
+  mockAddSnack = jest.spyOn(MySnack, "addSnack").mockImplementation(() => {});
+  resetLastAchieved();
+});
+
+afterEach(() => {
+  mockAddSnack.mockRestore();
+});
 
 const click = (regex: RegExp, regex2: RegExp) => {
   act(() => {
@@ -111,6 +123,9 @@ test("senario1", async () => {
   expectAchieve(["mana"]);
 
   await getOnePomodoro();
+  expect(getLastAchieved()).toStrictEqual(["pomodoro9"]);
+  resetLastAchieved();
+
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Use 1/);
@@ -118,15 +133,14 @@ test("senario1", async () => {
   click(/^Workbench/, /Use 1/);
   expect(getGlobal().resources.iron_pickaxe).toBe(1);
   await lastPromise;
-  checkAchievements();
+  expect(getLastAchieved()).toStrictEqual(["iron_pickaxe"]);
+  resetLastAchieved();
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
   expect(getGlobal().records.gotPomodoro).toBe(9);
   expect(getGlobal().resources.mana).toBe(8);
 
   await getOnePomodoro();
   expect(getGlobal().records.totalAmountOfResources).toBe(22);
-  expect(getLastAchieved()).toStrictEqual(["iron_pickaxe", "pomodoro9"]);
-  resetLastAchieved();
   m.mockRestore();
   m2.mockRestore();
 });
@@ -148,6 +162,37 @@ test("softReset", async () => {
   expect(g.records.gotPomodoro).toBe(1);
   expect(g.records.gotPomodoro_t1).toBe(0);
   expect(g.records.numSoftReset).toBe(1);
+  m.mockRestore();
+  m2.mockRestore();
+});
+
+const Foo = () => {
+  const [g] = useGlobal();
+  const items = g.items.map((e, index) => {
+    return null;
+  });
+  return <>{items}</>;
+};
+test("foo1", async () => {
+  let m = mockUseState();
+  let m2 = mockSetGlobal();
+  await setGlobal({ items: [] });
+  render(<Foo />);
+  m.mockRestore();
+  m2.mockRestore();
+  m = mockUseState();
+  m2 = mockSetGlobal();
+  await setGlobal({ items: [] });
+  m.mockRestore();
+  m2.mockRestore();
+});
+
+test("foo2", async () => {
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
+  await setGlobal({ items: [] });
+  render(<Foo />);
+  await setGlobal({ items: [] });
   m.mockRestore();
   m2.mockRestore();
 });

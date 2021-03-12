@@ -6,15 +6,15 @@ import { PomodoroProgress } from "./PomodoroProgress";
 
 export const Pomodoro = () => {
   const [inPomodoro] = useGlobal("inPomodoro");
-  const onClick = async () => {
-    await setGlobal({
+  const onClick = () => {
+    setGlobal({
       inPomodoro: true,
       pomodoroStartTime: Date.now(),
       pomodoroSecond: 0,
       temporaryEffects: [],
     });
-    await save();
     setTimeout(notify, 25 * 60 * 1000);
+    save();
   };
 
   return (

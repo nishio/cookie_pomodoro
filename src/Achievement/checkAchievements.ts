@@ -3,7 +3,7 @@ import { TAchievementID } from "../all_ids";
 import { addSnack } from "../MySnack";
 import { all_achievements } from "./all_achievements";
 
-export const checkAchievements = (): Promise<unknown> => {
+export const checkAchievements = (): void => {
   const g = getGlobal();
   const newObj = { ...g.achieved };
   let numAchieved = 0;
@@ -20,7 +20,7 @@ export const checkAchievements = (): Promise<unknown> => {
     }
   });
 
-  return setGlobal({
+  setGlobal({
     achieved: newObj,
     records: { ...g.records, numAchieved },
   });

@@ -5,8 +5,13 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import MuiAlert from "@material-ui/lab/Alert";
 
-export let addSnack: (message: string) => void;
-
+export const addSnack = (message: string) => {
+  _setSnackPack((prev: SnackbarMessage[]) => [
+    ...prev,
+    { message, key: new Date().getTime() },
+  ]);
+};
+let _setSnackPack: React.Dispatch<React.SetStateAction<SnackbarMessage[]>>;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     close: {
@@ -21,6 +26,7 @@ export interface SnackbarMessage {
 }
 export const MySnack = () => {
   const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
+  _setSnackPack = setSnackPack;
   const [messageInfo, setMessageInfo] = React.useState<
     SnackbarMessage | undefined
   >(undefined);
@@ -39,10 +45,6 @@ export const MySnack = () => {
   }, [snackPack, messageInfo, open]);
 
   const handleClick = (message: string) => () => {
-    setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
-  };
-
-  addSnack = (message: string) => {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
