@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useCallback } from "react";
 import { act } from "@testing-library/react";
 import { useState as originalUseState } from "react";
 
@@ -7,14 +7,15 @@ export const mockUseState = () => {
     unknown,
     Dispatch<unknown>
   ] => {
-    const [s, setS] = originalUseState(arg);
-    return [
-      s,
-      (arg: unknown) => {
+    const [s, dispatch] = originalUseState(arg);
+    const wrappedDispatch = useCallback(
+      (arg: unknown): void => {
         act(() => {
-          setS(arg);
+          dispatch(arg);
         });
       },
-    ];
+      [dispatch]
+    );
+    return [s, wrappedDispatch];
   });
 };
