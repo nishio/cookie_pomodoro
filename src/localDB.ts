@@ -1,7 +1,6 @@
 import Dexie from "dexie";
 import { getGlobal, setGlobal } from "reactn";
 import { checkLoadData, checkSaveData } from "./checkSaveData";
-import { dateToStr } from "./Record/dateToStr";
 import { getDateStr } from "./utils/getDateStr";
 
 export interface ISave {
@@ -73,6 +72,7 @@ export const load = () => {
 
 export const save = (): Promise<unknown> => {
   checkSaveData();
+
   const g = getGlobal();
   return localDB.saves
     .orderBy("id")
