@@ -24,13 +24,12 @@ export const PomodoroProgress = () => {
   };
   let state: string | ReactNode;
   if (sec < TimeToMature) {
+    const percent = (100 * sec) / TimeToMature;
     state = (
       <>
-        <LinearProgress
-          variant="determinate"
-          value={(100 * sec) / TimeToMature}
-        />
-        {fromStart} / Mature to {toMature} <br />
+        <LinearProgress variant="determinate" value={percent} />
+        {fromStart} / Mature to {toMature} ({percent.toFixed(2)} %)
+        <br />
         Growing <button onClick={cancel}>cancel</button>
       </>
     );
