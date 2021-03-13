@@ -1,18 +1,14 @@
-import { setGlobal } from "reactn";
 import { State } from "reactn/default";
-import { updateResource } from "../update";
+import { updateGlobal } from "../utils/updateGlobal";
 
 export const burn_coal = {
   id: "burn_coal",
   forHuman: "Burn coal",
   onClick: () => {
-    setGlobal((g: State) => {
-      return {
-        ...g,
-        ...updateResource(g, "coal", -1),
-        temporaryEffects: [...g.temporaryEffects, burn_coal_effect],
-        records: { ...g.records, pollution: (g.records.pollution ?? 0) + 1 },
-      };
+    updateGlobal((g) => {
+      g.resources.coal -= 1;
+      g.temporaryEffects.push(burn_coal_effect);
+      g.records.pollution += 1;
     });
   },
   toShow: (g: State) => g.resources.coal >= 1,
