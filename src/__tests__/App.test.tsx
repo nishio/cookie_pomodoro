@@ -3,8 +3,7 @@ import App from "../App";
 import { initializeGlobalState } from "../initializeGlobalState";
 import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
-import { getGlobal, setGlobal, useGlobal } from "reactn";
-import { lastPromise } from "../Converter/Converters";
+import { getGlobal } from "reactn";
 import { mockUseState } from "../testutil/mockUseState";
 import { mockSetGlobal } from "../testutil/mockSetGlobal";
 import {
@@ -13,7 +12,6 @@ import {
   resetLastAchieved,
 } from "../Achievement/checkAchievements";
 import { TAchievementID } from "../all_ids";
-import * as MySnack from "../MySnack";
 
 let mockAddSnack: jest.SpyInstance<any, unknown[]>;
 beforeEach(() => {
@@ -132,7 +130,7 @@ test("senario1", async () => {
   expect(getGlobal().resources.iron_ingot).toBe(1);
   click(/^Workbench/, /Use 1/);
   expect(getGlobal().resources.iron_pickaxe).toBe(1);
-  await lastPromise;
+  await 1;
   expect(getLastAchieved()).toStrictEqual(["iron_pickaxe"]);
   resetLastAchieved();
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
@@ -162,37 +160,6 @@ test("softReset", async () => {
   expect(g.records.gotPomodoro).toBe(1);
   expect(g.records.gotPomodoro_t1).toBe(0);
   expect(g.records.numSoftReset).toBe(1);
-  m.mockRestore();
-  m2.mockRestore();
-});
-
-const Foo = () => {
-  const [g] = useGlobal();
-  const items = g.items.map((e, index) => {
-    return null;
-  });
-  return <>{items}</>;
-};
-test("foo1", async () => {
-  let m = mockUseState();
-  let m2 = mockSetGlobal();
-  await setGlobal({ items: [] });
-  render(<Foo />);
-  m.mockRestore();
-  m2.mockRestore();
-  m = mockUseState();
-  m2 = mockSetGlobal();
-  await setGlobal({ items: [] });
-  m.mockRestore();
-  m2.mockRestore();
-});
-
-test("foo2", async () => {
-  const m = mockUseState();
-  const m2 = mockSetGlobal();
-  await setGlobal({ items: [] });
-  render(<Foo />);
-  await setGlobal({ items: [] });
   m.mockRestore();
   m2.mockRestore();
 });

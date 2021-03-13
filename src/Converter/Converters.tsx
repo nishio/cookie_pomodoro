@@ -1,7 +1,6 @@
-import { setGlobal, useGlobal } from "reactn";
+import { useGlobal } from "reactn";
 import { all_converters } from "./all_converters";
 import { save } from "../localDB";
-import { update } from "../update";
 import { checkAchievements } from "../Achievement/checkAchievements";
 import { isActive } from "./isActive";
 import React from "react";
