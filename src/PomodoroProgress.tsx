@@ -1,14 +1,16 @@
 import React, { ReactNode } from "react";
-import { setGlobal, useGlobal } from "reactn";
+import { getGlobal, setGlobal, useGlobal } from "reactn";
 import { getOnePomodoro } from "./getOnePomodoro";
 import { save } from "./localDB";
 import { toMinSec } from "./utils/toMinSec";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { setDefaultValue } from "./checkSaveData";
 
 const TimeToMature = 25 * 60;
 const TimeToOvergrow = 60 * 60;
 export const PomodoroProgress = () => {
   const [sec] = useGlobal("pomodoroSecond");
+  setDefaultValue(getGlobal()); // temporary fix of on memory data
   const fromStart = toMinSec(sec);
   const toMature = toMinSec(TimeToMature - sec);
   const toOvergrow = toMinSec(TimeToMature + TimeToOvergrow - sec);
