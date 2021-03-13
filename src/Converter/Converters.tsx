@@ -1,4 +1,4 @@
-import { getGlobal, setGlobal, useGlobal } from "reactn";
+import { setGlobal, useGlobal } from "reactn";
 import { all_converters } from "./all_converters";
 import { save } from "../localDB";
 import { update } from "../update";
@@ -8,40 +8,31 @@ import React from "react";
 import { Github } from "../Resource/Github";
 import { renderRecipe } from "./renderRecipe";
 import { idToResource } from "../Resource/all_resources";
+import { updateGlobal } from "../utils/updateGlobal";
 
-export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
-  const [converters] = useGlobal("converters");
-  const [resources] = useGlobal("resources");
-  const [achieved] = useGlobal("achieved");
-  const g = getGlobal();
+  const [g] = useGlobal();
   const list = all_converters.map((c) => {
     if (c.toShow(g)) {
-      const amount = converters[c.id] ?? 0;
+      const amount = g.converters[c.id] ?? 0;
       const price = c.getPrice(g, amount);
       const priceStr = price.map(
         ([value, unit]) => `${value} ${idToResource[unit].forHuman ?? unit}`
       );
       const canBuy = price.every(([value, unit]) => {
-        return resources[unit] >= value;
+        return g.resources[unit] >= value;
       });
       let buyButton = null;
       if (canBuy) {
         const buy = () => {
-          let newResources = { ...g.resources };
-          price.forEach(([value, unit]) => {
-            newResources = update(newResources, unit, -value);
-          });
-          lastPromise = setGlobal({
-            converters: update(g.converters, c.id, 1),
-            resources: newResources,
-          })
-            .then(() => {
-              return checkAchievements();
-            })
-            .then(() => {
-              return save();
+          updateGlobal((g) => {
+            price.forEach(([value, unit]) => {
+              g.resources[unit] -= value;
             });
+            g.converters[c.id] += 1;
+          });
+          checkAchievements();
+          save();
         };
         buyButton = <button onClick={buy}>Buy({priceStr})</button>;
       } else {
