@@ -20,6 +20,7 @@ export const checkSaveData = () => {
         Sentry.setContext("newData", newData);
         Sentry.captureMessage("Insane Save Data");
       });
+    setDefaultValue(newData);
   }
 };
 
@@ -52,7 +53,7 @@ const isInsane = (g: State) => {
   }
 };
 
-const setDefaultValue = (g: State) => {
+export const setDefaultValue = (g: State) => {
   setGlobal(
     produce(g, (g) => {
       {
