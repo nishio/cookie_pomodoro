@@ -7,6 +7,9 @@ export const updateMana = (g: State) => {
   if (isAchieved("mana")) {
     const newton = g.converters.newton ?? 0;
     let manaRegene = numAchieved(g) + newton;
+    if (isAchieved("elf")) {
+      manaRegene += Math.floor(g.converters.forest / 5);
+    }
     manaRegene -= Math.floor(g.records.pollution ?? 0 / 10);
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;

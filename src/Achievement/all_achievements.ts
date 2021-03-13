@@ -279,6 +279,16 @@ export const all_achievements: TAchievement[] = [
     toGet: hasConverter("newton"),
     isPermanent: false,
   },
+  {
+    id: "elf",
+    forHuman: "Elf",
+    description: "increase mana regeneration (+= Forest / 5)",
+    toShow: HIDDEN,
+    toGet: (g) => {
+      return g.records.used_mana > 500 && g.resources.green_mana > 0;
+    },
+    isPermanent: false,
+  },
 ];
 
 generateAchievementsDays();
