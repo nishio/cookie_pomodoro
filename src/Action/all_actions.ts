@@ -7,6 +7,7 @@ import { softReset } from "./softReset";
 import { State } from "reactn/default";
 import { setGlobal } from "reactn";
 import { create_forest } from "./create_forest";
+import produce from "immer";
 
 export const all_actions: TAction[] = [
   click,
@@ -21,18 +22,13 @@ export const all_actions: TAction[] = [
 
     onClick: () => {
       setGlobal((g: State) => {
-        return {
-          ...g,
-          converters: {
-            ...g.converters,
-            apple_tree: (g.converters.apple_tree ?? 0) + 1,
-          },
-          resources: {
-            ...g.resources,
-            green_mana: (g.resources.green_mana ?? 0) - 1,
-            mana: g.resources.mana - 60,
-          },
-        };
+        const newState = produce(g, (g) => {
+          g.converters.apple_tree += 1;
+          g.resources.green_mana -= 1;
+          g.resources.mana -= 60;
+          g.records.used_mana += 61;
+        });
+        return newState;
       });
     },
   },

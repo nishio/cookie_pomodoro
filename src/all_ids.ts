@@ -154,5 +154,6 @@ export type TRecordID =
   | "totalAmountOfResources40"
   | "pollution"
   | "numSoftReset"
-  | "numAchieved";
+  | "numAchieved"
+  | "used_mana";
 // */

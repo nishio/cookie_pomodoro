@@ -87,4 +87,10 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
     isPermanent: false,
   },
+  {
+    id: "used_mana",
+    forHuman: "Used Mana",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
 ];
