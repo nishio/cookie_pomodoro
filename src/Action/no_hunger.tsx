@@ -1,7 +1,5 @@
 import { TAction } from "./Actions";
-import { updateResource } from "../update";
-import { setGlobal } from "reactn";
-import { State } from "reactn/default";
+import { updateGlobal } from "../utils/updateGlobal";
 
 export const no_hunger: TAction = {
   id: "no_hunger",
@@ -10,12 +8,10 @@ export const no_hunger: TAction = {
   toShow: (g) => g.resources.mana >= 100,
 
   onClick: () => {
-    setGlobal((g: State) => {
-      return {
-        ...g,
-        ...updateResource(g, "mana", -100),
-        temporaryEffects: [...g.temporaryEffects, no_hunger_effect],
-      };
+    updateGlobal((g) => {
+      g.resources.mana -= 100;
+      g.records.used_mana += 100;
+      g.temporaryEffects.push(no_hunger_effect);
     });
   },
 };
