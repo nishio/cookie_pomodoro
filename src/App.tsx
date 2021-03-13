@@ -20,6 +20,11 @@ function App() {
       game, which requires a{" "}
       <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">pomodoro</a>{" "}
       instead of a click.
+      <p>
+        <a href="https://github.com/nishio/cookie_pomodoro/wiki/20210314">
+          Thank you for your manual bug report(2021-03-14)
+        </a>
+      </p>
       <Pomodoro />
       <Resources />
       <Converters />
