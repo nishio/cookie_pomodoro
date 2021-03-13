@@ -7,6 +7,7 @@ import { isActive } from "./isActive";
 import React from "react";
 import { Github } from "../Resource/Github";
 import { renderRecipe } from "./renderRecipe";
+import { idToResource } from "../Resource/all_resources";
 
 export let lastPromise: Promise<unknown> = Promise.resolve();
 export const Converters = () => {
@@ -18,7 +19,9 @@ export const Converters = () => {
     if (c.toShow(g)) {
       const amount = converters[c.id] ?? 0;
       const price = c.getPrice(g, amount);
-      const priceStr = price.map(([value, unit]) => `${value} ${unit}`);
+      const priceStr = price.map(
+        ([value, unit]) => `${value} ${idToResource[unit].forHuman ?? unit}`
+      );
       const canBuy = price.every(([value, unit]) => {
         return resources[unit] >= value;
       });
