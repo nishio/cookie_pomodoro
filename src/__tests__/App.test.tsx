@@ -45,14 +45,12 @@ test("senario1", async () => {
   render(<App />);
   await getOnePomodoro();
   expect(getGlobal().resources.pomodoro).toBe(1);
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["pomodoro1"]);
-  resetLastAchieved();
+  expectAchieve(["pomodoro1"]);
 
   click(/^Grandma/, /^Buy/);
   expect(getGlobal().resources.pomodoro).toBe(0);
   expect(getGlobal().converters.grandma).toBe(1);
-  expect(getLastAchieved()).toStrictEqual([]);
+  expectAchieve([]);
 
   await getOnePomodoro();
   expect(getGlobal().resources.pomodoro).toBe(1);
@@ -60,50 +58,40 @@ test("senario1", async () => {
   click(/^Grandma/, /^Use 1/);
   expect(getGlobal().resources.pomodoro).toBe(0);
   expect(getGlobal().resources.cookie).toBe(2);
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["cookie1"]);
-  resetLastAchieved();
+  expectAchieve(["cookie1"]);
 
   click(/^Coal Mine/, /^Buy/);
   expect(getGlobal().resources.cookie).toBe(1);
   expect(getGlobal().converters.coal_mine).toBe(1);
   click(/^Iron Mine/, /^Buy/);
-  expect(getLastAchieved()).toStrictEqual([]);
+  expectAchieve([]);
 
   await getOnePomodoro();
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
-  expect(getLastAchieved()).toStrictEqual([]);
+  expectAchieve([]);
 
   await getOnePomodoro();
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["pomodoro4"]);
-  resetLastAchieved();
+  expectAchieve(["pomodoro4"]);
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(4);
   expect(getGlobal().resources.mana).toBe(0);
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["cookie3"]);
-  resetLastAchieved();
+  expectAchieve(["cookie3"]);
 
   await getOnePomodoro();
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["pomodoro5"]);
-  resetLastAchieved();
-
+  expectAchieve(["pomodoro5"]);
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(6);
+  expectAchieve(["cookie5"]);
   click(/^Coal Mine/, /Use 1/);
   expect(getGlobal().resources.coal).toBe(1);
   expect(getGlobal().resources.mana).toBe(0);
-  checkAchievements();
-  expect(getLastAchieved()).toStrictEqual(["coal"]);
-  resetLastAchieved();
+  expectAchieve(["coal", "mana"]);
 
   await getOnePomodoro();
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(3);
-  expect(getGlobal().resources.mana).toBe(0);
+  expect(getGlobal().resources.mana).toBe(8);
   expectAchieve([]);
 
   await getOnePomodoro();
@@ -118,27 +106,26 @@ test("senario1", async () => {
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Buy/);
   click(/^Workbench/, /Buy/);
-  expectAchieve(["mana"]);
+  expectAchieve([]);
 
   await getOnePomodoro();
-  expect(getLastAchieved()).toStrictEqual(["pomodoro9"]);
-  resetLastAchieved();
-
+  expectAchieve(["pomodoro9"]);
   click(/^Grandma/, /Use 1/);
   expect(getGlobal().resources.cookie).toBe(2);
   click(/^Furnace/, /Use 1/);
   expect(getGlobal().resources.iron_ingot).toBe(1);
+  expectAchieve(["iron_ingot"]);
   click(/^Workbench/, /Use 1/);
   expect(getGlobal().resources.iron_pickaxe).toBe(1);
-  await 1;
-  expect(getLastAchieved()).toStrictEqual(["iron_pickaxe"]);
-  resetLastAchieved();
+  expectAchieve(["iron_pickaxe"]);
+
   expect(getGlobal().achieved.iron_pickaxe).toBe(true);
   expect(getGlobal().records.gotPomodoro).toBe(9);
-  expect(getGlobal().resources.mana).toBe(8);
+  expect(getGlobal().resources.mana).toBe(34);
 
   await getOnePomodoro();
-  expect(getGlobal().records.totalAmountOfResources).toBe(22);
+  expect(getGlobal().records.totalAmountOfResources).toBe(50);
+  expect(getGlobal().records.totalAmountOfResources10).toBe(50);
   m.mockRestore();
   m2.mockRestore();
 });
