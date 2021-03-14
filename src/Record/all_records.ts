@@ -28,7 +28,7 @@ export const all_records: TRecord[] = [
   },
   {
     id: "gotPomodoro_t1",
-    forHuman: "Got Pomodoro(in this Round, called Turn)",
+    forHuman: "Turn(Got Pomodoro in this Round)",
     toStr: numberToStr,
     isPermanent: false,
   },
