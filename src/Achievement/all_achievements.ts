@@ -14,23 +14,8 @@ import { generateAchievementsPomodoro } from "./generateAchievementsPomodoro";
 import { numAchieved } from "./numAchieved";
 import { TAchievement } from "./TAchievement";
 import { generateAchievementsSteel } from "./generateAchievementsSteel";
-import { idToResource } from "../Resource/all_resources";
-import { TAchievementID, TResourceID } from "../all_ids";
 import { hasConverter } from "../Converter/hasConverter";
-
-const firstResource = (
-  id: TResourceID,
-  description?: string,
-  toShow = HIDDEN
-): TAchievement => {
-  return {
-    id: (id as unknown) as TAchievementID,
-    forHuman: `First ${idToResource[id].forHuman}`,
-    toShow,
-    toGet: hasResource(id),
-    isPermanent: false,
-  };
-};
+import { firstResource } from "./firstResource";
 
 export const all_achievements: TAchievement[] = [
   {
