@@ -33,6 +33,7 @@ export const getOnePomodoro = () => {
           g.resources[maxID] -= 1;
         }
       }
+      g.records.cumulative_population += g.converters.human;
     }
   });
 

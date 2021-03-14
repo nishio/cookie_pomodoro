@@ -99,4 +99,10 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
     isPermanent: false,
   },
+  {
+    id: "cumulative_population",
+    forHuman: "Cumulative Population",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
 ];
