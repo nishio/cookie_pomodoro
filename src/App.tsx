@@ -10,11 +10,13 @@ import { Records } from "./Record/Records";
 import { startGlobalTimer } from "./startGlobalTimer";
 import { MySnack } from "./MySnack";
 import { System } from "./System/System";
+import { inDeveleop } from "./Action/inDeveleop";
 
 function App() {
   useEffect(startGlobalTimer, []);
+  const styleInDev = inDeveleop() ? { background: "#dfd" } : {};
   return (
-    <div>
+    <div style={styleInDev}>
       <h1>CookiePomodoro</h1>A variant of{" "}
       <a href="https://en.wikipedia.org/wiki/Cookie_Clicker">Cookie Clicker</a>{" "}
       game, which requires a{" "}
