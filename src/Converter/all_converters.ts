@@ -199,7 +199,7 @@ export const all_converters: TConverter[] = [
     getPrice: (g, amount) => {
       return [];
     },
-    recipes: [],
+    recipes: grandma.recipes,
   },
 ];
 export type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
