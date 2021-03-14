@@ -16,8 +16,10 @@ test("pomodoro", async () => {
   await initializeGlobalState();
   render(<App />);
   screen.getByText("Start Pomodoro").click();
-  console.log(screen.getByText(/0:/).innerHTML);
-  await setGlobal({ pomodoroSecond: 10 });
+  expect(screen.getByTestId("pomodoro_status")).toContainHTML("Growing");
+
+  setGlobal({ pomodoroSecond: 25 * 60 + 10 });
+  expect(screen.getByTestId("pomodoro_status")).toContainHTML("Growing"); // why not updated?
   console.log(screen.getByText(/0:/).innerHTML); // why 0:00??
   m.mockRestore();
   m2.mockRestore();
