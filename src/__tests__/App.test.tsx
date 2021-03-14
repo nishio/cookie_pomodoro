@@ -3,7 +3,7 @@ import App from "../App";
 import { initializeGlobalState } from "../initializeGlobalState";
 import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
-import { getGlobal, setGlobal } from "reactn";
+import { getGlobal } from "reactn";
 import { mockUseState } from "../testutil/mockUseState";
 import { mockSetGlobal } from "../testutil/mockSetGlobal";
 import {

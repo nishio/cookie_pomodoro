@@ -105,4 +105,10 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
     isPermanent: false,
   },
+  {
+    id: "food_stock",
+    forHuman: "Food Stock",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
 ];

@@ -161,6 +161,7 @@ export type TRecordID =
   | "numSoftReset"
   | "numAchieved"
   | "used_mana"
-  | "starvation"
-  | "cumulative_population";
+  | "food_stock"
+  | "cumulative_population"
+  | "starvation";
 // */

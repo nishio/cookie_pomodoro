@@ -14,8 +14,8 @@ export const getOnePomodoro = () => {
   setGlobal(updateDays);
 
   updateGlobal((g) => {
+    const foods: TResourceID[] = ["apple", "bread", "cookie", "grape"];
     if (g.converters.human > 0) {
-      const foods: TResourceID[] = ["apple", "bread", "cookie", "grape"];
       for (let i = g.converters.human; i > 0; i--) {
         let maxID: TResourceID = "apple";
         let maxValue = 0;
@@ -35,6 +35,11 @@ export const getOnePomodoro = () => {
       }
       g.records.cumulative_population += g.converters.human;
     }
+    let food_stock = 0;
+    foods.forEach((id) => {
+      food_stock += g.resources[id];
+    });
+    g.records.food_stock = food_stock;
   });
 
   updateGlobal((g) => {
