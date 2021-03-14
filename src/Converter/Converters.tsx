@@ -15,6 +15,7 @@ export const Converters = () => {
     if (c.toShow(g)) {
       const amount = g.converters[c.id] ?? 0;
       const price = c.getPrice(g, amount);
+
       const priceStr = price.map(
         ([value, unit]) => `${value} ${idToResource[unit].forHuman ?? unit}`
       );
@@ -22,7 +23,10 @@ export const Converters = () => {
         return g.resources[unit] >= value;
       });
       let buyButton = null;
-      if (canBuy) {
+      if (price.length === 0) {
+        // no way to buy
+        buyButton = <span>(can not buy)</span>;
+      } else if (canBuy) {
         const buy = () => {
           updateGlobal((g) => {
             price.forEach(([value, unit]) => {
