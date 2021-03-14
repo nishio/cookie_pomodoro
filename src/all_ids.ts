@@ -160,5 +160,7 @@ export type TRecordID =
   | "pollution"
   | "numSoftReset"
   | "numAchieved"
-  | "used_mana";
+  | "used_mana"
+  | "starvation"
+  | "cumulative_population";
 // */

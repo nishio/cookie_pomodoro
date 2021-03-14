@@ -3,7 +3,7 @@ import App from "../App";
 import { initializeGlobalState } from "../initializeGlobalState";
 import { act, getByText, render, screen } from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
-import { getGlobal } from "reactn";
+import { getGlobal, setGlobal } from "reactn";
 import { mockUseState } from "../testutil/mockUseState";
 import { mockSetGlobal } from "../testutil/mockSetGlobal";
 import {
@@ -12,6 +12,7 @@ import {
   resetLastAchieved,
 } from "../Achievement/checkAchievements";
 import { TAchievementID } from "../all_ids";
+import { updateGlobal } from "../utils/updateGlobal";
 
 let mockAddSnack: jest.SpyInstance<any, unknown[]>;
 beforeEach(() => {
@@ -147,6 +148,31 @@ test("softReset", async () => {
   expect(g.records.gotPomodoro).toBe(1);
   expect(g.records.gotPomodoro_t1).toBe(0);
   expect(g.records.numSoftReset).toBe(1);
+  m.mockRestore();
+  m2.mockRestore();
+});
+
+test("human eats foods", async () => {
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
+  initializeGlobalState();
+  updateGlobal((g) => {
+    g.converters.human = 5;
+    g.resources.cookie = 7;
+    g.resources.apple = 2;
+  });
+  render(<App />);
+  await getOnePomodoro();
+  let g = getGlobal();
+  expect(g.resources.cookie).toBe(2);
+
+  getOnePomodoro();
+  g = getGlobal();
+  expect(g.resources.cookie).toBe(0);
+  expect(g.resources.apple).toBe(0);
+  expect(g.converters.human).toBe(4);
+  expect(g.records.starvation).toBe(1);
+
   m.mockRestore();
   m2.mockRestore();
 });

@@ -93,4 +93,10 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
     isPermanent: false,
   },
+  {
+    id: "starvation",
+    forHuman: "Death by Starvation",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
 ];
