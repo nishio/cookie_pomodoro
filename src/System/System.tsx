@@ -23,7 +23,6 @@ export const System = () => {
         <button onClick={reset}>Complete Reset</button>Notice: you will lose
         everything
       </p>
-
       <p>
         <button onClick={recover}>Recover to yesterday data(alpha)</button>
       </p>
@@ -35,7 +34,6 @@ export const System = () => {
       <p>
         <button onClick={bugReport}>Open Bug Report Dialog</button>
       </p>
-
       <p>
         <a href="https://github.com/nishio/cookie_pomodoro/projects/1">
           Kanban
@@ -49,6 +47,11 @@ export const System = () => {
       <p>
         <a href="https://github.com/nishio/cookie_pomodoro/commits/main">
           Commits
+        </a>
+      </p>
+      <p>
+        <a href="https://github.com/nishio/cookie_pomodoro/blob/main/README.md">
+          README (no contents yet)
         </a>
       </p>
     </div>
