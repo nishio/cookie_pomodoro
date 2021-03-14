@@ -166,11 +166,13 @@ test("human eats foods", async () => {
   let g = getGlobal();
   expect(g.resources.cookie).toBe(2);
   expect(g.records.cumulative_population).toBe(5);
+  expect(g.records.food_stock).toBe(4);
 
   getOnePomodoro();
   g = getGlobal();
   expect(g.resources.cookie).toBe(0);
   expect(g.resources.apple).toBe(0);
+  expect(g.records.food_stock).toBe(0);
   expect(g.converters.human).toBe(4);
   expect(g.records.starvation).toBe(1);
   expect(g.records.cumulative_population).toBe(9);
