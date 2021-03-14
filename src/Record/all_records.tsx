@@ -23,7 +23,7 @@ export const all_records: TRecord[] = [
   },
   {
     id: "gotPomodoro_t1",
-    forHuman: "Got Pomodoro(This game)",
+    forHuman: "Got Pomodoro(in this Round, called Turn)",
     toStr: numberToStr,
     isPermanent: false,
   },
@@ -53,19 +53,19 @@ export const all_records: TRecord[] = [
   },
   {
     id: "totalAmountOfResources10",
-    forHuman: "TAoR @ 10 Pomodoro",
+    forHuman: "TAoR @ Turn 10",
     toStr: numberToStr,
     isPermanent: true,
   },
   {
     id: "totalAmountOfResources20",
-    forHuman: "TAoR @ 20 Pomodoro",
+    forHuman: "TAoR @ Turn 20",
     toStr: numberToStr,
     isPermanent: true,
   },
   {
     id: "totalAmountOfResources40",
-    forHuman: "TAoR @ 40 Pomodoro",
+    forHuman: "TAoR @ Turn 40",
     toStr: numberToStr,
     isPermanent: true,
   },
