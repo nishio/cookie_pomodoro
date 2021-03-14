@@ -10,7 +10,7 @@ import { addMiningProduction } from "./addMiningProduction";
 import { grandma } from "./grandma";
 import { hasConverter } from "./hasConverter";
 import { hasAchieved } from "../Resource/hasAchieved";
-import { fibonacci } from "../Achievement/fibonacci";
+import { nth_fibonacci } from "../utils/nth_fibonacci";
 
 const NoMod = () => {
   return {};
@@ -181,7 +181,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Plain",
     toShow: hasConverter("plain"),
     getPrice: (g, amount) => {
-      return [[10000, "green_mana"]];
+      return [];
     },
     recipes: [
       {
@@ -191,6 +191,15 @@ export const all_converters: TConverter[] = [
         toShow: ALWAYS,
       },
     ],
+  },
+  {
+    id: "human",
+    forHuman: "Human",
+    toShow: hasConverter("human"),
+    getPrice: (g, amount) => {
+      return [];
+    },
+    recipes: [],
   },
 ];
 export type TGetPrice = (g: State, amount: number) => [number, TResourceID][];

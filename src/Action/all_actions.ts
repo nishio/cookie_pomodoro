@@ -70,6 +70,28 @@ export const all_actions: TAction[] = [
       });
     },
   },
+  {
+    id: "create_human",
+    forHuman: "Create Human",
+    description: "-100 Mana, -1 Bread, -1 Wine, -1 Apple, create Human",
+    toShow: (g) =>
+      g.converters.human < 2 &&
+      g.resources.mana >= 100 &&
+      g.resources.bread > 0 &&
+      g.resources.wine > 0 &&
+      g.resources.apple > 0,
+
+    onClick: () => {
+      updateGlobal((g) => {
+        g.converters.human += 1;
+        g.resources.mana -= 100;
+        g.resources.bread -= 1;
+        g.resources.wine -= 1;
+        g.resources.apple -= 1;
+        g.records.used_mana += 100;
+      });
+    },
+  },
 
   breakData,
   softReset,

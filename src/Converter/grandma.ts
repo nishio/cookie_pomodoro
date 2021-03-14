@@ -45,6 +45,12 @@ export const grandma: TConverter = {
       modifier,
       toShow: hasConverter("grape_tree"),
     },
+    {
+      from: [["wheat", 3]],
+      to: [["bread", 1]],
+      modifier,
+      toShow: hasConverter("plain"),
+    },
   ],
   toShow: ALWAYS,
   getPrice: (g, amount) => {
