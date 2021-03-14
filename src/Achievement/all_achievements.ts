@@ -279,6 +279,24 @@ export const all_achievements: TAchievement[] = [
     },
     isPermanent: false,
   },
+  firstResource("wheat"),
+  firstResource("bread"),
+  {
+    id: "adam",
+    forHuman: "Adam, First Human",
+    description: "mmm? Gramdma is not human?",
+    toShow: HIDDEN,
+    toGet: hasConverter("human"),
+    isPermanent: false,
+  },
+  {
+    id: "eve",
+    forHuman: "Eve, Second Human",
+    description: "Now you can reproduce human without mana!",
+    toShow: HIDDEN,
+    toGet: (g) => g.converters.human > 1,
+    isPermanent: false,
+  },
 ];
 
 generateAchievementsDays();

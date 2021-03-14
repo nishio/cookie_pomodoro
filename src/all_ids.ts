@@ -104,7 +104,9 @@ export type TAchievementID =
   | "steel987"
   | "steel1597"
   | "steel2584"
-  | "elf";
+  | "elf"
+  | "adam"
+  | "eve";
 export type TConverterID =
   | "grandma"
   | "coal_mine"

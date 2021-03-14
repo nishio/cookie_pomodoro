@@ -197,6 +197,13 @@ export const all_converters: TConverter[] = [
     forHuman: "Human",
     toShow: hasConverter("human"),
     getPrice: (g, amount) => {
+      if (hasAchieved("eve")) {
+        return [
+          [1, "bread"],
+          [1, "wine"],
+          [1, "apple"],
+        ];
+      }
       return [];
     },
     recipes: grandma.recipes,
