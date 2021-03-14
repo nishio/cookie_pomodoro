@@ -165,6 +165,7 @@ test("human eats foods", async () => {
   await getOnePomodoro();
   let g = getGlobal();
   expect(g.resources.cookie).toBe(2);
+  expect(g.records.cumulative_population).toBe(5);
 
   getOnePomodoro();
   g = getGlobal();
@@ -172,6 +173,7 @@ test("human eats foods", async () => {
   expect(g.resources.apple).toBe(0);
   expect(g.converters.human).toBe(4);
   expect(g.records.starvation).toBe(1);
+  expect(g.records.cumulative_population).toBe(9);
 
   m.mockRestore();
   m2.mockRestore();
