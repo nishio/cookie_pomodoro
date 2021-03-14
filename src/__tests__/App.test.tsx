@@ -180,3 +180,21 @@ test("human eats foods", async () => {
   m.mockRestore();
   m2.mockRestore();
 });
+
+test("grandma drink wines", async () => {
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
+  initializeGlobalState();
+  updateGlobal((g) => {
+    g.converters.grandma = 3;
+    g.converters.grape_tree = 1;
+    g.resources.wine = 5;
+  });
+  render(<App />);
+  screen.getByText("Drink Wine").click();
+  let g = getGlobal();
+  expect(g.resources.wine).toBe(2);
+  expect(screen.getByText("1 + 1 = 2 Wine")).toBeTruthy();
+  m.mockRestore();
+  m2.mockRestore();
+});

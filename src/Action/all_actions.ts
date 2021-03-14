@@ -12,6 +12,7 @@ import { breakData } from "./breakData";
 import { softReset } from "./softReset";
 import { create_forest } from "./create_forest";
 import { updateGlobal } from "../utils/updateGlobal";
+import { drink_wine } from "./drink_wine";
 
 export const all_actions: TAction[] = [
   click,
@@ -98,6 +99,7 @@ export const all_actions: TAction[] = [
       });
     },
   },
+  drink_wine,
 
   breakData,
   softReset,
