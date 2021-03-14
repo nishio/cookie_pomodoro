@@ -1,13 +1,16 @@
 import { getGlobal, setGlobal } from "reactn";
-import { TRecordID, TResourceID } from "./all_ids";
 import * as Sentry from "@sentry/react";
 import { loadRaw } from "./localDB";
 import { State } from "reactn/default";
 import { produce } from "immer";
+import { all_converters } from "./Converter/all_converters";
+import { all_resources } from "./Resource/all_resources";
+import { all_records } from "./Record/all_records";
 
 export const checkSaveData = () => {
-  if (isInsane(getGlobal())) {
-    const newData = getGlobal();
+  const newData = getGlobal();
+  const r = check_and_fix(newData);
+  if (r.fixed) {
     let prevData: any = null;
     loadRaw()
       .then((json) => {
@@ -18,62 +21,60 @@ export const checkSaveData = () => {
       .then(() => {
         Sentry.setContext("prevData", prevData);
         Sentry.setContext("newData", newData);
+        Sentry.setContext("fixedData", r.fixed_state);
+        Sentry.setContext("fixReport", r.fix_report);
         Sentry.captureMessage("Insane Save Data");
       });
-    setDefaultValue(newData);
+    setGlobal(r.fixed_state);
   }
 };
 
 export const checkLoadData = (g: State) => {
-  if (isInsane(g)) {
+  const r = check_and_fix(getGlobal());
+  if (r.fixed) {
     Sentry.setContext("newData", g);
+    Sentry.setContext("fixedData", r.fixed_state);
+    Sentry.setContext("fixReport", r.fix_report);
     Sentry.captureMessage("Insane Load Data");
-    setDefaultValue(g);
+    setGlobal(r.fixed_state);
   }
 };
 
-const isInsane = (g: State) => {
-  {
-    let id: TResourceID;
-    for (id in g.resources) {
-      const x = g.resources[id];
+const check_and_fix = (g: State) => {
+  const fix_report: string[] = [];
+  const fixed_state = produce(g, (g) => {
+    all_resources.forEach((r) => {
+      const x = g.resources[r.id];
       if (x === null || x === undefined || isNaN(x)) {
-        return true;
+        g.resources[r.id] = 0;
+        fix_report.push(`resource:${r.id}`);
       }
-    }
-  }
-  {
-    let id: TRecordID;
-    for (id in g.records) {
-      const x = g.records[id];
+    });
+    all_converters.forEach((c) => {
+      const x = g.converters[c.id];
       if (x === null || x === undefined || isNaN(x)) {
-        return true;
+        g.converters[c.id] = 0;
+        fix_report.push(`converter:${c.id}`);
       }
-    }
-  }
+    });
+    all_records.forEach((r) => {
+      const x = g.records[r.id];
+      if (x === null || x === undefined || isNaN(x)) {
+        g.records[r.id] = 0;
+        fix_report.push(`record:${r.id}`);
+      }
+    });
+  });
+  return {
+    fixed: fix_report.length > 0,
+    fix_report,
+    fixed_state,
+  };
 };
 
 export const setDefaultValue = (g: State) => {
-  setGlobal(
-    produce(g, (g) => {
-      {
-        let id: TResourceID;
-        for (id in g.resources) {
-          const x = g.resources[id];
-          if (x === null || x === undefined || isNaN(x)) {
-            g.resources[id] = 0;
-          }
-        }
-      }
-      {
-        let id: TRecordID;
-        for (id in g.records) {
-          const x = g.records[id];
-          if (x === null || x === undefined || isNaN(x)) {
-            g.records[id] = 0;
-          }
-        }
-      }
-    })
-  );
+  const r = check_and_fix(g);
+  if (r.fixed) {
+    setGlobal(r.fixed_state);
+  }
 };
