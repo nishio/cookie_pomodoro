@@ -1,7 +1,7 @@
 import { all_achievements } from "./all_achievements";
 import { TAchievement } from "./TAchievement";
 import { after } from "./after";
-import { fibonacci } from "./fibonacci";
+import { fibonacci } from "../utils/fibonacci";
 import { TAchievementID } from "../all_ids";
 
 export const generateAchievementsDays = () => {

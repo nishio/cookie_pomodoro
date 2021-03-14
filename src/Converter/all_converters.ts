@@ -193,9 +193,6 @@ export const all_converters: TConverter[] = [
     ],
   },
 ];
-const nth_fibonacci = (n: number, prev = 0, start = 1) => {
-  return fibonacci(prev, start, n + 1)[n];
-};
 export type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
 export type TCosts = [TResourceID, number][];
 

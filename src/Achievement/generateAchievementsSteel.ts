@@ -1,6 +1,6 @@
 import { after } from "./after";
 import { TAchievement } from "./TAchievement";
-import { fibonacci } from "./fibonacci";
+import { fibonacci } from "../utils/fibonacci";
 import { TAchievementID } from "../all_ids";
 import { all_achievements } from "./all_achievements";
 
