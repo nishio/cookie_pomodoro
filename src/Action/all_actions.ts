@@ -56,6 +56,21 @@ export const all_actions: TAction[] = [
       });
     },
   },
+  {
+    id: "create_plain",
+    forHuman: "Create Plain",
+    description: "-10 Green Mana, create Plain",
+    toShow: (g) => (g.resources.green_mana ?? 0) >= 10,
+
+    onClick: () => {
+      updateGlobal((g) => {
+        g.converters.plain += 1;
+        g.resources.green_mana -= 10;
+        g.records.used_mana += 10;
+      });
+    },
+  },
+
   breakData,
   softReset,
 ];

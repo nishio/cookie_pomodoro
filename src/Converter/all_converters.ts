@@ -176,6 +176,22 @@ export const all_converters: TConverter[] = [
       },
     ],
   },
+  {
+    id: "plain",
+    forHuman: "Plain",
+    toShow: hasConverter("plain"),
+    getPrice: (g, amount) => {
+      return [[10000, "green_mana"]];
+    },
+    recipes: [
+      {
+        from: [],
+        to: [["wheat", 1]],
+        modifier: NoMod,
+        toShow: ALWAYS,
+      },
+    ],
+  },
 ];
 const nth_fibonacci = (n: number, prev = 0, start = 1) => {
   return fibonacci(prev, start, n + 1)[n];

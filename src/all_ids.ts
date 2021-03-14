@@ -114,7 +114,8 @@ export type TConverterID =
   | "forest"
   | "apple_tree"
   | "newton"
-  | "grape_tree";
+  | "grape_tree"
+  | "plain";
 export type TResourceID =
   | "pomodoro"
   | "cookie"
@@ -130,7 +131,8 @@ export type TResourceID =
   | "apple"
   | "science"
   | "grape"
-  | "wine";
+  | "wine"
+  | "wheat";
 export type TActionID =
   | "click"
   | "burn_coal"
