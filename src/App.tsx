@@ -24,7 +24,7 @@ function App() {
       instead of a click.
       <p>
         <a href="https://github.com/nishio/cookie_pomodoro/wiki/20210314">
-          Thank you for your manual bug report(2021-03-14)
+          Thank you for your manual bug report(2021-03-14, updated)
         </a>
       </p>
       <Pomodoro />
