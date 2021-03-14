@@ -1,7 +1,7 @@
 import { getGlobal, useGlobal } from "reactn";
 import { isPermanent } from "../Record/isPermanent";
 import { Github } from "../Resource/Github";
-import { all_achievements } from "./all_achievements";
+import { all_achievements, numPermanentAchievements } from "./all_achievements";
 import { getProgress } from "./getProgress";
 
 export const Achievements = () => {
@@ -22,13 +22,18 @@ export const Achievements = () => {
     }
     return null;
   });
+  const percent = (
+    (100 * g.records.numGotPermanent) /
+    numPermanentAchievements
+  ).toFixed(1);
   return (
     <div id="achievements">
       <h2>
         Achievements
         <Github filename="Achievement/all_achievements.ts" />
       </h2>
-      <ul>{list}</ul>
+      Permanent Achievements: {g.records.numGotPermanent} /{" "}
+      {numPermanentAchievements} = {percent}%<ul>{list}</ul>
     </div>
   );
 };

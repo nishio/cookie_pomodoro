@@ -116,4 +116,10 @@ export const all_records: TRecord[] = [
     toStr: numberToStr,
     isPermanent: false,
   },
+  {
+    id: "numGotPermanent",
+    forHuman: "Achieved Permanent Achievements",
+    toStr: numberToStr,
+    isPermanent: false,
+  },
 ];

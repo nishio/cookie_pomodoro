@@ -165,5 +165,6 @@ export type TRecordID =
   | "used_mana"
   | "food_stock"
   | "cumulative_population"
-  | "starvation";
+  | "starvation"
+  | "numGotPermanent";
 // */

@@ -303,3 +303,10 @@ generateAchievementsDays();
 generateAchievementsPomodoro();
 generateAchievementsCookie();
 generateAchievementsSteel();
+
+export let numPermanentAchievements = 0;
+all_achievements.forEach((a) => {
+  if (a.isPermanent) {
+    numPermanentAchievements += 1;
+  }
+});

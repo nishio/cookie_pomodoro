@@ -7,6 +7,7 @@ export const checkAchievements = (): void => {
   const g = getGlobal();
   const newObj = { ...g.achieved };
   let numAchieved = 0;
+  let numGotPermanent = 0;
   all_achievements.forEach((a) => {
     if (!(a.id in g.achieved)) {
       if (a.toGet(g)) {
@@ -20,9 +21,16 @@ export const checkAchievements = (): void => {
     }
   });
 
+  all_achievements.forEach((a) => {
+    if (a.isPermanent) {
+      if (a.id in newObj) {
+        numGotPermanent += 1;
+      }
+    }
+  });
   setGlobal({
     achieved: newObj,
-    records: { ...g.records, numAchieved },
+    records: { ...g.records, numAchieved, numGotPermanent },
   });
 };
 
