@@ -10,7 +10,6 @@ const TimeToMature = 25 * 60;
 const TimeToOvergrow = 60 * 60;
 export const PomodoroProgress = () => {
   const [sec] = useGlobal("pomodoroSecond");
-  setDefaultValue(getGlobal()); // temporary fix of on memory data
   const fromStart = toMinSec(sec);
   const toMature = toMinSec(TimeToMature - sec);
   const toOvergrow = toMinSec(TimeToMature + TimeToOvergrow - sec);
@@ -32,7 +31,8 @@ export const PomodoroProgress = () => {
         <LinearProgress variant="determinate" value={percent} />
         {fromStart} / Mature to {toMature} ({percent.toFixed(2)} %)
         <br />
-        Growing <button onClick={cancel}>cancel</button>
+        <span data-testid="pomodoro_status">Growing</span>{" "}
+        <button onClick={cancel}>cancel</button>
       </>
     );
   } else if (sec < TimeToMature + TimeToOvergrow) {
