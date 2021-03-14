@@ -23,7 +23,7 @@ export const Achievements = () => {
     return null;
   });
   return (
-    <div>
+    <div id="achievements">
       <h2>
         Achievements
         <Github filename="Achievement/all_achievements.ts" />

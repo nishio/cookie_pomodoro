@@ -28,11 +28,13 @@ function App() {
         </a>
       </p>
       <Pomodoro />
-      <Resources />
-      <Converters />
-      <Actions />
-      <Achievements />
-      <Records />
+      <div className="container">
+        <Resources />
+        <Converters />
+        <Actions />
+        <Achievements />
+        <Records />
+      </div>
       <System />
       <MySnack />
     </div>

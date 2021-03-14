@@ -19,8 +19,8 @@ export const Records = () => {
     );
   });
   return (
-    <div>
-      <h2>Records</h2>
+    <div id="records">
+      <h2>
       <ul>{list}</ul>
     </div>
   );
