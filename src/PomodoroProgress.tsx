@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
-import { getGlobal, setGlobal, useGlobal } from "reactn";
+import { setGlobal, useGlobal } from "reactn";
 import { getOnePomodoro } from "./getOnePomodoro";
 import { save } from "./localDB";
 import { toMinSec } from "./utils/toMinSec";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { setDefaultValue } from "./checkSaveData";
+import { Github } from "./Resource/Github";
 
 const TimeToMature = 25 * 60;
 const TimeToOvergrow = 60 * 60;
@@ -23,6 +23,7 @@ export const PomodoroProgress = () => {
     getOnePomodoro();
     cancel();
   };
+
   let state: string | ReactNode;
   if (sec < TimeToMature) {
     const percent = (100 * sec) / TimeToMature;
@@ -44,6 +45,7 @@ export const PomodoroProgress = () => {
         />
         {fromStart} / Overgrow to {toOvergrow} <br />
         <button onClick={harvest}>harvest</button>
+        <Github filename="getOnePomodoro.ts" />
       </>
     );
   } else {

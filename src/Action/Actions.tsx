@@ -1,5 +1,7 @@
+import React from "react";
 import { useGlobal } from "reactn";
 import { State } from "reactn/default";
+import { Github } from "../Resource/Github";
 import { all_actions } from "./all_actions";
 
 type TActionID = string;
@@ -57,7 +59,10 @@ export const Actions = () => {
   });
   return (
     <div>
-      <h2>Actions</h2>
+      <h2>
+        Actions
+        <Github filename="Action/all_actions.ts" />
+      </h2>
       <div id="actions">
         <p>create instant/temporary effects</p>
         <ul>{buttons}</ul>

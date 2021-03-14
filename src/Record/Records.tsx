@@ -5,6 +5,7 @@
 import React from "react";
 import { useGlobal } from "reactn";
 import { TAchievementID } from "../all_ids";
+import { Github } from "../Resource/Github";
 import { all_records } from "./all_records";
 import { isPermanent } from "./isPermanent";
 
@@ -21,6 +22,8 @@ export const Records = () => {
   return (
     <div id="records">
       <h2>
+        Records <Github filename="Record/all_records.ts" />
+      </h2>
       <ul>{list}</ul>
     </div>
   );
