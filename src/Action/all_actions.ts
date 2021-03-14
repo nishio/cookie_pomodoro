@@ -1,3 +1,9 @@
+/**
+ * Action: make instant effect (e.g. create a converter)
+ * or make `temporary effect` last until next pomodoro starts
+ * (e.g. `Burn Coal` makes grandma's cookie production +4)
+ */
+
 import { burn_coal } from "./burn_coal";
 import { click } from "./click";
 import { TAction } from "./Actions";

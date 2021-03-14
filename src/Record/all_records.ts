@@ -1,3 +1,8 @@
+/**
+ * Record: Currently it is ambiguous concept and will be renamed in future.
+ * Some are parmanent, so that it is similar to the high scores.
+ * Some are similar to statistics.
+ */
 import { dateToStr } from "./dateToStr";
 import { numberToStr } from "./numberToStr";
 import { TRecord } from "./TRecord";

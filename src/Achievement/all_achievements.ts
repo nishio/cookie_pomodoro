@@ -1,3 +1,9 @@
+/**
+ * Achievements: boolean flags of what you achieved.
+ * Some are not shown until you get them.
+ * Some have a positive effect on the game. Some have negative one.
+ */
+
 import { ALWAYS, HIDDEN } from "../utils/ALWAYS";
 import { hasResource } from "../Resource/hasResource";
 import { after } from "./after";
@@ -10,7 +16,6 @@ import { TAchievement } from "./TAchievement";
 import { generateAchievementsSteel } from "./generateAchievementsSteel";
 import { idToResource } from "../Resource/all_resources";
 import { TAchievementID, TResourceID } from "../all_ids";
-import { TConverter } from "../Converter/all_converters";
 import { hasConverter } from "../Converter/hasConverter";
 
 const firstResource = (

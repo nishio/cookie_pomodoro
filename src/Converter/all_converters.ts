@@ -1,5 +1,5 @@
 /**
- * Converter: converts one resource into another resource
+ * Converter: converts some resources into another resource
  * It can use once per pomodoro.
  */
 
