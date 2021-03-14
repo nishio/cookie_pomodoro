@@ -54,6 +54,6 @@ export const grandma: TConverter = {
   ],
   toShow: ALWAYS,
   getPrice: (g, amount) => {
-    return [[1 + amount, "pomodoro"]];
+    return [["pomodoro", 1 + amount]];
   },
 };

@@ -17,9 +17,9 @@ export const Converters = () => {
       const price = c.getPrice(g, amount);
 
       const priceStr = price.map(
-        ([value, unit]) => `${value} ${idToResource[unit].forHuman ?? unit}`
+        ([unit, value]) => `${value} ${idToResource[unit].forHuman ?? unit}`
       );
-      const canBuy = price.every(([value, unit]) => {
+      const canBuy = price.every(([unit, value]) => {
         return g.resources[unit] >= value;
       });
       let buyButton = null;
@@ -29,7 +29,7 @@ export const Converters = () => {
       } else if (canBuy) {
         const buy = () => {
           updateGlobal((g) => {
-            price.forEach(([value, unit]) => {
+            price.forEach(([unit, value]) => {
               g.resources[unit] -= value;
             });
             g.converters[c.id] += 1;

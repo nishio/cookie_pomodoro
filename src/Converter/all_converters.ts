@@ -23,7 +23,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Coal Mine",
     toShow: ALWAYS,
     getPrice: (g, amount) => {
-      return [[1 + amount, "cookie"]];
+      return [["cookie", 1 + amount]];
     },
     recipes: [
       {
@@ -39,7 +39,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Iron Mine",
     toShow: hasConverter("coal_mine"),
     getPrice: (g, amount) => {
-      return [[1 + amount, "cookie"]];
+      return [["cookie", 1 + amount]];
     },
     recipes: [
       {
@@ -55,7 +55,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Furnace",
     toShow: hasConverter("iron_mine"),
     getPrice: (g, amount) => {
-      return [[1 + amount, "cookie"]];
+      return [["cookie", 1 + amount]];
     },
     recipes: [
       {
@@ -83,7 +83,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Workbench",
     toShow: hasConverter("furnace"),
     getPrice: (g, amount) => {
-      return [[1 + amount, "cookie"]];
+      return [["cookie", 1 + amount]];
     },
     recipes: [
       {
@@ -108,7 +108,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Forest",
     toShow: hasConverter("forest"),
     getPrice: (g, amount) => {
-      return [[nth_fibonacci(amount), "green_mana"]];
+      return [["green_mana", nth_fibonacci(amount)]];
     },
     recipes: [
       {
@@ -130,7 +130,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Apple Tree",
     toShow: hasConverter("apple_tree"),
     getPrice: (g, amount) => {
-      return [[nth_fibonacci(amount), "apple"]];
+      return [["apple", nth_fibonacci(amount)]];
     },
     recipes: [
       {
@@ -146,7 +146,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Newton",
     toShow: hasConverter("apple_tree"),
     getPrice: (g, amount) => {
-      return [[nth_fibonacci(amount), "apple"]];
+      return [["apple", nth_fibonacci(amount)]];
     },
     recipes: [
       {
@@ -165,7 +165,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Grape Tree",
     toShow: hasConverter("grape_tree"),
     getPrice: (g, amount) => {
-      return [[nth_fibonacci(amount), "grape"]];
+      return [["grape", nth_fibonacci(amount)]];
     },
     recipes: [
       {
@@ -199,9 +199,9 @@ export const all_converters: TConverter[] = [
     getPrice: (g, amount) => {
       if (hasAchieved("eve")) {
         return [
-          [1, "bread"],
-          [1, "wine"],
-          [1, "apple"],
+          ["bread", 1],
+          ["wine", 1],
+          ["apple", 1],
         ];
       }
       return [];
@@ -209,17 +209,12 @@ export const all_converters: TConverter[] = [
     recipes: grandma.recipes,
   },
 ];
-export type TGetPrice = (g: State, amount: number) => [number, TResourceID][];
 export type TCosts = [TResourceID, number][];
+export type TGetPrice = (g: State, amount: number) => TCosts;
 
 export type TConverter = {
   id: TConverterID;
   forHuman?: string;
-  // froms: TCosts;
-  // decreaseCost?: (g: State) => TCosts;
-  // to: TResourceID;
-  // toAmount: number;
-  // addToAmount?: (g: State) => number;
   toShow: (g: State) => boolean;
   getPrice: TGetPrice;
   recipes?: TRecipe[];
