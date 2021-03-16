@@ -6,13 +6,15 @@
 import { TAchievement } from "../Achievement/TAchievement";
 import { TRecord } from "./TRecord";
 
+export const PermanentMark = "[P]";
+export const PermanentMark_WithLink = (
+  <a href="https://github.com/nishio/cookie_pomodoro/blob/main/src/Record/isPermanent.tsx">
+    {PermanentMark}
+  </a>
+);
 export const isPermanent = (x: TAchievement | TRecord) => {
   if (x.isPermanent) {
-    return (
-      <a href="https://github.com/nishio/cookie_pomodoro/blob/main/src/Record/isPermanent.tsx">
-        [P]
-      </a>
-    );
+    return PermanentMark;
   }
   return null;
 };

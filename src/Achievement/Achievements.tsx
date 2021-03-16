@@ -1,5 +1,5 @@
 import { getGlobal, useGlobal } from "reactn";
-import { isPermanent } from "../Record/isPermanent";
+import { isPermanent, PermanentMark_WithLink } from "../Record/isPermanent";
 import { Github } from "../Resource/Github";
 import { all_achievements, numPermanentAchievements } from "./all_achievements";
 import { getProgress } from "./getProgress";
@@ -32,7 +32,7 @@ export const Achievements = () => {
         Achievements
         <Github filename="Achievement/all_achievements.ts" />
       </h2>
-      Permanent Achievements: {g.records.numGotPermanent} /{" "}
+      {PermanentMark_WithLink}: {g.records.numGotPermanent} /{" "}
       {numPermanentAchievements} = {percent}%<ul>{list}</ul>
     </div>
   );
