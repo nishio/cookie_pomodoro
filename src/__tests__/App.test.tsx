@@ -1,7 +1,13 @@
 import React from "react";
 import App from "../App";
 import { initializeGlobalState } from "../initializeGlobalState";
-import { act, getByText, render, screen } from "@testing-library/react";
+import {
+  act,
+  getByTestId,
+  getByText,
+  render,
+  screen,
+} from "@testing-library/react";
 import { getOnePomodoro } from "../getOnePomodoro";
 import { getGlobal } from "reactn";
 import { mockUseState } from "../testutil/mockUseState";
@@ -39,7 +45,7 @@ const expectAchieve = (xs: TAchievementID[]) => {
 
 jest.mock("../localDB"); // disable load/save
 
-test("senario1", async () => {
+test("senario_start", async () => {
   const m = mockUseState();
   const m2 = mockSetGlobal();
   await initializeGlobalState();
@@ -208,6 +214,88 @@ test("bug softreset make achievements", async () => {
   let g = getGlobal();
   expect(g.achieved.pomodoro2817).toBeUndefined();
   expect("pomodoro2817" in g.achieved).toBeFalsy(); // fixed bug
+  m.mockRestore();
+  m2.mockRestore();
+});
+
+const repeat = (n: number, f: () => unknown) => {
+  for (let i = 0; i < n; i++) {
+    f();
+  }
+};
+
+test("senario_coal", () => {
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
+  initializeGlobalState();
+  render(<App />);
+
+  getOnePomodoro();
+  click(/^Grandma/, /^Buy/);
+
+  getOnePomodoro();
+  click(/^Grandma/, /^Use/);
+  click(/^Coal Mine/, /^Buy/);
+  click(/^Iron Mine/, /^Buy/);
+
+  repeat(8, getOnePomodoro);
+  expectAchieve([
+    "pomodoro1",
+    "cookie1",
+    "pomodoro2",
+    "pomodoro4",
+    "pomodoro5",
+    "has_pomodoro4",
+    "pomodoro9",
+    "mana",
+    "idle_assets",
+  ]);
+  click(/^Grandma/, /^Buy/);
+  click(/^Grandma/, /^Buy/);
+  expectAchieve(["three_grandma"]);
+
+  getOnePomodoro();
+  click(/^Grandma/, /^Use 3/);
+  expectAchieve(["cookie3", "cookie5", "cookie8"]);
+  click(/^Coal Mine/, /^Use 1/);
+  click(/^Iron Mine/, /^Use 1/);
+  expectAchieve(["coal", "iron"]);
+  click(/^Furnace/, /^Buy/);
+  click(/^Workbench/, /^Buy/);
+
+  getOnePomodoro();
+  click(/^Furnace/, /^Use/);
+  click(/^Workbench/, /^Use/);
+  expectAchieve(["iron_ingot", "iron_pickaxe"]);
+
+  getOnePomodoro();
+  getOnePomodoro();
+  expectAchieve(["pomodoro14"]);
+  click(/^Grandma/, /^Use 3/);
+  click(/^Coal Mine/, /^Use 1/);
+  click(/^Iron Mine/, /^Use 1/);
+
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+
+  click(/^Workbench/, /^Use/);
+  expectAchieve(["iron_pickaxe2"]);
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  click(/^Workbench/, /^Use/); // thrid pickaxe
+
+  getOnePomodoro();
+  // 100 Mana?
+  let g = getGlobal();
+  expect(g.resources.mana).toBe(100);
+  expect(g.resources.coal).toBe(0);
+  // click(/^Coal Mine/, /^Use 1/);
+
+  getOnePomodoro();
   m.mockRestore();
   m2.mockRestore();
 });
