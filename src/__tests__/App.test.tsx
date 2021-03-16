@@ -289,13 +289,151 @@ test("senario_coal", () => {
   click(/^Workbench/, /^Use/); // thrid pickaxe
 
   getOnePomodoro();
-  // 100 Mana?
+  expectAchieve(["mana100"]);
   let g = getGlobal();
   expect(g.resources.mana).toBe(100);
   expect(g.resources.coal).toBe(0);
-  // click(/^Coal Mine/, /^Use 1/);
+
+  screen.getByText(/^No hunger/).click();
+  click(/^Grandma/, /^Use 1/);
+  click(/^Coal Mine/, /^Use 1/);
+  repeat(3, () => {
+    act(() => {
+      getByText(screen.getByTestId(/^action/), /^Burn coal/).click();
+    });
+  });
+  expect(screen.getByText(/16 Cookie/)).toBeTruthy();
+  click(/^Grandma/, /^Use 1/);
+  expectAchieve(["cookie13"]);
+  click(/^Grandma/, /^Use 1/);
+  click(/^Iron Mine/, /^Use/);
 
   getOnePomodoro();
+  click(/^Grandma/, /^Buy/);
+  click(/^Coal Mine/, /^Use/);
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  click(/^Workbench/, /^Use/);
+  expectAchieve(["cookie21", "iron_pickaxe4"]);
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+
+  getOnePomodoro();
+  click(/^Coal Mine/, /^Use/);
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel Pickaxe/), /^Use 1/).click();
+  });
+  expectAchieve(["steel", "steel_pickaxe"]);
+  click(/^Coal Mine/, /^Buy/);
+  click(/^Coal Mine/, /^Buy/);
+
+  getOnePomodoro();
+  click(/^Coal Mine/, /^Use 2/);
+  screen.getByText(/^No hunger/).click();
+  repeat(12, () => {
+    act(() => {
+      getByText(screen.getByTestId(/^action/), /^Burn coal/).click();
+    });
+  });
+  click(/^Grandma/, /^Use 1/);
+  click(/^Coal Mine/, /^Use/);
+  repeat(5, () => {
+    act(() => {
+      getByText(screen.getByTestId(/^action/), /^Burn coal/).click();
+    });
+  });
+  click(/^Grandma/, /^Use 3/);
+  expectAchieve(["cookie34", "cookie55", "cookie89", "cookie144", "cookie233"]);
+
+  click(/^Furnace/, /^Buy/);
+  click(/^Furnace/, /^Buy/);
+  click(/^Iron Mine/, /^Use/);
+
+  getOnePomodoro();
+  click(/^Grandma/, /^Buy/);
+  click(/^Coal Mine/, /^Use 3/);
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel$/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel Pickaxe/), /^Use 1/).click();
+  });
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel$/), /^Use 1/).click();
+  });
+  click(/^Iron Mine/, /^Use/);
+  click(/^Coal Mine/, /^Use 3/);
+  // should buy workbench
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 3/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Pickaxe/), /^Use 1/).click();
+  });
+  click(/^Workbench/, /^Buy/);
+  click(/^Iron Mine/, /^Use/);
+  click(/^Coal Mine/, /^Use 3/);
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Pickaxe/), /^Use 2/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Ingot/), /^Use 3/).click();
+  });
+  click(/^Coal Mine/, /^Use 3/);
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel Pickaxe/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel$/), /^Use 1/).click();
+  });
+  act(() => {
+    getByText(screen.getByTestId(/^1 Iron Pickaxe/), /^Use 1/).click();
+  });
+  click(/^Coal Mine/, /^Use 3/);
+  repeat(10, () => {
+    click(/^Coal Mine/, /^Buy/);
+  });
+
+  getOnePomodoro();
+  act(() => {
+    getByText(screen.getByTestId(/^1 Steel Pickaxe/), /^Use 1/).click();
+  });
+  click(/^Coal Mine/, /^Use 13/);
+
+  getOnePomodoro();
+  getByText(screen.getByTestId("action"), "x162").click(); // burn coal
   m.mockRestore();
   m2.mockRestore();
 });
