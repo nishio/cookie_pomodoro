@@ -236,7 +236,7 @@ export const all_achievements: TAchievement[] = [
   {
     id: "cookie_universe",
     forHuman: "Cookie Universe",
-    description: "It is a cookie.",
+    description: "Nothing except for cookies.",
     toShow: HIDDEN,
     toGet: (g) =>
       g.resources.cookie >= 1000000 && g.records.gotPomodoro_t1 <= 40,
