@@ -10,7 +10,8 @@ export const drink_wine = {
       g.temporaryEffects.push(drink_wine_effect);
     });
   },
-  toShow: (g: State) => g.resources.wine >= g.converters.grandma,
+  toShow: (g: State) =>
+    g.resources.wine >= g.converters.grandma && g.converters.grandma > 0,
   description: "-1 Wine per Grandma. Increases grandma production",
   getMax: (g: State) => g.resources.coal,
 };
