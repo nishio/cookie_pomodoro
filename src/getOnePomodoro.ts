@@ -7,6 +7,7 @@ import { updateMana } from "./updateMana";
 import { updateDays } from "./updateDays";
 import { updateGlobal } from "./utils/updateGlobal";
 import { TResourceID } from "./all_ids";
+import { checkAchievements } from "./Achievement/checkAchievements";
 
 export const getOnePomodoro = () => {
   setGlobal(updateMana);
@@ -56,5 +57,6 @@ export const getOnePomodoro = () => {
     g.records.gotPomodoro_t1 += 1;
   });
   setGlobal(updateTotalAmountOfResourcces);
+  checkAchievements();
   return save();
 };
