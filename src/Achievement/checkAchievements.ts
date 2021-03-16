@@ -8,6 +8,7 @@ export const checkAchievements = (): void => {
   const newObj = { ...g.achieved };
   let numAchieved = 0;
   let numGotPermanent = 0;
+  let isChanged = false;
   all_achievements.forEach((a) => {
     if (!(a.id in g.achieved)) {
       if (a.toGet(g)) {
@@ -15,6 +16,7 @@ export const checkAchievements = (): void => {
         addSnack("New achievement: " + a.forHuman ?? a.id);
         lastAchieved.push(a.id);
         numAchieved++;
+        isChanged = true;
       }
     } else {
       numAchieved++;
@@ -28,10 +30,13 @@ export const checkAchievements = (): void => {
       }
     }
   });
-  setGlobal({
-    achieved: newObj,
-    records: { ...g.records, numAchieved, numGotPermanent },
-  });
+  if (isChanged) {
+    setGlobal({
+      achieved: newObj,
+      records: { ...g.records, numAchieved, numGotPermanent },
+    });
+    checkAchievements();
+  }
 };
 
 //-- for test
