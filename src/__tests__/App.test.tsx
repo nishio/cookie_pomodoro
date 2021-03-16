@@ -198,3 +198,16 @@ test("grandma drink wines", async () => {
   m.mockRestore();
   m2.mockRestore();
 });
+
+test("bug softreset make achievements", async () => {
+  const m = mockUseState();
+  const m2 = mockSetGlobal();
+  initializeGlobalState();
+  render(<App />);
+  screen.getByText("Soft Reset").click();
+  let g = getGlobal();
+  expect(g.achieved.pomodoro2817).toBeUndefined();
+  expect("pomodoro2817" in g.achieved).toBeFalsy(); // fixed bug
+  m.mockRestore();
+  m2.mockRestore();
+});
