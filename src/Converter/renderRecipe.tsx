@@ -64,8 +64,12 @@ export function renderRecipe(
       useButton = (
         <>
           <button onClick={use}>Use 1</button>
-          <button onClick={onHalfUse}>Use {halfUse}</button>
-          <button onClick={onMaxUse}>Use {maxUse}</button>
+          <button data-testid="use_half" onClick={onHalfUse}>
+            Use {halfUse}
+          </button>
+          <button data-testid="use_max" onClick={onMaxUse}>
+            Use {maxUse}
+          </button>
         </>
       );
     }
@@ -85,7 +89,7 @@ export function renderRecipe(
     .join(" ");
 
   return (
-    <p key={index}>
+    <p key={index} data-testid={r.name ?? toStr}>
       Convert <strong>{fromStr}</strong> into <strong>{toStr}</strong>{" "}
       {useButton}
     </p>

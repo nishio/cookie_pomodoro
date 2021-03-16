@@ -225,5 +225,6 @@ export type TRecipe = {
   to: [TResourceID, number][];
   modifier: TModifier;
   toShow: (g: State) => boolean;
+  name?: string;
 };
 export type TModifier = () => Partial<{ [key in TResourceID]: number }>;
