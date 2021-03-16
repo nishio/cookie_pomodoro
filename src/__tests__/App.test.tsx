@@ -19,6 +19,7 @@ import {
 } from "../Achievement/checkAchievements";
 import { TAchievementID } from "../all_ids";
 import { updateGlobal } from "../utils/updateGlobal";
+import { ContactlessOutlined } from "@material-ui/icons";
 
 let mockAddSnack: jest.SpyInstance<any, unknown[]>;
 beforeEach(() => {
@@ -37,8 +38,12 @@ const click = (regex: RegExp, regex2: RegExp) => {
   });
 };
 
-const expectAchieve = (xs: TAchievementID[]) => {
+const expectAchieve = (xs?: TAchievementID[]) => {
   checkAchievements();
+  if (xs === undefined) {
+    console.log("expect:", getLastAchieved());
+    return;
+  }
   expect(getLastAchieved()).toStrictEqual(xs);
   resetLastAchieved();
 };
@@ -434,6 +439,45 @@ test("senario_coal", () => {
 
   getOnePomodoro();
   getByText(screen.getByTestId("action"), "x162").click(); // burn coal
+  click(/^Coal Mine/, /^Use 3/);
+  getByText(screen.getByTestId("action"), "x21").click(); // burn coal
+  click(/^Grandma/, /^Use 1/);
+  click(/^Coal Mine/, /^Use 10/);
+  getByText(screen.getByTestId("action"), "x70").click(); // burn coal
+  click(/^Grandma/, /^Use 4/);
+
+  getOnePomodoro();
+  click(/^Coal Mine/, /^Use 13/);
+  repeat(37, () => {
+    // no meaning in 37. coal mine is now 50. should buy beforehand
+    click(/^Coal Mine/, /^Buy/);
+  });
+
+  getOnePomodoro();
+  click(/^Coal Mine/, /^Use 50/);
+  repeat(36, () => {
+    // no meaning in 37. coal mine is now 50. should buy beforehand
+    click(/^Coal Mine/, /^Buy/);
+  });
+
+  getOnePomodoro();
+  click(/^Coal Mine/, /^Use 86/);
+  getByText(screen.getByTestId("action"), "x1043").click(); // burn coal
+  expectAchieve([
+    "steel_pickaxe2",
+    "pomodoro23",
+    "steel_pickaxe4",
+    "sick",
+    "cookie377",
+    "cookie610",
+    "cookie_volcano",
+    "cookie987",
+    "cookie1597",
+    "cookie2584",
+    "burn_earth",
+  ]);
+  click(/^Grandma/, /^Use 4/);
+  expectAchieve(["cookie_earth"]);
   m.mockRestore();
   m2.mockRestore();
 });
