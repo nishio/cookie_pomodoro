@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import addReactNDevTools from "reactn-devtools";
 import { initWithLoad } from "./initWithLoad";
 import { update_ids } from "./update_ids";
-
 import { initSentry } from "./initSentry";
-
+import * as reactn from "reactn";
 if (process.env.NODE_ENV !== "production") {
   // development
   addReactNDevTools({ trace: true, traceLimit: 25 });
   // initSentry();
+  // @ts-ignore
+  window.reactn = reactn;
+  // @ts-ignore
+  window.update_ids = update_ids;
 } else {
   // production
   initSentry();
@@ -42,6 +45,3 @@ declare global {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-// @ts-ignore
-window.update_ids = update_ids;
