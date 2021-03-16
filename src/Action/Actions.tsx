@@ -63,7 +63,7 @@ export const Actions = () => {
         Actions
         <Github filename="Action/all_actions.ts" />
       </h2>
-      <div id="actions">
+      <div id="actions" data-testid="action">
         <p>create instant/temporary effects</p>
         <ul>{buttons}</ul>
       </div>
