@@ -12,11 +12,13 @@ export type TAction = {
   toShow: (g: State) => boolean;
   onClick: () => void;
   getMax?: (g: State) => number;
+  repeat?: (n: number) => () => unknown;
 };
 
 export type TTemporaryEffect = {
   id: TActionID;
   forHuman?: string;
+  value?: number;
 };
 
 export const Actions = () => {
@@ -28,6 +30,9 @@ export const Actions = () => {
         if (maxUse > 4) {
           const half = Math.floor(maxUse / 2);
           const repeat = (num: number) => {
+            if (a.repeat) {
+              return a.repeat(num);
+            }
             return () => {
               for (let i = 0; i < num; i++) {
                 a.onClick();
@@ -55,7 +60,11 @@ export const Actions = () => {
     return null;
   });
   const effects = g.temporaryEffects.map((e, index) => {
-    return <li key={index}>{e.forHuman ?? e.id}</li>;
+    let s = e.forHuman ?? e.id;
+    if (e.value !== undefined) {
+      s = `${s} x${e.value}`;
+    }
+    return <li key={index}>{s}</li>;
   });
   return (
     <div>

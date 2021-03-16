@@ -13,7 +13,7 @@ const modifier: TModifier = () => {
 
   g.temporaryEffects.forEach((e) => {
     if (e.id === "burn_coal") {
-      cookie += 4;
+      cookie += 4 * (e.value ?? 1);
     }
     if (e.id === "no_hunger") {
       pomodoro = -1;

@@ -14,9 +14,19 @@ export const burn_coal = {
   toShow: (g: State) => g.resources.coal >= 1,
   description: "-1 coal. Increases grandma production (+4 cookie)",
   getMax: (g: State) => g.resources.coal,
+  repeat: (n: number) => {
+    return () => {
+      updateGlobal((g) => {
+        g.resources.coal -= 1;
+        g.temporaryEffects.push({ ...burn_coal_effect, value: n });
+        g.records.pollution += 1;
+      });
+    };
+  },
 };
 
 export const burn_coal_effect = {
   id: "burn_coal",
   forHuman: "Burn coal",
+  value: 1,
 };
