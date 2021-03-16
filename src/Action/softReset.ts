@@ -9,7 +9,6 @@ import { produce } from "immer";
 const onClick = () => {
   const c = getGlobal(); // current daat
   const g = getInitialGlobalState();
-  console.log(g);
 
   const newState = produce(g, (g) => {
     all_records.forEach((r) => {
