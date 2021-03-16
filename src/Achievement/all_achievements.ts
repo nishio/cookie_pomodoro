@@ -37,7 +37,7 @@ export const all_achievements: TAchievement[] = [
     id: "pomodoro4",
     forHuman: "Got Four Pomodoro",
     toShow: after("pomodoro2"),
-    toGet: (g) => g.records.gotPomodoro >= 4,
+    toGet: (g) => g.records.gotPomodoro_t1 >= 4,
     isPermanent: false,
   },
   {
