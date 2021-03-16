@@ -19,7 +19,6 @@ import {
 } from "../Achievement/checkAchievements";
 import { TAchievementID } from "../all_ids";
 import { updateGlobal } from "../utils/updateGlobal";
-import { ContactlessOutlined } from "@material-ui/icons";
 
 let mockAddSnack: jest.SpyInstance<any, unknown[]>;
 beforeEach(() => {
@@ -477,7 +476,12 @@ test("senario_coal", () => {
     "burn_earth",
   ]);
   click(/^Grandma/, /^Use 4/);
-  expectAchieve(["cookie_earth"]);
+  expectAchieve([]); // cookie_earth is not achieved because it is turn 31
+  g = getGlobal();
+  expect(g.resources.cookie).toBe(17001);
+  expect(g.records.pollution).toBe(1316);
+  expect(g.records.gotPomodoro_t1).toBe(31);
+
   m.mockRestore();
   m2.mockRestore();
 });

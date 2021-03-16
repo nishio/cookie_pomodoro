@@ -222,7 +222,24 @@ export const all_achievements: TAchievement[] = [
     forHuman: "Cookie Earth",
     description: "It is a cookie.",
     toShow: HIDDEN,
-    toGet: (g) => g.resources.cookie >= 10000 && g.records.gotPomodoro_t1 <= 40,
+    toGet: (g) => g.resources.cookie >= 10000 && g.records.gotPomodoro_t1 <= 30,
+    isPermanent: true,
+  },
+  {
+    id: "cookie_planet",
+    forHuman: "Cookie Planet",
+    toShow: HIDDEN,
+    toGet: (g) =>
+      g.resources.cookie >= 100000 && g.records.gotPomodoro_t1 <= 35,
+    isPermanent: true,
+  },
+  {
+    id: "cookie_universe",
+    forHuman: "Cookie Universe",
+    description: "It is a cookie.",
+    toShow: HIDDEN,
+    toGet: (g) =>
+      g.resources.cookie >= 1000000 && g.records.gotPomodoro_t1 <= 40,
     isPermanent: true,
   },
 

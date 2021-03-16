@@ -39,6 +39,8 @@ export type TAchievementID =
   | "burn_earth"
   | "sick"
   | "cookie_earth"
+  | "cookie_planet"
+  | "cookie_universe"
   | "science"
   | "green_mana"
   | "lumber"
