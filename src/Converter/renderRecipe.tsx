@@ -88,8 +88,12 @@ export function renderRecipe(
     })
     .join(" ");
 
+  let testid = r.name ?? toStr;
+  if (this.converter.forHuman === "Human") {
+    testid += "@Human";
+  }
   return (
-    <p key={index} data-testid={r.name ?? toStr}>
+    <p key={index} data-testid={testid}>
       Convert <strong>{fromStr}</strong> into <strong>{toStr}</strong>{" "}
       {useButton}
     </p>
