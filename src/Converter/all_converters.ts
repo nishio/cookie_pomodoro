@@ -11,6 +11,7 @@ import { grandma } from "./grandma";
 import { hasConverter } from "./hasConverter";
 import { hasAchieved } from "../Resource/hasAchieved";
 import { nth_fibonacci } from "../utils/nth_fibonacci";
+import { isAchieved } from "./isAchieved";
 
 const NoMod = () => {
   return {};
@@ -197,7 +198,7 @@ export const all_converters: TConverter[] = [
     forHuman: "Human",
     toShow: hasConverter("human"),
     getPrice: (g, amount) => {
-      if (hasAchieved("eve")) {
+      if (isAchieved("eve")) {
         return [
           ["bread", 1],
           ["wine", 1],
