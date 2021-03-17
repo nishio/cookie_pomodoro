@@ -292,7 +292,7 @@ export const all_achievements: TAchievement[] = [
     description: "increase mana regeneration (+= Forest / 5)",
     toShow: HIDDEN,
     toGet: (g) => {
-      return g.records.used_mana > 500 && g.resources.green_mana > 0;
+      return g.records.used_mana >= 333 && g.resources.green_mana > 0;
     },
     isPermanent: false,
   },
@@ -312,6 +312,26 @@ export const all_achievements: TAchievement[] = [
     description: "Now you can reproduce human without mana!",
     toShow: HIDDEN,
     toGet: (g) => g.converters.human > 1,
+    isPermanent: false,
+  },
+  {
+    id: "science2", // was cartesian_doubt
+    forHuman: "Cartesian doubt",
+    description:
+      '"I doubt therefore I think, I think therefore I exist." --- René Descartes',
+
+    toShow: HIDDEN,
+    toGet: (g) => g.resources.science >= 2,
+    isPermanent: false,
+  },
+  {
+    id: "elf_villege",
+    forHuman: "Elf villege",
+    description: "increase mana regeneration (+= Forest / 5)",
+    toShow: HIDDEN,
+    toGet: (g) => {
+      return g.records.used_mana >= 666 && g.resources.green_mana > 0;
+    },
     isPermanent: false,
   },
 ];

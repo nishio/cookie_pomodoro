@@ -108,7 +108,9 @@ export type TAchievementID =
   | "steel2584"
   | "elf"
   | "adam"
-  | "eve";
+  | "eve"
+  | "science2"
+  | "elf_villege";
 export type TConverterID =
   | "grandma"
   | "coal_mine"

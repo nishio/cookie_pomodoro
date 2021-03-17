@@ -10,6 +10,9 @@ export const updateMana = (g: State) => {
     if (isAchieved("elf")) {
       manaRegene += Math.floor(g.converters.forest / 5);
     }
+    if (isAchieved("elf_villege")) {
+      manaRegene += Math.floor(g.converters.forest / 5);
+    }
     manaRegene -= Math.floor(g.records.pollution ?? 0 / 10);
     if (isAchieved("no_mine") && dontHaveConverter("coal_mine", g)) {
       manaRegene *= 2;
