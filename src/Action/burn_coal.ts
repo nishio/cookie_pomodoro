@@ -17,9 +17,9 @@ export const burn_coal = {
   repeat: (n: number) => {
     return () => {
       updateGlobal((g) => {
-        g.resources.coal -= 1;
+        g.resources.coal -= n;
         g.temporaryEffects.push({ ...burn_coal_effect, value: n });
-        g.records.pollution += 1;
+        g.records.pollution += n;
       });
     };
   },
