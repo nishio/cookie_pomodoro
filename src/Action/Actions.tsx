@@ -1,6 +1,8 @@
 import React from "react";
 import { useGlobal } from "reactn";
 import { State } from "reactn/default";
+import { checkAchievements } from "../Achievement/checkAchievements";
+import { save } from "../localDB";
 import { Github } from "../Resource/Github";
 import { all_actions } from "./all_actions";
 
@@ -31,17 +33,24 @@ export const Actions = () => {
           const half = Math.floor(maxUse / 2);
           const repeat = (num: number) => {
             if (a.repeat) {
-              return a.repeat(num);
+              const onClick = a.repeat(num);
+              return () => {
+                onClick();
+                checkAchievements();
+                save();
+              };
             }
             return () => {
               for (let i = 0; i < num; i++) {
                 a.onClick();
               }
+              checkAchievements();
+              save();
             };
           };
           return (
             <li key={a.id}>
-              <button onClick={a.onClick}>{a.forHuman ?? a.id}</button>
+              <button onClick={repeat(1)}>{a.forHuman ?? a.id}</button>
               <button onClick={repeat(half)}>x{half}</button>
               <button onClick={repeat(maxUse)}>x{maxUse}</button>{" "}
               {a.description}
@@ -49,10 +58,14 @@ export const Actions = () => {
           );
         }
       }
-
+      const onClick = () => {
+        a.onClick();
+        checkAchievements();
+        save();
+      };
       return (
         <li key={a.id}>
-          <button onClick={a.onClick}>{a.forHuman ?? a.id}</button>{" "}
+          <button onClick={onClick}>{a.forHuman ?? a.id}</button>{" "}
           {a.description}
         </li>
       );
